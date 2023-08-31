@@ -1,4 +1,4 @@
-import background from '../../assets/images/jason-goodman.jpg';
+import background from '../../assets/images/hero.webp';
 import {Link} from "react-router-dom";
 
 const HeroSection = () => {

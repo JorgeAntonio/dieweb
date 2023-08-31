@@ -1,5 +1,5 @@
 import {OutlinedInput} from "@mui/material";
-import background from "../../assets/images/stem-list.jpg";
+import background from "../../assets/images/stem-list.webp";
 
 const SigInPage = () => {
     return (
