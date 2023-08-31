@@ -4,6 +4,7 @@ import HomePage from "../pages/home/home_page.jsx";
 import MainLayout from "../components/layouts/MainLayout.jsx";
 import LoginLayout from "../components/layouts/LoginLayout.jsx";
 import SigInPage from "../pages/signin/signin_page.jsx";
+import SigUpPage from "../pages/signup/signup_page.jsx";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,17 @@ const router = createBrowserRouter([
             {
                 path: "",
                 element: <SigInPage/>
+            }
+        ]
+    },
+    {
+        path: "/signup",
+        element: <SigUpPage/>,
+        errorElement: <ErrorPage/>,
+        children: [
+            {
+                path: "",
+                element: <SigUpPage/>
             }
         ]
     }

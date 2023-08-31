@@ -1,3 +1,5 @@
+import {NavLink} from "react-router-dom";
+
 export default function Navbar() {
     return (
         <div className="navbar bg-transparent">
@@ -32,7 +34,7 @@ export default function Navbar() {
                     <li><a>Item 3</a></li>
                     <li><a>Item 4</a></li>
                 </ul>
-                    <a className="btn btn-primary btn-sm">Comienza</a>
+                    <NavLink to={`signup`} className="btn btn-primary btn-sm">Comenzar</NavLink>
             </div>
         </div>
     );
