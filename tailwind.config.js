@@ -1,34 +1,33 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-    theme: {
-        extend: {},
-    },
-    daisyui: {
-        themes: [
-            {
-                mytheme: {
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  theme: {
+    extend: {},
+  },
+  daisyui: {
+    themes: [
+      {
+        mytheme: {
+          primary: "#07af0c",
 
-                    "primary": "#1e87c9",
+          secondary: "#f4adbe",
 
-                    "secondary": "#73cadd",
+          accent: "#e4a4fc",
 
-                    "accent": "#ed9690",
+          neutral: "#222a3a",
 
-                    "neutral": "#1e1820",
+          "base-100": "#e4e9f1",
 
-                    "base-100": "#f0e0f0",
+          info: "#91c3f7",
 
-                    "info": "#7ec1f1",
+          success: "#3de1b2",
 
-                    "success": "#0f6157",
+          warning: "#f8bc68",
 
-                    "warning": "#8e5c0b",
-
-                    "error": "#f54d52",
-                },
-            },
-        ],
-    },
-    plugins: [require("daisyui")],
+          error: "#e41b4a",
+        },
+      },
+    ],
+  },
+  plugins: [require("daisyui")],
 };
