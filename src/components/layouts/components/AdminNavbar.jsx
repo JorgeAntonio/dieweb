@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import logo from "../../../assets/logo/logo.svg";
 import { supabase } from "../../../supabaseClient";
 
 export default function AdminNavbar() {
@@ -22,7 +23,9 @@ export default function AdminNavbar() {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost normal-case text-xl">DIE UNAP</a>
+        <Link to="/dashboard" className="">
+          <img src={logo} alt="logo" className="w-32" />
+        </Link>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
