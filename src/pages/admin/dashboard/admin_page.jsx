@@ -1,8 +1,8 @@
 import { Alert } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CasesCard from "../../components/admin/CasesCard";
-import { supabase } from "../../supabaseClient";
+import CasesCard from "../../../components/admin/CasesCard";
+import { supabase } from "../../../supabaseClient";
 
 const AdminPage = () => {
   const [userEmail, setUserEmail] = useState("");
@@ -57,7 +57,7 @@ const AdminPage = () => {
       )}
       <h1 className="text-2xl font-bold pb-8">Panel de Administración</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center gap-4">
-        <Link to="/">
+        <Link to="emprendedores">
           <CasesCard
             title="Emprendedores"
             description="Gestiona los datos de los emprendedores."

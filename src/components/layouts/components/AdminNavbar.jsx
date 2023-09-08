@@ -23,7 +23,7 @@ export default function AdminNavbar() {
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <Link to="/dashboard" className="">
+        <Link to=" " className="">
           <img src={logo} alt="logo" className="w-32" />
         </Link>
       </div>

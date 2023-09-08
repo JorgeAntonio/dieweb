@@ -1,8 +1,8 @@
 import { Alert, AlertTitle, Box, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../../assets/images/hero.webp";
-import { supabase } from "../../supabaseClient";
+import background from "../../../assets/images/hero.webp";
+import { supabase } from "../../../supabaseClient";
 
 const SigInPage = () => {
   // Definir estados para el correo electrónico y la contraseña
@@ -36,7 +36,7 @@ const SigInPage = () => {
       // El usuario se ha autenticado correctamente
       console.log("Usuario autenticado:", data.user);
       // Aquí puedes redirigir al usuario a la página deseada después del inicio de sesión
-      redirect("/dashboard", { replace: true });
+      redirect("admin", { replace: true });
     } catch (error) {
       if (error.message === "Invalid login credentials") {
         error.message =

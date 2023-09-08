@@ -1,12 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
+import AdminLayout from "../components/layouts/AdminLayout.jsx";
 import LoginLayout from "../components/layouts/LoginLayout.jsx";
 import MainLayout from "../components/layouts/MainLayout.jsx";
-import AdminLayout from "../components/layouts/components/AdminLayout.jsx";
-import AdminPage from "../pages/admin/admin_page.jsx";
+import AdminPage from "../pages/admin/dashboard/admin_page.jsx";
+import EntrepreneursPage from "../pages/admin/entrepreneurs/entrepreneurs_page.jsx";
+import SigInPage from "../pages/admin/signin/signin_page.jsx";
+import SigUpPage from "../pages/admin/signup/signup_page.jsx";
+import HomePage from "../pages/client/home/home_page.jsx";
 import ErrorPage from "../pages/error/error_page.jsx";
-import HomePage from "../pages/home/home_page.jsx";
-import SigInPage from "../pages/signin/signin_page.jsx";
-import SigUpPage from "../pages/signup/signup_page.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,13 +44,17 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "dashboard",
+    path: "admin",
     element: <AdminLayout />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "",
         element: <AdminPage />,
+      },
+      {
+        path: "emprendedores",
+        element: <EntrepreneursPage />,
       },
     ],
   },

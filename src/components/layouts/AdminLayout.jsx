@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import AdminNavbar from "./AdminNavbar.jsx";
-import Footer from "./Footer.jsx";
+import AdminNavbar from "./components/AdminNavbar.jsx";
+import Footer from "./components/Footer.jsx";
 
 const AdminLayout = () => {
   return (
