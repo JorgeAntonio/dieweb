@@ -1,10 +1,10 @@
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 
 const LoginLayout = () => {
-    return (
-        <div className="container mx-auto">
-            <Outlet />
-        </div>
-    )
-}
+  return (
+    <div>
+      <Outlet />
+    </div>
+  );
+};
 export default LoginLayout;

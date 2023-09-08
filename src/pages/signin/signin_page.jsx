@@ -1,6 +1,7 @@
 import { Alert, AlertTitle, Box, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import background from "../../assets/images/hero.webp";
 import { supabase } from "../../supabaseClient";
 
 const SigInPage = () => {
@@ -53,21 +54,39 @@ const SigInPage = () => {
 
   return (
     <div>
-      <div className="hero min-h-screen">
+      <div
+        className="hero min-h-screen bg-base-200 md:p-16"
+        style={{
+          backgroundImage: `linear-gradient(
+          rgba(0, 0, 0, 0.5), 
+          rgba(0, 0, 0, 0.5)
+        ), url(${background})`,
+          backgroundBlendMode: "overlay",
+          backgroundSize: "cover",
+        }}
+      >
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="absolute w-full">
-              {error && (
-                <Alert severity="error" mt={4} className="h-[110px]">
-                  <AlertTitle>Error</AlertTitle>
-                  <strong>{error}</strong>
-                </Alert>
-              )}
-            </div>
-            <div className="card-body w-[350px]">
+          <div className="text-center lg:text-left">
+            <h1 className="text-2xl md:text-5xl font-bold">
+              ¡Bienvenido a DIE UNAP!
+            </h1>
+            <p className="md:text-xl font-medium py-6">
+              Proporcionando oportunidades y apoyando el espíritu empresarial
+              desde la Universidad Nacional de la Amazonia Peruana.
+            </p>
+          </div>
+          <div className="card flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
+            <div className="card-body w-[320px]">
               <h1 className="text-3xl font-bold">Inicia sesión</h1>
               <p className="mb-3">Ingresa tus datos para iniciar sesión.</p>
-
+              <div className="absolute w-[290px]">
+                {error && (
+                  <Alert severity="error" mt={4} className="">
+                    <AlertTitle>Error</AlertTitle>
+                    <strong>{error}</strong>
+                  </Alert>
+                )}
+              </div>
               <Box noValidate autoComplete="off">
                 <div className="form-control mt-6">
                   <TextField
