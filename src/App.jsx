@@ -1,11 +1,10 @@
-import Layout from "./components/layouts/MainLayout.jsx";
+import MainLayout from "./components/layouts/MainLayout.jsx";
 
 function App() {
   return (
-      <div>
-          <Layout>
-          </Layout>
-      </div>
+    <div>
+      <MainLayout></MainLayout>
+    </div>
   );
 }
 

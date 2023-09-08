@@ -10,6 +10,7 @@ const SigInPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   // Función para manejar el inicio de sesión
   const handleLogin = async () => {
@@ -23,7 +24,7 @@ const SigInPage = () => {
 
         return;
       }
-
+      setLoading(true);
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
@@ -32,12 +33,10 @@ const SigInPage = () => {
       if (error) {
         throw error;
       }
-
-      // El usuario se ha autenticado correctamente
       console.log("Usuario autenticado:", data.user);
-      // Aquí puedes redirigir al usuario a la página deseada después del inicio de sesión
       navigate("/admin", { replace: true });
     } catch (error) {
+      setLoading(false);
       if (error.message === "Invalid login credentials") {
         error.message =
           "Credenciales inválidas. Por favor, intenta nuevamente.";
@@ -58,15 +57,15 @@ const SigInPage = () => {
         className="hero min-h-screen bg-base-200 md:p-16"
         style={{
           backgroundImage: `linear-gradient(
-          rgba(0, 0, 0, 0.5), 
-          rgba(0, 0, 0, 0.5)
+          rgba(0, 0, 0, 0.3), 
+          rgba(0, 0, 0, 0.3)
         ), url(${background})`,
           backgroundBlendMode: "overlay",
           backgroundSize: "cover",
         }}
       >
         <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
+          <div className="text-center lg:text-left text-balance">
             <h1 className="text-2xl md:text-5xl font-bold">
               ¡Bienvenido a DIE UNAP!
             </h1>
@@ -75,7 +74,7 @@ const SigInPage = () => {
               desde la Universidad Nacional de la Amazonia Peruana.
             </p>
           </div>
-          <div className="card flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
+          <div className="card flex-shrink-0 max-w-sm shadow-2xl bg-white">
             <div className="card-body w-[320px]">
               <h1 className="text-3xl font-bold">Inicia sesión</h1>
               <p className="mb-3">Ingresa tus datos para iniciar sesión.</p>
@@ -107,8 +106,16 @@ const SigInPage = () => {
                   />
                 </div>
                 <div className="form-control mt-6">
-                  <button className="btn btn-primary" onClick={handleLogin}>
-                    Iniciar sesión
+                  <button
+                    className="btn btn-primary"
+                    onClick={handleLogin}
+                    disabled={loading}
+                  >
+                    {loading ? (
+                      <span>Cargando</span>
+                    ) : (
+                      <span>Iniciar sesión</span>
+                    )}
                   </button>
                 </div>
                 <a
