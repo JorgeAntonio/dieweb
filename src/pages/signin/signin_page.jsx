@@ -81,7 +81,7 @@ const SigInPage = () => {
               <p className="mb-3">Ingresa tus datos para iniciar sesión.</p>
               <div className="absolute w-[290px]">
                 {error && (
-                  <Alert severity="error" mt={4} className="">
+                  <Alert severity="error" mt={4} className="w-[260px]">
                     <AlertTitle>Error</AlertTitle>
                     <strong>{error}</strong>
                   </Alert>
