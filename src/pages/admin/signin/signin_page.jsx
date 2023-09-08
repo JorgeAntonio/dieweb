@@ -9,7 +9,7 @@ const SigInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const redirect = useNavigate();
+  const navigate = useNavigate();
 
   // Función para manejar el inicio de sesión
   const handleLogin = async () => {
@@ -36,7 +36,7 @@ const SigInPage = () => {
       // El usuario se ha autenticado correctamente
       console.log("Usuario autenticado:", data.user);
       // Aquí puedes redirigir al usuario a la página deseada después del inicio de sesión
-      redirect("admin", { replace: true });
+      navigate("/admin", { replace: true });
     } catch (error) {
       if (error.message === "Invalid login credentials") {
         error.message =
