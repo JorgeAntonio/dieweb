@@ -1,8 +1,8 @@
 import { Alert, AlertTitle, Box, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import background from "../../../assets/images/hero.webp";
-import { supabase } from "../../../supabaseClient";
+import background from "../../assets/images/hero.webp";
+import { supabase } from "../../supabaseClient.js";
 
 const SigInPage = () => {
   // Definir estados para el correo electrónico y la contraseña

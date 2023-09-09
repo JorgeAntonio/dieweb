@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../../assets/logo/logo.svg";
-import { supabase } from "../../../supabaseClient";
+import logo from "../../assets/logo/logo.svg";
+import { supabase } from "../../supabaseClient.js";
 
 export default function AdminNavbar() {
   const navigate = useNavigate();

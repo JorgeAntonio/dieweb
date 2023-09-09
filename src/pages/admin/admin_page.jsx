@@ -1,8 +1,8 @@
 import { Alert } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import CasesCard from "../../../components/admin/CasesCard";
-import { supabase } from "../../../supabaseClient";
+import CasesCard from "../../components/admin/CasesCard.jsx";
+import { supabase } from "../../supabaseClient.js";
 
 const AdminPage = () => {
   const [userEmail, setUserEmail] = useState("");
