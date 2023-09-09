@@ -1,52 +1,69 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
-import { supabase } from "../supabaseClient";
+import {createContext, useContext, useEffect, useState} from "react";
+import { supabase } from "../supabase/supabase.client.jsx";
+import {useNavigate} from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState([]);
+    const navigate = useNavigate();
+    const [user, setUser] = useState([]);
+    const [error, setError] = useState(null); // Nuevo estado para los errores
 
-  async function signInWithEmail({ email, password }) {
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
-      });
-      if (error)
-        throw new Error("A ocurrido un error durante la autenticación");
-      return data;
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  async function signout() {
-    const { error } = await supabase.auth.signOut();
-    if (error)
-      throw new Error("A ocurrido un error durante el cierre de sesión");
-  }
-
-  useEffect(() => {
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log("event", event);
-        if (session == null) {
-          Navigate("/signin", { replace: true });
-        } else {
-          Navigate("/admin", { replace: true });
+    async function login({ email, password }) {
+        try {
+            setError(null); // Limpiar el error antes de realizar el inicio de sesión
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email: email,
+                password: password,
+            });
+            if (error) {
+                setError("Error al iniciar sesión: " + error.message); // Guardar el error en el estado
+            }
+            return data;
+        } catch (error) {
+            setError("Error al iniciar sesión: " + error.message); // Guardar el error en el estado
         }
-      }
-    );
-  }, []);
+    }
 
-  return (
-    <AuthContext.Provider value={{ signInWithEmail, signout, user }}>
-      {children}
-    </AuthContext.Provider>
-  );
+    async function logout() {
+        try {
+            setError(null); // Limpiar el error antes de cerrar la sesión
+            const { error } = await supabase.auth.signOut();
+            localStorage.removeItem("hasSeenAlert");
+            if (error) throw new Error("Error al cerrar sesión: " + error.message);
+        } catch (error) {
+            setError("Error al cerrar sesión: " + error.message); // Guardar el error en el estado
+        }
+    }
+
+    useEffect(() => {
+        const { data: authListener } = supabase.auth.onAuthStateChange(
+            async (event, session) => {
+                console.log("event", event);
+                const currentUser = session?.user;
+                console.log("data del usuario", session?.user);
+                setUser(currentUser ?? null);
+                console.log("currentUser", currentUser);
+                setError(null); // Limpiar el error al cambiar el estado de la autenticación
+                if (currentUser) {
+                    navigate("/admin", { replace: true });
+                } else {
+                    navigate("/", { replace: true });
+                }
+            }
+        );
+        return () => {
+            authListener.subscription;
+        };
+    }, []);
+
+    return (
+        <AuthContext.Provider value={{ user, login, logout, error }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export const UserAuth = () => {
-  return useContext(AuthContext);
+    return useContext(AuthContext);
 };

@@ -1,10 +1,11 @@
-import MainLayout from "./layouts/MainLayout.jsx";
+import MyRouter from "./router/router.jsx";
+import {AuthContextProvider} from "./context/AuthContext.jsx";
 
 function App() {
     return (
-        <div>
-            <MainLayout></MainLayout>
-        </div>
+        <AuthContextProvider>
+            <MyRouter />
+        </AuthContextProvider>
     );
 }
 
