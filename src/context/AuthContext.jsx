@@ -1,11 +1,9 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import { supabase } from "../supabase/supabase.client.jsx";
-import {useNavigate} from "react-router-dom";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-    const navigate = useNavigate();
     const [user, setUser] = useState([]);
     const [error, setError] = useState(null); // Nuevo estado para los errores
 
@@ -21,9 +19,13 @@ export const AuthContextProvider = ({ children }) => {
             }
             return data;
         } catch (error) {
-            setError("Error al iniciar sesión: " + error.message); // Guardar el error en el estado
+            setError("Error al iniciar sesión: " + error.message);
         }
     }
+
+    setTimeout(() => {
+        setError(null)
+    }, 5000);
 
     async function logout() {
         try {
@@ -39,17 +41,17 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const { data: authListener } = supabase.auth.onAuthStateChange(
             async (event, session) => {
-                console.log("event", event);
+                // console.log("event", event);
                 const currentUser = session?.user;
-                console.log("data del usuario", session?.user);
+                // console.log("data del usuario", session?.user);
                 setUser(currentUser ?? null);
-                console.log("currentUser", currentUser);
+                // console.log("currentUser", currentUser);
                 setError(null); // Limpiar el error al cambiar el estado de la autenticación
-                if (currentUser) {
-                    navigate("/admin", { replace: true });
-                } else {
-                    navigate("/", { replace: true });
-                }
+                // if (currentUser) {
+                //     navigate("/admin", { replace: true });
+                // } else {
+                //     navigate("/", { replace: true });
+                // }
             }
         );
         return () => {

@@ -1,86 +1,39 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useEntrepreneurContext } from "../../context/EntrepreneurContext.jsx";
+import { supabase } from "../../supabase/supabase.client.jsx";
 
 function EntrepreneursPage() {
-  // Estado para almacenar la lista de solicitudes de emprendedores
-  const [entrepreneurs, setEntrepreneurs] = useState([]);
-  // Estado para mostrar el mensaje de notificación
+  const { entrepreneurs, removeEntrepreneur } = useEntrepreneurContext();
   const [notification, setNotification] = useState("");
 
-  // Función para cargar las solicitudes de emprendedores (simulado)
-  const loadEntrepreneurs = () => {
-    // Simulación de carga de datos (puedes reemplazarlo con una solicitud real a tu API)
-    const data = [
-      {
-        id: 1,
-        name: "Emprendedor 1",
-        startup: "hola mundo",
-        status: "Pendiente",
-      },
-      {
-        id: 2,
-        name: "Emprendedor 2",
-        startup: "hola mundo",
-        status: "Aprobado",
-      },
-      {
-        id: 3,
-        name: "Emprendedor 3",
-        startup: "hola mundo",
-        status: "Rechazado",
-      },
-      {
-        id: 3,
-        name: "Emprendedor 3",
-        startup: "hola mundo",
-        status: "Rechazado",
-      },
-      {
-        id: 3,
-        name: "Emprendedor 3",
-        startup: "hola mundo",
-        status: "Rechazado",
-      },
-      {
-        id: 3,
-        name: "Emprendedor 3",
-        startup: "hola mundo",
-        status: "Rechazado",
-      },
-      {
-        id: 3,
-        name: "Emprendedor 3",
-        startup: "hola mundo",
-        status: "Rechazado",
-      },
-      {
-        id: 3,
-        name: "Emprendedor 3",
-        startup: "hola mundo",
-        status: "Rechazado",
-      },
-      {
-        id: 3,
-        name: "Emprendedor 3",
-        startup: "hola mundo",
-        status: "Rechazado",
-      },
-    ];
-    setEntrepreneurs(data);
-  };
+  async function handleDeleteEntrepreneur(id) {
+    await removeEntrepreneur(id);
+    setNotification(`Solicitud de Emprendedor ${id} eliminada.`);
+  }
 
-  // Simular la carga inicial de solicitudes de emprendedores
   useEffect(() => {
-    loadEntrepreneurs();
+    supabase
+      .channel("custom-all-channel")
+      .on(
+        "postgres_changes",
+        { event: "*", schema: "public", table: "entrepreneurs" },
+        (payload) => {
+          console.log("Change received!", payload);
+        }
+      )
+      .subscribe();
   }, []);
 
-  // Función para aprobar una solicitud de emprendedor
+  setTimeout(() => {
+    setNotification(null);
+  }, 5000);
+
   const approveEntrepreneur = (id) => {
     // Simulación de aprobación (puedes implementar la lógica real aquí)
     // Por ejemplo, puedes enviar una solicitud al servidor para actualizar el estado
     setNotification(`Solicitud de Emprendedor ${id} aprobada.`);
   };
-
-  // Función para rechazar una solicitud de emprendedor
   const rejectEntrepreneur = (id) => {
     // Simulación de rechazo (puedes implementar la lógica real aquí)
     // Por ejemplo, puedes enviar una solicitud al servidor para actualizar el estado
@@ -89,14 +42,16 @@ function EntrepreneursPage() {
 
   return (
     <div className="mx-auto p-4 md:p-8">
-      <div className="flex justify-between">
+      <div className="flex justify-between pb-4">
         <h1 className="text-2xl font-bold">Emprendedores</h1>
-        <button className="btn btn-primary">Agregar Nuevo</button>
+        <Link to="registrar">
+          <button className={"btn btn-primary"}>Agregar Nuevo</button>
+        </Link>
       </div>
       {notification && <div className="alert">{notification}</div>}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto"></div>
+      <div>
         <table className="table">
-          {/* head */}
           <thead>
             <tr>
               <th>
@@ -111,9 +66,8 @@ function EntrepreneursPage() {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
             {entrepreneurs.map((entrepreneur) => (
-              <tr key={entrepreneur.id}>
+              <tr key={entrepreneur?.id ? entrepreneur.id : ""}>
                 <th>
                   <label>
                     <input type="checkbox" className="checkbox" />
@@ -130,20 +84,28 @@ function EntrepreneursPage() {
                       </div>
                     </div>
                     <div>
-                      <div className="font-bold">{entrepreneur.name}</div>
+                      <div className="font-bold">
+                        {entrepreneur?.name ? entrepreneur.name : ""}
+                      </div>
                       <div className="text-sm opacity-50">United States</div>
                     </div>
                   </div>
                 </td>
                 <td>
-                  Z{entrepreneur.startup}
+                  {entrepreneur?.startup ? entrepreneur.startup : ""}
                   <br />
                   <span className="badge badge-ghost badge-sm">
                     Desktop Support Technician
                   </span>
                 </td>
-                <td>{entrepreneur.status}</td>
+                <td>{entrepreneur?.status ? entrepreneur.status : ""}</td>
                 <th>
+                  <button
+                    className={"btn btn-error btn-xs"}
+                    onClick={() => handleDeleteEntrepreneur(entrepreneur.id)}
+                  >
+                    Eliminar
+                  </button>
                   <button
                     onClick={() => approveEntrepreneur(entrepreneur.id)}
                     className="btn btn-ghost btn-xs"

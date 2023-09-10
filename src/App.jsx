@@ -1,10 +1,13 @@
 import MyRouter from "./router/router.jsx";
 import {AuthContextProvider} from "./context/AuthContext.jsx";
+import {EntrepreneurContextProvider} from "./context/EntrepreneurContext.jsx";
 
 function App() {
     return (
         <AuthContextProvider>
-            <MyRouter />
+            <EntrepreneurContextProvider>
+                <MyRouter/>
+            </EntrepreneurContextProvider>
         </AuthContextProvider>
     );
 }
