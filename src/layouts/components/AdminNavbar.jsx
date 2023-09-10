@@ -3,7 +3,7 @@ import logo from "../../assets/logo/logo.svg";
 import {UserAuth} from "../../context/AuthContext.jsx";
 
 export default function AdminNavbar() {
-    const {logout} = UserAuth();
+    const {logout, user} = UserAuth();
     const navigate = useNavigate();
 
     const handleLogout = async () => {
