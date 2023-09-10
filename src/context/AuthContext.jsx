@@ -1,9 +1,11 @@
-import {createContext, useContext, useEffect, useState} from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabase/supabase.client.jsx";
 
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
+    const navigate = useNavigate();
     const [user, setUser] = useState([]);
     const [error, setError] = useState(null); // Nuevo estado para los errores
 
@@ -17,7 +19,10 @@ export const AuthContextProvider = ({ children }) => {
             if (error) {
                 setError("Error al iniciar sesión: " + error.message); // Guardar el error en el estado
             }
-            return data;
+            if (data) {
+                navigate("/admin", { replace: true });
+                return data;
+            }
         } catch (error) {
             setError("Error al iniciar sesión: " + error.message);
         }
