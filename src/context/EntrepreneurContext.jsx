@@ -12,6 +12,22 @@ export const EntrepreneurContextProvider = ({ children }) => {
   const [notification, setNotification] = useState("");
   const [error, setError] = useState("");
 
+  async function showEntrepreneurs() {
+    try {
+      const data = await readEntrepreneurs();
+      setEntrepreneurs(data);
+      if (data) {
+        setNotification("Emprendedores cargados exitosamente");
+      }
+      if (error) {
+        setError("Error al cargar los emprendedores: " + error.message);
+      }
+    } catch (error) {
+      console.log("Error al cargar los emprendedores: " + error.message);
+      setError("Error al cargar los emprendedores: " + error.message);
+    }
+  }
+
   async function insertEntrepreneur(name, startup, status) {
     try {
       if (!name || !startup || !status) {
@@ -34,19 +50,19 @@ export const EntrepreneurContextProvider = ({ children }) => {
     }
   }
 
-  async function showEntrepreneurs() {
+  async function updateEntrepreneur(id, name, startup, status) {
     try {
-      const data = await readEntrepreneurs();
+      const data = await updateEntrepreneur(id, name, startup, status);
       setEntrepreneurs(data);
       if (data) {
-        setNotification("Emprendedores cargados exitosamente");
+        setNotification("Emprendedor actualizado exitosamente");
       }
       if (error) {
-        setError("Error al cargar los emprendedores: " + error.message);
+        setError("Error al actualizar el emprendedor: " + error.message);
       }
     } catch (error) {
-      console.log("Error al cargar los emprendedores: " + error.message);
-      setError("Error al cargar los emprendedores: " + error.message);
+      console.log("Error al actualizar el emprendedor: " + error.message);
+      setError("Error al actualizar el emprendedor: " + error.message);
     }
   }
 
@@ -81,6 +97,7 @@ export const EntrepreneurContextProvider = ({ children }) => {
         insertEntrepreneur,
         removeEntrepreneur,
         showEntrepreneurs,
+        updateEntrepreneur,
       }}
     >
       {children}

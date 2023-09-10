@@ -18,6 +18,8 @@ function RegisterEntrepreneurPage() {
     setStartup("");
     setStatus("");
     setError(null);
+    setLoading(false);
+    navigate("/admin/emprendedor");
   };
 
   function handleCreateEntrepreneur() {
@@ -68,6 +70,7 @@ function RegisterEntrepreneurPage() {
             <strong>{error}</strong>
           </Alert>
         )}
+
         <h3 className="font-bold text-xl">Registrar Emprendedor</h3>
         <p className="py-4"> Ingrese los datos del emprendedor </p>
 
@@ -112,7 +115,7 @@ function RegisterEntrepreneurPage() {
                   handleCreateEntrepreneur();
                 }}
               >
-                {loading ? <span>Cargando</span> : <span>Crear</span>}
+                {loading ? <span>Cargando</span> : <span>Guardar datos</span>}
               </button>
               <button className={"btn"} onClick={handleClose}>
                 Cancelar
