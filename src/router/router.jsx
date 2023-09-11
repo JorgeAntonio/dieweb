@@ -5,7 +5,7 @@ import LoginLayout from "../layouts/LoginLayout.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
 import DetailsEntrepreneurPage from "../pages/admin/DetailsEntrepreneurPage.jsx";
 import RegisterEntrepreneurPage from "../pages/admin/RegisterEntrepreneurPage.jsx";
-import AdminPage from "../pages/admin/admin_page.jsx";
+import AdminPage from "../pages/admin/AdminPage.jsx";
 import EntrepreneursPage from "../pages/admin/EntrepreneursPage.jsx";
 import SigInPage from "../pages/admin/SigninPage.jsx";
 import HomePage from "../pages/client/home_page.jsx";

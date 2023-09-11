@@ -1,40 +1,59 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEntrepreneurContext } from "../../context/EntrepreneurContext";
 import { supabase } from "../../supabase/supabase.client";
 
 export default function DataTable() {
   const navigate = useNavigate();
-  const { entrepreneurs } = useEntrepreneurContext();
-  const [notification, setNotification] = useState(null);
+  const { entrepreneurs, setEntrepreneurs } = useEntrepreneurContext();
 
-  useEffect(() => {
-    supabase
-      .channel("custom-all-channel")
-      .on(
-        "postgres_changes",
-        { event: "*", schema: "public", table: "entrepreneurs" },
-        (payload) => {
-          console.log("Change received!", payload);
+  // Función para cambiar el estado del emprendedor
+  const handleStatusUpdate = async (id) => {
+    // Obten el emprendedor con el ID especificado
+    const entrepreneurToUpdate = entrepreneurs.find(
+      (entrepreneur) => entrepreneur.id === id
+    );
+
+    if (entrepreneurToUpdate) {
+      // Cambia el valor booleano
+      entrepreneurToUpdate.status = !entrepreneurToUpdate.status;
+
+      // Actualiza el estado local
+      setEntrepreneurs([...entrepreneurs]);
+
+      // Actualiza el valor en la base de datos
+      try {
+        const { data, error } = await supabase
+          .from("entrepreneurs")
+          .update({ status: entrepreneurToUpdate.status })
+          .eq("id", id);
+
+        if (error) {
+          console.error("Error actualizando el estado del emprendedor:", error);
         }
-      )
-      .subscribe();
-  }, []);
 
-  setTimeout(() => {
-    setNotification(null);
-  }, 5000);
+        if (data) {
+          console.log("Emprendedor actualizado exitosamente");
+        }
+      } catch (error) {
+        console.error("Error actualizando el estado del emprendedor:", error);
+      }
+    }
+  };
 
   return (
     <div className="h-[400px] mx-auto container">
-      {notification && <div className="alert">{notification}</div>}
       <DataGrid
         rows={entrepreneurs?.map((entrepreneur) => ({
           id: entrepreneur?.id ? entrepreneur.id : "",
           name: entrepreneur?.name ? entrepreneur.name : "",
+          lastname: entrepreneur?.lastname ? entrepreneur.lastname : "",
+          dni: entrepreneur?.dni ? entrepreneur.dni : "",
+          email: entrepreneur?.email ? entrepreneur.email : "",
+          phone: entrepreneur?.phone ? entrepreneur.phone : "",
+          address: entrepreneur?.address ? entrepreneur.address : "",
           startup: entrepreneur?.startup ? entrepreneur.startup : "",
-          status: entrepreneur?.status ? entrepreneur.status : "",
+          status: entrepreneur?.status ? entrepreneur.status : false,
         }))}
         columns={[
           {
@@ -46,8 +65,44 @@ export default function DataTable() {
             ),
           },
           {
-            field: "name",
-            headerName: "Nombre",
+            field: "fullname",
+            headerName: "Full name",
+            description: "This column has a value getter and is not sortable.",
+            sortable: false,
+            width: 160,
+            valueGetter: (params) =>
+              `${params.row.name || ""} ${params.row.lastname || ""}`,
+            renderCell: (params) => (
+              <div className="font-bold">{params.value}</div>
+            ),
+          },
+          {
+            field: "dni",
+            headerName: "DNI",
+            width: 130,
+            renderCell: (params) => (
+              <div className="font-bold">{params.value}</div>
+            ),
+          },
+          {
+            field: "email",
+            headerName: "Email",
+            width: 130,
+            renderCell: (params) => (
+              <div className="font-bold">{params.value}</div>
+            ),
+          },
+          {
+            field: "phone",
+            headerName: "Teléfono",
+            width: 130,
+            renderCell: (params) => (
+              <div className="font-bold">{params.value}</div>
+            ),
+          },
+          {
+            field: "address",
+            headerName: "Dirección",
             width: 130,
             renderCell: (params) => (
               <div className="font-bold">{params.value}</div>
@@ -70,35 +125,8 @@ export default function DataTable() {
             ),
           },
           {
-            field: "fullname",
-            headerName: "Full name",
-            description: "This column has a value getter and is not sortable.",
-            sortable: false,
-            width: 160,
-            valueGetter: (params) =>
-              `${params.row.name || ""} ${params.row.startup || ""}`,
-            renderCell: (params) => (
-              <div className="font-bold">{params.value}</div>
-            ),
-          },
-          {
-            field: "avatar",
-            headerName: "Avatar",
-            width: 130,
-            renderCell: (params) => (
-              <div className="avatar">
-                <div className="mask mask-squircle w-12 h-12">
-                  src=
-                  {params.row.avatar ||
-                    "https://daisyui.com/tailwind-css-component-profile-2@56w.png"}
-                  alt={params.row.name}
-                </div>
-              </div>
-            ),
-          },
-          {
             field: "update",
-            headerName: "Detalles",
+            headerName: "Actualizar",
             width: 130,
             renderCell: (params) => (
               <strong>
@@ -106,9 +134,26 @@ export default function DataTable() {
                   onClick={() => {
                     navigate(`/admin/emprendedor/${params.row.id}`);
                   }}
-                  className={"btn btn-info btn-sm"}
+                  className={"btn btn-ghost btn-sm"}
                 >
-                  Ver
+                  Actualizar
+                </button>
+              </strong>
+            ),
+          },
+          {
+            field: "desactivar",
+            headerName: "Estado",
+            width: 130,
+            renderCell: (params) => (
+              <strong>
+                <button
+                  onClick={() => {
+                    handleStatusUpdate(params.row.id);
+                  }}
+                  className={"btn btn-ghost btn-sm"}
+                >
+                  {params.value ? "Desactivar" : "Activar"}{" "}
                 </button>
               </strong>
             ),
