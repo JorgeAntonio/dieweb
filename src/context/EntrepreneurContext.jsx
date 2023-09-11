@@ -86,7 +86,7 @@ export const EntrepreneurContextProvider = ({ children }) => {
     showEntrepreneurs().then(() =>
       console.log("Emprendedores cargados exitosamente")
     );
-  }, [notification, error, showEntrepreneurs]);
+  }, [showEntrepreneurs()]);
 
   return (
     <EntrepreneurContext.Provider

@@ -46,8 +46,7 @@ export async function readEntrepreneurs() {
     const { data, error } = await supabase
       .from("entrepreneurs")
       .select("*")
-      .limit(10);
-
+        .order("id", { ascending: true });
     if (error) {
       throw new Error("Error al leer los emprendedores: " + error.message);
     }

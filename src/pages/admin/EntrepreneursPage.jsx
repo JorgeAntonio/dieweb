@@ -13,6 +13,10 @@ function EntrepreneursPage() {
     setNotification(`Solicitud de Emprendedor ${id} eliminada.`);
   }
 
+    // setTimeout(() => {
+    //   setNotification(null);
+    // }, 5000);
+
   useEffect(() => {
     supabase
       .channel("custom-all-channel")
@@ -25,10 +29,6 @@ function EntrepreneursPage() {
       )
       .subscribe();
   }, []);
-
-  setTimeout(() => {
-    setNotification(null);
-  }, 5000);
 
   return (
     <div className="mx-auto p-4 md:p-8">

@@ -1,10 +1,11 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEntrepreneurContext } from "../../context/EntrepreneurContext";
 import { supabase } from "../../supabase/supabase.client";
 
 export default function DataTable() {
+  const navigate = useNavigate();
   const { entrepreneurs } = useEntrepreneurContext();
   const [notification, setNotification] = useState(null);
 
@@ -101,9 +102,14 @@ export default function DataTable() {
             width: 130,
             renderCell: (params) => (
               <strong>
-                <Link to={`registrar/${params.value}`}>
-                  <button className={"btn btn-info btn-sm"}>Ver</button>
-                </Link>
+                <button
+                  onClick={() => {
+                    navigate(`/admin/emprendedor/${params.row.id}`);
+                  }}
+                  className={"btn btn-info btn-sm"}
+                >
+                  Ver
+                </button>
               </strong>
             ),
           },
