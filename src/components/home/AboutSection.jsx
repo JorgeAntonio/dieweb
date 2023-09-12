@@ -8,10 +8,12 @@ const AboutSection = () => {
           className="rounded-lg shadow-lg h-[400px] w-full object-cover"
         />
       </div>
-      <div className="w-full md:w-1/2">
-        <h1 className="text-4xl font-sans text-start mb-4">¿Quiénes somos?</h1>
+      <div className="w-full md:w-1/2 text-balance">
+        <h1 className="text-4xl font-sans text-start mb-4 text-balance">
+          ¿Quiénes somos?
+        </h1>
 
-        <article className="list-disc list-inside">
+        <article className="list-disc list-inside text-balance">
           <p className="text-gray-800 text-lg mb-2">
             La Dirección de Incubadora de Empresa (DIE) de la Universidad
             Nacional de la Amazonía Peruana es un programa de apoyo empresarial

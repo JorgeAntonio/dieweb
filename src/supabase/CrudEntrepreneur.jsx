@@ -36,7 +36,7 @@ export async function createEntrepreneur(
   }
 }
 
-async function readEntrepreneur(id) {
+export async function readEntrepreneur(id) {
   try {
     const { data, error } = await supabase
       .from("entrepreneurs")

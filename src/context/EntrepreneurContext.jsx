@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   createEntrepreneur,
   deleteEntrepreneur,
+  readEntrepreneur,
   readEntrepreneurs,
 } from "../supabase/CrudEntrepreneur.jsx";
 import { supabase } from "../supabase/supabase.client.jsx";
@@ -11,6 +12,7 @@ const EntrepreneurContext = createContext(null);
 
 export const EntrepreneurContextProvider = ({ children }) => {
   const [entrepreneurs, setEntrepreneurs] = useState([]);
+  const [entrepreneur, setEntrepreneur] = useState([]);
   const [notification, setNotification] = useState("");
   const [error, setError] = useState("");
 
@@ -144,16 +146,34 @@ export const EntrepreneurContextProvider = ({ children }) => {
     }
   }
 
+  async function loadEntrepreneur(id) {
+    try {
+      const data = await readEntrepreneur(id);
+      setEntrepreneur(data);
+      if (data) {
+        setNotification("Emprendedor cargado exitosamente");
+      }
+      if (error) {
+        setError("Error al cargar el emprendedor: " + error.message);
+      }
+    } catch (error) {
+      console.log("Error al cargar el emprendedor: " + error.message);
+      setError("Error al cargar el emprendedor: " + error.message);
+    }
+  }
+
   return (
     <EntrepreneurContext.Provider
       value={{
         entrepreneurs,
+        entrepreneur,
         notification,
         error,
         insertEntrepreneur,
         removeEntrepreneur,
         loadEntrepreneurs,
         updateEntrepreneur,
+        loadEntrepreneur,
       }}
     >
       {children}

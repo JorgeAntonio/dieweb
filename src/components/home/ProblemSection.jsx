@@ -9,12 +9,12 @@ export default function ProblemSection() {
             className="rounded-lg shadow-lg"
           />
         </div>
-        <div className="w-full md:w-1/2">
-          <h1 className="text-4xl font-sans text-start mb-4">
+        <div className="w-full md:w-1/2 text-balance">
+          <h1 className="text-4xl font-sans text-start mb-4 uppercase">
             El Desafío de Emprender Sin Orientación
           </h1>
 
-          <article className="list-disc list-inside">
+          <article className="list-disc list-inside text-balance">
             <p className="text-gray-800 text-lg mb-2">
               Iniciar un negocio sin una guía adecuada puede ser extremadamente
               difícil. Muchos emprendedores se enfrentan a obstáculos y desafíos
