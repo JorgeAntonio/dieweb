@@ -19,7 +19,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
+    <ul className="md:menu p-4 w-80 min-h-full bg-base-200 text-base-content hidden">
       {eventos.map((evento, index) => (
         <li key={index} className="mb-4">
           <h3 className="text-lg font-semibold">{evento.titulo}</h3>
