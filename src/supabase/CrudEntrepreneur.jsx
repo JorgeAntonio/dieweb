@@ -1,11 +1,25 @@
 import { supabase } from "./supabase.client.jsx";
 
-export async function createEntrepreneur(name, startup, status) {
+export async function createEntrepreneur(
+  name,
+  lastName,
+  dni,
+  email,
+  phone,
+  address,
+  startup,
+  status
+) {
   try {
     const { data, error } = await supabase
       .from("entrepreneurs")
       .insert({
         name: name,
+        lastname: lastName,
+        dni: dni,
+        email: email,
+        phone: phone,
+        address: address,
         startup: startup,
         status: status,
       })
@@ -14,11 +28,11 @@ export async function createEntrepreneur(name, startup, status) {
     if (error) {
       throw new Error("Error al crear el emprendedor: " + error.message);
     } else {
-      return data;
+      Error(data);
     }
   } catch (error) {
     console.log("Error al crear el emprendedor: " + error.message);
-    throw new Error("Error al crear el emprendedor: " + error.message);
+    Error("Error al crear el emprendedor: " + error.message);
   }
 }
 
@@ -46,8 +60,7 @@ export async function readEntrepreneurs() {
     const { data, error } = await supabase
       .from("entrepreneurs")
       .select("*")
-      .limit(10);
-
+      .order("id", { ascending: true });
     if (error) {
       throw new Error("Error al leer los emprendedores: " + error.message);
     }

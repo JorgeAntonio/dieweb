@@ -1,9 +1,11 @@
+import PropTypes from "prop-types";
 import { createContext, useContext, useEffect, useState } from "react";
 import {
   createEntrepreneur,
   deleteEntrepreneur,
   readEntrepreneurs,
 } from "../supabase/CrudEntrepreneur.jsx";
+import { supabase } from "../supabase/supabase.client.jsx";
 
 const EntrepreneurContext = createContext(null);
 
@@ -12,7 +14,7 @@ export const EntrepreneurContextProvider = ({ children }) => {
   const [notification, setNotification] = useState("");
   const [error, setError] = useState("");
 
-  async function showEntrepreneurs() {
+  async function loadEntrepreneurs() {
     try {
       const data = await readEntrepreneurs();
       setEntrepreneurs(data);
@@ -28,15 +30,75 @@ export const EntrepreneurContextProvider = ({ children }) => {
     }
   }
 
-  async function insertEntrepreneur(name, startup, status) {
-    try {
-      if (!name || !startup || !status) {
-        setNotification(
-          "Error al crear el emprendedor: Debe ingresar todos los datos"
-        );
-      }
+  useEffect(() => {
+    // Carga los emprendedores
+    loadEntrepreneurs();
 
-      const data = await createEntrepreneur(name, startup, status);
+    async function subscribeToEntrepreneurs() {
+      try {
+        const subscription = supabase
+          .channel("custom-all-channel")
+          .on(
+            "postgres_changes",
+            { event: "*", schema: "public", table: "entrepreneurs" },
+            (payload) => {
+              const { new: newEntrepreneur } = payload;
+              const { old: oldEntrepreneur } = payload;
+              const { action } = payload;
+              if (action === "INSERT") {
+                setEntrepreneurs([...entrepreneurs, newEntrepreneur]);
+              }
+              if (action === "UPDATE") {
+                const index = entrepreneurs.findIndex(
+                  (entrepreneur) => entrepreneur.id === oldEntrepreneur.id
+                );
+                const updatedEntrepreneurs = [...entrepreneurs];
+                updatedEntrepreneurs[index] = newEntrepreneur;
+                setEntrepreneurs(updatedEntrepreneurs);
+              }
+              console.log("Change received!", payload);
+            }
+          )
+          .subscribe();
+        return subscription;
+      } catch (error) {
+        console.log(
+          "Error al suscribirse a los emprendedores: " + error.message
+        );
+        setError("Error al suscribirse a los emprendedores: " + error.message);
+      }
+    }
+
+    // Suscríbete a los cambios en la base de datos
+    const subscription = subscribeToEntrepreneurs();
+
+    // Cuando se desmonte el componente, cancela la suscripción
+    return () => {
+      subscription.then((data) => data.unsubscribe());
+    };
+  }, [loadEntrepreneurs]);
+
+  async function insertEntrepreneur(
+    name,
+    lastName,
+    dni,
+    email,
+    phone,
+    address,
+    startup,
+    status
+  ) {
+    try {
+      const data = await createEntrepreneur(
+        name,
+        lastName,
+        dni,
+        email,
+        phone,
+        address,
+        startup,
+        status
+      );
       setEntrepreneurs([...entrepreneurs, data]);
       if (data) {
         setNotification("Emprendedor creado exitosamente");
@@ -82,12 +144,6 @@ export const EntrepreneurContextProvider = ({ children }) => {
     }
   }
 
-  useEffect(() => {
-    showEntrepreneurs().then(() =>
-      console.log("Emprendedores cargados exitosamente")
-    );
-  }, [notification, error, showEntrepreneurs]);
-
   return (
     <EntrepreneurContext.Provider
       value={{
@@ -96,7 +152,7 @@ export const EntrepreneurContextProvider = ({ children }) => {
         error,
         insertEntrepreneur,
         removeEntrepreneur,
-        showEntrepreneurs,
+        loadEntrepreneurs,
         updateEntrepreneur,
       }}
     >
@@ -105,4 +161,10 @@ export const EntrepreneurContextProvider = ({ children }) => {
   );
 };
 
-export const useEntrepreneurContext = () => useContext(EntrepreneurContext);
+EntrepreneurContextProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export const useEntrepreneurContext = () => {
+  return useContext(EntrepreneurContext);
+};
