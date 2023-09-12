@@ -1,17 +1,31 @@
 import { Alert, AlertTitle, Box, TextField } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import background from "../../assets/images/hero.webp";
 import { UserAuth } from "../../context/AuthContext.jsx";
 
 export function SigInPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { login, error } = UserAuth();
+  const { login } = UserAuth();
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  if (error) {
+    setTimeout(() => {
+      setError(null);
+    }, 5000);
+  }
 
   const handleLogin = async () => {
+    if (!email || !password) {
+      setError("Por favor, ingrese su correo y contraseña.");
+      return;
+    }
     setLoading(true);
     await login({ email, password });
+    navigate("/admin/panel", { replace: true });
     setLoading(false);
   };
 

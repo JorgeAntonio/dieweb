@@ -1,9 +1,18 @@
-import { Alert, AlertTitle, Box, TextField } from "@mui/material";
+import {
+  Alert,
+  AlertTitle,
+  Box,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEntrepreneurContext } from "../../context/EntrepreneurContext.jsx";
 
-function RegisterEntrepreneurPage() {
+function CreateEntrepreneurPage() {
   const navigate = useNavigate();
   const { insertEntrepreneur } = useEntrepreneurContext();
   const [name, setName] = useState("");
@@ -13,7 +22,7 @@ function RegisterEntrepreneurPage() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [startup, setStartup] = useState("");
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState("activo");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -129,12 +138,19 @@ function RegisterEntrepreneurPage() {
               placeholder={"Startup"}
               onChange={(e) => setStartup(e.target.value)}
             />
-            <TextField
-              disabled
-              id="outlined-disabled"
-              label="Estado"
-              defaultValue="Activo"
-            />
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={status}
+                label="Estado"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <MenuItem value={"activo"}>Activo</MenuItem>{" "}
+                <MenuItem value={"inactivo"}>Inactivo</MenuItem>{" "}
+              </Select>
+            </FormControl>
           </div>
         </div>
       </div>
@@ -159,4 +175,4 @@ function RegisterEntrepreneurPage() {
   );
 }
 
-export default RegisterEntrepreneurPage;
+export default CreateEntrepreneurPage;

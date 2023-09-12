@@ -3,7 +3,7 @@ export default function MisionSection() {
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 pb-16">
         <div>
-          <div className="card bg-white w-full">
+          <div className="card bg-white w-full text-balance">
             <div className="card-body">
               <h1 className="card-title">Misión</h1>
               <div className="card-contend">

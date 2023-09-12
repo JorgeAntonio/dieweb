@@ -29,7 +29,7 @@ const AdminPage = () => {
       {showAlert && <div className="alert"> Bienvenido, {user.email}</div>}
       <h1 className="text-2xl font-bold pb-8">Panel de Administración</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center gap-4">
-        <Link to="emprendedor">
+        <Link to="/admin/emprendedor">
           <CasesCard
             title="Emprendedores"
             description="Gestiona los datos de los emprendedores."
