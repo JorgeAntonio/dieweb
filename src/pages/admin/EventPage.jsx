@@ -1,29 +1,22 @@
-import {useState} from "react";
-import EventTable from "../../components/events/EventsTable.jsx";
+import { useState } from "react";
 import CreateEventModal from "../../components/events/CreateEventModal.jsx";
-
+import EventTable from "../../components/events/EventsTable.jsx";
 
 function EventPage() {
-    const [notification, setNotification] = useState(null);
-    const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
-    const handleOpenFormModal = () => {
-        setOpenModal(true);
-    };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
 
-    const handleCloseModal = () => {
-        setOpenModal(false);
-    };
-
-    return (
-        <>
-            <div className="p-4 md:p-8">
-                <CreateEventModal open={openModal} onClose={handleCloseModal}/>
-                {notification && <div className="alert">{notification}</div>}
-                <EventTable/>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <div className="p-4 md:p-8">
+        <CreateEventModal open={openModal} onClose={handleCloseModal} />
+        <EventTable />
+      </div>
+    </>
+  );
 }
 
 export default EventPage;

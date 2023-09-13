@@ -1,39 +1,45 @@
+import { useCallback, useEffect, useState } from "react";
+import { supabase } from "../../supabase/supabase.client";
+
 const Sidebar = () => {
-  // Define una lista de eventos
-  const eventos = [
-    {
-      titulo: "Evento 1",
-      fecha: "Fecha 1",
-      descripcion: "Descripción 1",
-      hora: "Hora 1",
-      lugar: "Lugar 1",
-    },
-    {
-      titulo: "Evento 2",
-      fecha: "Fecha 2",
-      descripcion: "Descripción 2",
-      hora: "Hora 2",
-      lugar: "Lugar 2",
-    },
-    // Agrega más eventos aquí según sea necesario
-  ];
+  const [eventos, setEventos] = useState([]);
+
+  const getEvents = useCallback(async () => {
+    try {
+      const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .eq("status", "activo");
+      if (error) throw error;
+      if (data) {
+        setEventos(data);
+        console.log("Eventos cargados correctamente");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    getEvents();
+  }, [getEvents]);
 
   return (
     <ul className="md:menu p-4 w-80 min-h-full bg-base-200 text-base-content hidden">
       {eventos.map((evento, index) => (
         <li key={index} className="mb-4">
-          <h3 className="text-lg font-semibold">{evento.titulo}</h3>
+          <h3 className="text-lg font-semibold">{evento.title}</h3>
           <p className="text-gray-600 text-sm">
-            <strong>Fecha:</strong> {evento.fecha}
+            <strong>Fecha:</strong> {evento.descripcion}
           </p>
           <p className="text-gray-600 text-sm">
-            <strong>Descripción:</strong> {evento.descripcion}
+            <strong>Descripción:</strong> {evento.date}
           </p>
           <p className="text-gray-600 text-sm">
-            <strong>Hora:</strong> {evento.hora}
+            <strong>Hora:</strong> {evento.time}
           </p>
           <p className="text-gray-600 text-sm">
-            <strong>Lugar:</strong> {evento.lugar}
+            <strong>Lugar:</strong> {evento.location}
           </p>
         </li>
       ))}

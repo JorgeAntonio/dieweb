@@ -2,7 +2,6 @@ import {
   Alert,
   AlertTitle,
   Box,
-  FormControl,
   InputLabel,
   MenuItem,
   Select,
@@ -11,116 +10,117 @@ import {
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../supabase/supabase.client.jsx";
-function UpdateEntrepreneurPage() {
+
+function UpdateEventPage() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [dni, setDni] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [startup, setStartup] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [location, setLocation] = useState("");
+  const [image, setImage] = useState("");
+  const [link, setLink] = useState("");
   const [status, setStatus] = useState("activo");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [entrepreneur, setEntrepreneur] = useState(null);
+  const [event, setEvent] = useState(null);
   const { id } = useParams();
 
   const handleClose = () => {
-    navigate("/admin/emprendedor");
+    navigate("/admin/eventos");
   };
 
   useEffect(() => {
     async function load() {
       try {
-        const data = await readEntrepreneur(id);
-        setEntrepreneur(data);
-        setName(data.name);
-        setLastName(data.lastname);
-        setDni(data.dni);
-        setEmail(data.email);
-        setPhone(data.phone);
-        setAddress(data.address);
-        setStartup(data.startup);
+        const data = await readEvent(id);
+        setEvent(data);
+        setTitle(data.title);
+        setDescription(data.description);
+        setDate(data.date);
+        setTime(data.time);
+        setLocation(data.location);
+        setImage(data.image);
+        setLink(data.link);
         setStatus(data.status);
       } catch (error) {
-        console.log("Error al cargar el emprendedor: " + error.message);
-        setError("Error al cargar el emprendedor: " + error.message);
+        console.log("Error al cargar el evento: " + error.message);
+        setError("Error al cargar el evento: " + error.message);
       }
     }
     load();
   }, [id]);
 
-  async function readEntrepreneur(id) {
+  async function readEvent(id) {
     try {
       const { data, error } = await supabase
-        .from("entrepreneurs")
+        .from("events")
         .select("*")
         .eq("id", id)
         .single();
 
       if (error) {
-        throw new Error("Error al leer el emprendedor: " + error.message);
+        throw new Error("Error al leer el evento: " + error.message);
       } else {
         return data;
       }
     } catch (error) {
-      console.log("Error al leer el emprendedor: " + error.message);
-      throw new Error("Error al leer el emprendedor: " + error.message);
+      console.log("Error al leer el evento: " + error.message);
+      throw new Error("Error al leer el evento: " + error.message);
     }
   }
 
-  async function updateEntrepreneur() {
+  async function updateEvent() {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from("entrepreneurs")
+        .from("events")
         .update({
-          name: name,
-          lastname: lastName,
-          dni: dni,
-          email: email,
-          phone: phone,
-          address: address,
-          startup: startup,
+          title: title,
+          description: description,
+          date: date,
+          time: time,
+          location: location,
+          image: image,
+          link: link,
           status: status,
         })
         .eq("id", id)
         .single();
       if (error) {
-        throw new Error("Error al actualizar el emprendedor: " + error.message);
+        throw new Error("Error al actualizar el evento: " + error.message);
       } else {
-        navigate("/admin/emprendedor");
+        navigate("/admin/eventos");
         setLoading(false);
         return data;
       }
     } catch (error) {
-      console.log("Error al actualizar el emprendedor: " + error.message);
-      throw new Error("Error al actualizar el emprendedor: " + error.message);
+      console.log("Error al actualizar el evento: " + error.message);
+      throw new Error("Error al actualizar el evento: " + error.message);
     }
   }
 
-  async function deleteEntrepreneur() {
+  async function deleteEvent() {
     try {
       setLoading(true);
       const { data, error } = await supabase
-        .from("entrepreneurs")
+        .from("events")
         .delete()
         .eq("id", id);
       if (error) {
-        throw new Error("Error al eliminar el emprendedor: " + error.message);
+        throw new Error("Error al eliminar el evento: " + error.message);
       } else {
-        navigate("/admin/emprendedor");
+        navigate("/admin/eventos");
         setLoading(false);
         return data;
       }
     } catch (error) {
-      console.log("Error al eliminar el emprendedor: " + error.message);
-      throw new Error("Error al eliminar el emprendedor: " + error.message);
+      console.log("Error al eliminar el evento: " + error.message);
+      throw new Error("Error al eliminar el evento: " + error.message);
     }
   }
 
-  if (entrepreneur === null) {
+  if (event === null) {
     return (
       <div>
         <div className="h-screen w-full flex justify-center items-center">
@@ -140,17 +140,17 @@ function UpdateEntrepreneurPage() {
       )}
       <div>
         <h3 className="font-bold text-xl">
-          Actualizar los datos del emprendedor {name}
+          Actualizar los datos del evento {title}
         </h3>
         <p className="pt-2 pb-6">
-          Modifique los datos que desea actualizar del emprendedor
+          Modifique los datos que desea actualizar del evento
         </p>
       </div>
       <div className={"flex gap-2 pb-6"}>
         <div className="form-control">
           <button
             className="btn btn-primary"
-            onClick={updateEntrepreneur}
+            onClick={updateEvent}
             disabled={loading}
           >
             {loading ? <span>Cargando</span> : <span>Actualizar datos</span>}
@@ -165,39 +165,41 @@ function UpdateEntrepreneurPage() {
           <Box component="form" noValidate autoComplete="off">
             <div className={"flex flex-col gap-4"}>
               <TextField
-                required
+                requiredca
                 id="outlined-required"
-                label="Nombre"
-                placeholder={"Nombre"}
-                defaultValue={name}
-                onChange={(e) => setName(e.target.value)}
+                label="Titulo"
+                placeholder={"Titulo"}
+                defaultValue={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
               <TextField
                 required
                 id="outlined-required"
-                label="Apellido"
-                placeholder={"Apellido"}
-                defaultValue={lastName}
-                onChange={(e) => setLastName(e.target.value)}
+                label="Descripción"
+                placeholder={"Descripción"}
+                defaultValue={description}
+                onChange={(e) => setDescription(e.target.value)}
               />
               <div className="flex flex-col md:flex-row gap-4">
                 <TextField
                   className="w-[300px]"
                   required
                   id="outlined-required"
-                  label="Dni"
-                  placeholder={"Dni"}
-                  defaultValue={dni}
-                  onChange={(e) => setDni(e.target.value)}
+                  label="Fecha"
+                  type="date"
+                  placeholder={"Fecha"}
+                  defaultValue={date}
+                  onChange={(e) => setDate(e.target.value)}
                 />
                 <TextField
                   className="w-full"
                   required
                   id="outlined-required"
-                  label="Email"
-                  placeholder={"Email"}
-                  defaultValue={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  label="Hora"
+                  placeholder={"Hora"}
+                  type="time"
+                  defaultValue={time}
+                  onChange={(e) => setTime(e.target.value)}
                 />
               </div>
               <div className="flex flex-col md:flex-row gap-4">
@@ -205,10 +207,10 @@ function UpdateEntrepreneurPage() {
                   className="w-[300px]"
                   required
                   id="outlined-required"
-                  label="Telefono"
-                  placeholder={"Telefono"}
-                  defaultValue={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  label="Lugar"
+                  placeholder={"Lugar"}
+                  defaultValue={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
                 <TextField
                   className="w-full"
@@ -216,31 +218,29 @@ function UpdateEntrepreneurPage() {
                   id="outlined-required"
                   label="Dirección"
                   placeholder={"Dirección"}
-                  defaultValue={address}
-                  onChange={(e) => setAddress(e.target.value)}
+                  defaultValue={image}
+                  onChange={(e) => setImage(e.target.value)}
                 />
               </div>
               <TextField
                 required
                 id="outlined-required"
-                label="Startup"
-                placeholder={"Startup"}
-                defaultValue={startup}
-                onChange={(e) => setStartup(e.target.value)}
+                label="Enlace"
+                placeholder={"Enlace"}
+                defaultValue={link}
+                onChange={(e) => setLink(e.target.value)}
               />
-              <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">Estado</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  defaultValue={status}
-                  label="Estado"
-                  onChange={(e) => setStatus(e.target.value)}
-                >
-                  <MenuItem value={"activo"}>Activo</MenuItem>
-                  <MenuItem value={"inactivo"}>Inactivo</MenuItem>
-                </Select>
-              </FormControl>
+              <InputLabel id="demo-simple-select-label">Estado</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                defaultValue={status}
+                label="Estado"
+                onChange={(e) => setStatus(e.target.value)}
+              >
+                <MenuItem value={"activo"}>Activo</MenuItem>
+                <MenuItem value={"inactivo"}>Inactivo</MenuItem>
+              </Select>
             </div>
           </Box>
         </div>
@@ -271,14 +271,13 @@ function UpdateEntrepreneurPage() {
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">Eliminar emprendedor</h3>
+          <h3 className="font-bold text-lg">Eliminar evento</h3>
           <p className="py-4">
-            Esta seguro que desea eliminar el emprendedor{" "}
-            <strong>{name}</strong>?
+            Esta seguro que desea eliminar el evento <strong>{title}</strong>?
           </p>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn mr-2" onClick={deleteEntrepreneur}>
+              <button className="btn mr-2" onClick={deleteEvent}>
                 Confirmar
               </button>
               <button className="btn btn-primary">Cancelar</button>
@@ -290,4 +289,4 @@ function UpdateEntrepreneurPage() {
   );
 }
 
-export default UpdateEntrepreneurPage;
+export default UpdateEventPage;

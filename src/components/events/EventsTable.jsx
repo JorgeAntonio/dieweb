@@ -1,36 +1,56 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEntrepreneurContext } from "../../context/EntrepreneurContext";
-import DetailsModal from "../entrepreneurs/DetailsModal";
+import { supabase } from "../../supabase/supabase.client.jsx";
+import EventDetailModal from "./EventDetailModal.jsx";
 
 export default function EventTable() {
   const navigate = useNavigate();
-  const { entrepreneurs } = useEntrepreneurContext();
-  const [selectedEntrepreneur, setSelectedEntrepreneur] = useState(null);
+  const [selectedEvent, setSelectedEvent] = useState(null);
+  const [eventsData, setEventsData] = useState([]); // Aquí se guardan los datos de los eventos
+
+  async function getEvents() {
+    try {
+      const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .order("id", { ascending: true });
+      if (error) throw error;
+      if (data) {
+        setEventsData(data);
+        console.log("Eventos cargados correctamente");
+      }
+    } catch (e) {
+      console.log("Error cargando eventos:" + e.message);
+    }
+  }
+
+  useEffect(() => {
+    getEvents();
+  }, []);
 
   return (
     <div className="h-[450px]">
-      {selectedEntrepreneur && (
-        <DetailsModal
-          open={true} // Abre el modal cuando selectedEntrepreneur no es nulo
+      {selectedEvent && (
+        <EventDetailModal
+          open={true} // Abre el modal cuando selectedEvent no es nulo
           handleClose={() => {
-            setSelectedEntrepreneur(null); // Cierra el modal y borra el emprendedor seleccionado
+            setSelectedEvent(null); // Cierra el modal y borra el emprendedor seleccionado
           }}
-          {...selectedEntrepreneur}
+          {...selectedEvent}
         />
       )}
       <DataGrid
-        rows={entrepreneurs?.map((entrepreneur) => ({
-          id: entrepreneur?.id ? entrepreneur.id : "",
-          name: entrepreneur?.name ? entrepreneur.name : "",
-          lastname: entrepreneur?.lastname ? entrepreneur.lastname : "",
-          dni: entrepreneur?.dni ? entrepreneur.dni : "",
-          email: entrepreneur?.email ? entrepreneur.email : "",
-          phone: entrepreneur?.phone ? entrepreneur.phone : "",
-          address: entrepreneur?.address ? entrepreneur.address : "",
-          startup: entrepreneur?.startup ? entrepreneur.startup : "",
-          status: entrepreneur?.status ? entrepreneur.status : false,
+        rows={eventsData?.map((event) => ({
+          id: event?.id ? event.id : "",
+          title: event?.title ? event.title : "",
+          description: event?.description ? event.description : "",
+          date: event?.date ? event.date : "",
+          time: event?.time ? event.time : "",
+          location: event?.location ? event.location : "",
+          image: event?.image ? event.image : "",
+          link: event?.link ? event.link : "",
+          status: event?.status ? event.status : "",
         }))}
         columns={[
           {
@@ -40,24 +60,29 @@ export default function EventTable() {
             renderCell: (params) => <div>{params.value}</div>,
           },
           {
-            field: "fullname",
-            headerName: "Full name",
+            field: "titulo",
+            headerName: "Titutlo",
             description: "This column has a value getter and is not sortable.",
             sortable: false,
             width: 160,
-            valueGetter: (params) =>
-              `${params.row.name || ""} ${params.row.lastname || ""}`,
+            valueGetter: (params) => `${params.row.title || ""}`,
             renderCell: (params) => <div>{params.value}</div>,
           },
           {
-            field: "phone",
-            headerName: "Teléfono",
+            field: "date",
+            headerName: "Fecha",
             width: 130,
             renderCell: (params) => <div>{params.value}</div>,
           },
           {
-            field: "startup",
-            headerName: "Startup",
+            field: "time",
+            headerName: "Hora",
+            width: 130,
+            renderCell: (params) => <div>{params.value}</div>,
+          },
+          {
+            field: "location",
+            headerName: "Lugar",
             width: 130,
             renderCell: (params) => <div>{params.value}</div>,
           },
@@ -86,7 +111,7 @@ export default function EventTable() {
             renderCell: (params) => (
               <button
                 onClick={() => {
-                  setSelectedEntrepreneur(params.row);
+                  setSelectedEvent(params.row);
                   document.getElementById("my_modal_5").showModal();
                 }}
                 className={"btn btn-info btn-sm capitalize"}
@@ -102,7 +127,7 @@ export default function EventTable() {
             renderCell: (params) => (
               <button
                 onClick={() => {
-                  navigate(`/admin/emprendedor/${params.row.id}`);
+                  navigate(`/admin/eventos/${params.row.id}`);
                 }}
                 className={"btn btn-secondary btn-sm capitalize"}
               >
