@@ -6,6 +6,7 @@ import MainLayout from "../layouts/MainLayout.jsx";
 import AdminPage from "../pages/admin/AdminPage.jsx";
 import CreateEntrepreneurPage from "../pages/admin/CreateEntrepreneurPage.jsx";
 import EntrepreneursPage from "../pages/admin/EntrepreneursPage.jsx";
+import EventPage from "../pages/admin/EventPage.jsx";
 import SigInPage from "../pages/admin/SigninPage.jsx";
 import UpdateEntrepreneurPage from "../pages/admin/UpdateEntrepreneurPage.jsx";
 import HomePage from "../pages/client/home_page.jsx";
@@ -29,6 +30,8 @@ export default function MyRouter() {
       >
         <Route path={"panel"} element={<AdminPage />} />
         <Route path={"emprendedor"} element={<EntrepreneursPage />} />
+        <Route path={"eventos"} element={<EventPage />} />
+        <Route path={"emprendedor/eventos"} element={<EventPage />} />
         <Route
           path={"emprendedor/registrar"}
           element={<CreateEntrepreneurPage />}
