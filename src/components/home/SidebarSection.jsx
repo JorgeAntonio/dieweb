@@ -25,22 +25,24 @@ const Sidebar = () => {
   }, [getEvents]);
 
   return (
-    <ul className="md:menu p-4 w-80 min-h-full bg-base-200 text-base-content hidden">
+    <ul className="md:menu p-4 w-70 min-h-full bg-base-200 text-base-content hidden">
       {eventos.map((evento, index) => (
         <li key={index} className="mb-4">
-          <h3 className="text-lg font-semibold">{evento.title}</h3>
-          <p className="text-gray-600 text-sm">
-            <strong>Fecha:</strong> {evento.descripcion}
-          </p>
-          <p className="text-gray-600 text-sm">
-            <strong>Descripción:</strong> {evento.date}
-          </p>
-          <p className="text-gray-600 text-sm">
-            <strong>Hora:</strong> {evento.time}
-          </p>
-          <p className="text-gray-600 text-sm">
-            <strong>Lugar:</strong> {evento.location}
-          </p>
+          <div className="card bg-base-300 hover:bg-base-content hover:text-base-100">
+            <div className="card-body">
+              <h3 className="text-lg font-semibold">{evento.title}</h3>
+              <p className="text-sm limit-text">{evento.description}</p>
+              <p className="text-sm">
+                <strong>Fecha:</strong> {evento.date}
+              </p>
+              <p className="text-sm">
+                <strong>Hora:</strong> {evento.time}
+              </p>
+              <p className="text-sm">
+                <strong>Lugar:</strong> {evento.location}
+              </p>
+            </div>
+          </div>
         </li>
       ))}
     </ul>
