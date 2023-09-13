@@ -41,11 +41,14 @@ const AdminPage = () => {
           description="Gestiona los perfiles de los emprendedores."
           image="https://img.freepik.com/free-vector/startup-landing-page-web-template_23-2148317383.jpg?w=1060&t=st=1694154744~exp=1694155344~hmac=66d0eee256e0bf9500305c306c064af66715d3aa24f92989dc5faf0c4ce4e56b"
         />
-        <CasesCard
-          title="Eventos"
-          description="Gestiona los eventos y actividades."
-          image="https://img.freepik.com/free-photo/structured-building-construction-design-plan-concept_53876-123739.jpg?w=1060&t=st=1694154940~exp=1694155540~hmac=b42a38bd35d471afebb3e89043e7ab883111c783cd695445ca7d72aa8e46d6d5"
-        />
+        <Link to={"/admin/eventos"}>
+          <CasesCard
+            title="Eventos"
+            description="Gestiona los eventos y actividades."
+            image="https://img.freepik.com/free-photo/structured-building-construction-design-plan-concept_53876-123739.jpg?w=1060&t=st=1694154940~exp=1694155540~hmac=b42a38bd35d471afebb3e89043e7ab883111c783cd695445ca7d72aa8e46d6d5"
+          />
+        </Link>
+
         <CasesCard
           title="Publicaciones"
           description="Gestiona las publicaciones y contenido."
