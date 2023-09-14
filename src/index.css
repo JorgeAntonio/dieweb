@@ -7,6 +7,6 @@
 }
 
 .limit-text {
-  max-height: calc(1.3em * 3);
+  max-height: calc(1.3em * 5);
   overflow: hidden;
 }
