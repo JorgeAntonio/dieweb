@@ -2,8 +2,10 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext.jsx";
 import BlogProvider from "../context/BlogContext.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
+import EventsLayout from "../layouts/EventsLayout.jsx";
 import LoginLayout from "../layouts/LoginLayout.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
+import ServiciosLayout from "../layouts/ServiciosLayout.jsx";
 import {
   default as AdminBlogPage,
   default as BlogList,
@@ -16,10 +18,9 @@ import SigInPage from "../pages/admin/SigninPage.jsx";
 import UpdateEntrepreneurPage from "../pages/admin/UpdateEntrepreneurPage.jsx";
 import UpdateEventPage from "../pages/admin/UpdateEventPage.jsx";
 import BlogPage from "../pages/client/BlogPage.jsx";
+import SolicitudForm from "../pages/client/SolicitudPage.jsx";
 import HomePage from "../pages/client/home_page.jsx";
 import ErrorPage from "../pages/error/ErrorPage.jsx";
-import EventsLayout from "../layouts/EventsLayout.jsx";
-import ServiciosLayout from "../layouts/ServiciosLayout.jsx";
 
 export default function MyRouter() {
   const { user } = UserAuth();
@@ -31,6 +32,7 @@ export default function MyRouter() {
       <Route path={"/"} element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path={"/blog"} element={<BlogPage />} />
+        <Route path={"/solicitar"} element={<SolicitudForm />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
       <Route path={"/signin"} element={<LoginLayout />}>

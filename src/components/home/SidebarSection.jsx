@@ -45,7 +45,7 @@ const Sidebar = () => {
         <li key={index} className="pb-4">
           <div className="flex flex-col gap-3 bg-base-300 hover:bg-base-100">
             <div className="flex flex-col gap-2 w-full p-2">
-              <h3 className="text-lg font-bold">{evento.title}</h3>
+              <h3 className="text-lg font-bold">{evento.name}</h3>
               <p className="text-base limit-text">{evento.description}</p>
               <div className="flex justify-between">
                 <div className="text-sm font-medium">{evento.date}</div>
