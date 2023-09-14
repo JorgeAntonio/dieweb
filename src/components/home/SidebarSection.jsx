@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase/supabase.client";
 
@@ -6,13 +6,13 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const [eventos, setEventos] = useState([]);
 
-  const getEvents = useCallback(async () => {
+  async function getEvents() {
     try {
       const { data, error } = await supabase
         .from("events")
         .select("*")
         .eq("status", "activo")
-        .limit(2);
+        .limit(3);
       if (error) throw error;
       if (data) {
         setEventos(data);
@@ -21,7 +21,7 @@ const Sidebar = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }
 
   useEffect(() => {
     getEvents();
