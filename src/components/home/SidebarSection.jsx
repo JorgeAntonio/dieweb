@@ -12,7 +12,7 @@ const Sidebar = () => {
         .from("events")
         .select("*")
         .eq("status", "activo")
-        .limit(2);
+        .limit(3);
       if (error) throw error;
       if (data) {
         setEventos(data);
