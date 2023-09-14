@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase/supabase.client";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const [eventos, setEventos] = useState([]);
 
   const getEvents = useCallback(async () => {
@@ -9,7 +11,8 @@ const Sidebar = () => {
       const { data, error } = await supabase
         .from("events")
         .select("*")
-        .eq("status", "activo");
+        .eq("status", "activo")
+        .limit(2);
       if (error) throw error;
       if (data) {
         setEventos(data);
@@ -25,12 +28,24 @@ const Sidebar = () => {
   }, [getEvents]);
 
   return (
-    <ul className="md:menu p-4 w-70 min-h-full bg-base-200 text-base-content hidden">
+    <>
+      <div className="flex justify-between items-center mx-2 my-4">
+        <h2 className="text-2xl font-semibold">Eventos</h2>
+        <button
+          onClick={() => {
+            navigate("/eventos");
+          }}
+          className="btn btn-ghost btn-xs"
+        >
+          Ver todos
+        </button>
+      </div>
+      <div className="divider"></div>
       {eventos.map((evento, index) => (
-        <li key={index} className="mb-4">
-          <div className="card bg-base-300 hover:bg-base-content hover:text-base-100">
-            <div className="card-body">
-              <h3 className="text-lg font-semibold">{evento.title}</h3>
+        <li key={index} className="pb-4">
+          <div className="flex flex-col gap-3 bg-base-300 hover:bg-base-100">
+            <div className="flex flex-col gap-2 w-full p-2">
+              <h3 className="text-lg font-bold">{evento.title}</h3>
               <p className="text-sm limit-text">{evento.description}</p>
               <p className="text-sm">
                 <strong>Fecha:</strong> {evento.date}
@@ -45,7 +60,7 @@ const Sidebar = () => {
           </div>
         </li>
       ))}
-    </ul>
+    </>
   );
 };
 
