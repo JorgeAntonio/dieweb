@@ -109,6 +109,7 @@ function CreateEntrepreneurPage() {
                 required
                 id="outlined-required"
                 label="Email"
+                type="email"
                 placeholder={"Email"}
                 onChange={(e) => setEmail(e.target.value)}
               />
