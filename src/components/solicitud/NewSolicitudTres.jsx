@@ -3,7 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabase/supabase.client";
 
-function SolicitudForm() {
+function SolicitudFormTres() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -116,7 +116,7 @@ function SolicitudForm() {
 
         <Form.Group controlId="productoServicio">
           <Form.Label className="text-gray-700">
-            Detalle su idea de negocio, producto o servicio
+            Subir enlace de documento que pruebe su pre incubación
           </Form.Label>
           <Form.Control
             as="textarea"
@@ -148,4 +148,4 @@ function SolicitudForm() {
   );
 }
 
-export default SolicitudForm;
+export default SolicitudFormTres;

@@ -1,4 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import SolicitudFormDos from "../components/solicitud/NewSolicitud.jsx";
+import SolicitudFormTres from "../components/solicitud/NewSolicitudTres.jsx";
 import { UserAuth } from "../context/AuthContext.jsx";
 import BlogProvider from "../context/BlogContext.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
@@ -33,6 +35,8 @@ export default function MyRouter() {
         <Route index element={<HomePage />} />
         <Route path={"/blog"} element={<BlogPage />} />
         <Route path={"/solicitar"} element={<SolicitudForm />} />
+        <Route path={"/solicitar2"} element={<SolicitudFormDos />} />
+        <Route path={"/solicitar3"} element={<SolicitudFormTres />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
       <Route path={"/signin"} element={<LoginLayout />}>
