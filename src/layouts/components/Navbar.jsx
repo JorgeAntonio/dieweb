@@ -29,7 +29,7 @@ export default function Navbar() {
               <a href="/">Inicio</a>
             </li>
             <li>
-              <a href="">Servicios</a>
+            <NavLink to="servicios">Servicios</NavLink>
             </li>
             <li>
               <a href="">Blog</a>
@@ -58,7 +58,7 @@ export default function Navbar() {
             <a href="/">Inicio</a>
           </li>
           <li>
-            <a href="">Servicios</a>
+          <NavLink to="servicios">Servicios</NavLink>
           </li>
           <li>
             <a href="">Blog</a>
