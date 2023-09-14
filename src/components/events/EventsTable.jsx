@@ -43,7 +43,7 @@ export default function EventTable() {
       <DataGrid
         rows={eventsData?.map((event) => ({
           id: event?.id ? event.id : "",
-          title: event?.title ? event.title : "",
+          name: event?.name ? event.name : "",
           description: event?.description ? event.description : "",
           date: event?.date ? event.date : "",
           time: event?.time ? event.time : "",
@@ -65,7 +65,7 @@ export default function EventTable() {
             description: "This column has a value getter and is not sortable.",
             sortable: false,
             width: 160,
-            valueGetter: (params) => `${params.row.title || ""}`,
+            valueGetter: (params) => `${params.row.name || ""}`,
             renderCell: (params) => <div>{params.value}</div>,
           },
           {
