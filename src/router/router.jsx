@@ -12,11 +12,16 @@ import UpdateEntrepreneurPage from "../pages/admin/UpdateEntrepreneurPage.jsx";
 import UpdateEventPage from "../pages/admin/UpdateEventPage.jsx";
 import HomePage from "../pages/client/home_page.jsx";
 import ErrorPage from "../pages/error/ErrorPage.jsx";
+import EventsLayout from "../layouts/EventsLayout.jsx";
+import ServiciosLayout from "../layouts/ServiciosLayout.jsx";
 
 export default function MyRouter() {
   const { user } = UserAuth();
   return (
     <Routes>
+      <Route path={"eventosHome"} element={<EventsLayout />} />
+      <Route path={"servicios"} element={<ServiciosLayout />} />
+
       <Route path={"/"} element={<MainLayout />}>
         <Route index element={<HomePage />} />
         <Route path="*" element={<ErrorPage />} />
@@ -33,6 +38,7 @@ export default function MyRouter() {
         <Route path={"emprendedor"} element={<EntrepreneursPage />} />
         <Route path={"eventos"} element={<EventPage />} />
         <Route path={"emprendedor/eventos"} element={<EventPage />} />
+
         <Route
           path={"emprendedor/registrar"}
           element={<CreateEntrepreneurPage />}
