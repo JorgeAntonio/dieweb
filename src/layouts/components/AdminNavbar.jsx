@@ -1,53 +1,130 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo/logo.svg";
-import { UserAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthProvider.jsx";
 
 export default function AdminNavbar() {
-  const { logout } = UserAuth();
-  const navigate = useNavigate();
+  const { auth, signOut } = useAuth();
 
-  const handleLogout = async () => {
-    await logout();
-    navigate("/", { replace: true });
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    try {
+      const { error } = await signOut();
+      console.log(error);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="navbar bg-base-100">
-      <div className="flex-1">
-        <Link to="/admin/panel" className="">
-          <img src={logo} alt="logo" className="w-32" />
-        </Link>
-      </div>
+      <div className="flex-1">LOGO</div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <NavLink to="/admin/panel">Inicio</NavLink>
+              {!auth && (
+                <NavLink
+                  to="/home"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Inicio
+                </NavLink>
+              )}
             </li>
             <li>
-              <NavLink to="/admin/emprendedor">Emprendedores</NavLink>
+              {auth && (
+                <Link to="/admin">
+                  <img src={logo} alt="logo" className="w-10" />
+                </Link>
+              )}
             </li>
             <li>
-              <NavLink to="/admin/eventos">Eventos</NavLink>
+              {auth && (
+                <NavLink
+                  to="/admin"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Panel
+                </NavLink>
+              )}
             </li>
             <li>
-              <NavLink to="/admin/blog">blog</NavLink>
+              {auth && (
+                <NavLink
+                  to="/emprendedor"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Emprendedores
+                </NavLink>
+              )}
             </li>
             <li>
-              <NavLink
-                to="/"
-                target="_blank"
-                className="btn btn-sm btn-primary"
-              >
-                Ver a Website
-              </NavLink>
+              {auth && (
+                <NavLink
+                  to="/eventos"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Eventos
+                </NavLink>
+              )}
+            </li>
+            <li>
+              {auth && (
+                <NavLink
+                  to="/blog"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Blog
+                </NavLink>
+              )}
+            </li>
+            <li>
+              {auth && (
+                <NavLink
+                  to="/home"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Salir
+                </NavLink>
+              )}
+            </li>
+            <li>
+              {!auth && (
+                <NavLink
+                  to="/login"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Iniciar sesión
+                </NavLink>
+              )}
+            </li>
+            <li>
+              {!auth && (
+                <NavLink
+                  to="/register"
+                  className="btn btn-ghost btn-sm rounded-btn"
+                  activeClassName="btn-active"
+                >
+                  Registrarse
+                </NavLink>
+              )}
             </li>
           </ul>
         </div>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
             <div className="w-10 rounded-full">
-              <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+              <img
+                src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                alt="Avatar"
+              />
             </div>
           </label>
           <ul

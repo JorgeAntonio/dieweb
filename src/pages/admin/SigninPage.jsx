@@ -1,31 +1,35 @@
-import { Alert, AlertTitle, Box, TextField } from "@mui/material";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Alert, Button, Card, Form } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 import background from "../../assets/images/hero.webp";
-import { UserAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthProvider.jsx";
 
 export function SigInPage() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = UserAuth();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
-  if (error) {
-    setTimeout(() => {
-      setError(null);
-    }, 5000);
-  }
-
-  const handleLogin = async () => {
-    if (!email || !password) {
-      setError("Por favor, ingrese su correo y contraseña.");
-      return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setErrorMsg("");
+      setLoading(true);
+      if (!passwordRef.current?.value || !emailRef.current?.value) {
+        setErrorMsg("Please fill in the fields");
+        return;
+      }
+      const {
+        data: { user, session },
+        error,
+      } = await login(emailRef.current.value, passwordRef.current.value);
+      if (error) setErrorMsg(error.message);
+      if (user && session) navigate("/");
+    } catch (error) {
+      setErrorMsg("Email or Password Incorrect");
     }
-    setLoading(true);
-    await login({ email, password });
-    navigate("/admin/panel", { replace: true });
     setLoading(false);
   };
 
@@ -52,59 +56,41 @@ export function SigInPage() {
               desde la Universidad Nacional de la Amazonia Peruana.
             </p>
           </div>
-          <div className="card flex-shrink-0 max-w-sm shadow-2xl bg-white">
-            <div className="card-body w-[320px]">
-              <h1 className="text-3xl font-bold">Inicia sesión</h1>
-              <p className="mb-3">Ingresa tus datos para iniciar sesión.</p>
-              <div className="absolute w-[290px]">
-                {error && (
-                  <Alert severity="error" mt={4} className="w-[260px]">
-                    <AlertTitle>Error</AlertTitle>
-                    <strong>{error}</strong>
+          <Card style={{ maxWidth: "400px", margin: "0 auto" }}>
+            <Card.Body>
+              <h2 className="text-center mb-4">Login</h2>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group id="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control type="email" ref={emailRef} required />
+                </Form.Group>
+                <Form.Group id="password">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" ref={passwordRef} required />
+                </Form.Group>
+                {errorMsg && (
+                  <Alert
+                    variant="danger"
+                    onClose={() => setErrorMsg("")}
+                    dismissible
+                  >
+                    {errorMsg}
                   </Alert>
                 )}
-              </div>
-              <Box noValidate autoComplete="off">
-                <div className="form-control mt-6">
-                  <TextField
-                    type="email"
-                    value={email}
-                    label="Correo"
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="email@email.com"
-                  />
+                <div className="text-center mt-2">
+                  <Button disabled={loading} type="submit" className="w-50">
+                    Login
+                  </Button>
                 </div>
-                <div className="form-control mt-6">
-                  <TextField
-                    type="password"
-                    value={password}
-                    label="Contraseña"
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="********"
-                  />
-                </div>
-                <div className="form-control mt-6">
-                  <button
-                    className="btn btn-primary"
-                    onClick={handleLogin}
-                    disabled={loading}
-                  >
-                    {loading ? (
-                      <span>Cargando</span>
-                    ) : (
-                      <span>Iniciar sesión</span>
-                    )}
-                  </button>
-                </div>
-                <a
-                  href="#"
-                  className="label-text-alt link link-hover pt-4 text-center"
-                >
-                  ¿Has olvidado tu contraseña?
-                </a>
-              </Box>
+              </Form>
+            </Card.Body>
+            <div className="w-100 text-center mt-2">
+              New User? <Link to={"/register"}>Register</Link>
             </div>
-          </div>
+            <div className="w-100 text-center mt-2">
+              Forgot Password? <Link to={"/passwordreset"}>Click Here</Link>
+            </div>
+          </Card>
         </div>
       </div>
     </div>

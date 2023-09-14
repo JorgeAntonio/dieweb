@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CasesCard from "../../components/admin/CasesCard.jsx";
-import { UserAuth } from "../../context/AuthContext.jsx";
+import { useAuth } from "../../context/AuthProvider.jsx";
 
 const AdminPage = () => {
-  const { user } = UserAuth();
+  const { user } = useAuth();
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
