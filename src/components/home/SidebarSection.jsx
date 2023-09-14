@@ -46,16 +46,10 @@ const Sidebar = () => {
           <div className="flex flex-col gap-3 bg-base-300 hover:bg-base-100">
             <div className="flex flex-col gap-2 w-full p-2">
               <h3 className="text-lg font-bold">{evento.title}</h3>
-              <p className="text-sm limit-text">{evento.description}</p>
-              <p className="text-sm">
-                <strong>Fecha:</strong> {evento.date}
-              </p>
-              <p className="text-sm">
-                <strong>Hora:</strong> {evento.time}
-              </p>
-              <p className="text-sm">
-                <strong>Lugar:</strong> {evento.location}
-              </p>
+              <p className="text-base limit-text">{evento.description}</p>
+              <div className="flex justify-between">
+                <div className="text-sm font-medium">{evento.date}</div>
+              </div>
             </div>
           </div>
         </li>
