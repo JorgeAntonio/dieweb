@@ -64,9 +64,6 @@ export default function Navbar() {
           <li>
             <NavLink to="eventosHome">Eventos</NavLink>
           </li>
-          <li>
-            <a>Nosotros</a>
-          </li>
         </ul>
       </div>
     </div>
