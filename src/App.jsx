@@ -1,39 +1,65 @@
 import { Route, Routes } from "react-router-dom";
 import AuthRoute from "./components/AuthRoute";
-import AdminNavBar from "./layouts/components/AdminNavbar";
-import Footer from "./layouts/components/Footer";
+import EntrepreneurProvider from "./context/EntrepreneurContext";
+import EventProvider from "./context/EventProvider";
+import PostProvider from "./context/PostProvider";
+import Navbar from "./layouts/components/Navbar";
 import AdminPage from "./pages/admin/AdminPage";
-import EntrepreneursPage from "./pages/admin/EntrepreneursPage";
+import BlogPage from "./pages/admin/BlogPage";
+import EntrepreneurPage from "./pages/admin/EntrepreneurPage";
 import EventPage from "./pages/admin/EventPage";
-import SigInPage from "./pages/admin/SigninPage";
-import HomePage from "./pages/client/home_page";
-import ErrorPage from "./pages/error/ErrorPage";
+import HomePage from "./pages/client/HomePage";
+import Login from "./pages/client/Login";
+import PasswordReset from "./pages/client/PasswordReset";
+import Register from "./pages/client/Register";
+import UpdatePassword from "./pages/client/UpdatePassword";
 
-function App() {
+const App = () => {
   return (
     <>
-      <AdminNavBar />
-      <main className="container max-w-screen-2xl mx-auto">
-        <Routes>
-          <Route element={<AuthRoute />}>
-            <Route path="*" element={<ErrorPage />} />
-            <Route path="/updatepassword" element={<h1>password update</h1>} />
-            {/* PROVIDER */}
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="/emprendedor" element={<EntrepreneursPage />} />
-            <Route path="/eventos" element={<EventPage />} />
-            <Route path="/blog" element={<h1>blog</h1>} />
-          </Route>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/login" element={<SigInPage />} />
-          <Route path="/register" element={<h1>Register</h1>} />
-          <Route path="/passwordreset" element={<h1>Password reset</h1>} />
-        </Routes>
-      </main>
-      <Footer />
+      <Navbar />
+      <div className="d-flex justify-content-center">
+        <div className="w-100">
+          <Routes>
+            <Route element={<AuthRoute />}>
+              <Route path="/" element={<AdminPage />} />
+              <Route path="/home" element={<AdminPage />} />
+              <Route path="*" element={<h1>Not Found</h1>} />
+              <Route
+                path="/emprendedor"
+                element={
+                  <EntrepreneurProvider>
+                    <EntrepreneurPage />
+                  </EntrepreneurProvider>
+                }
+              />
+              <Route
+                path="/eventos"
+                element={
+                  <EventProvider>
+                    <EventPage />
+                  </EventProvider>
+                }
+              />
+              <Route
+                path="/blog"
+                element={
+                  <PostProvider>
+                    <BlogPage />
+                  </PostProvider>
+                }
+              />
+            </Route>
+            <Route path="/landing" element={<HomePage />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/passwordreset" element={<PasswordReset />} />
+            <Route path="/update-password" element={<UpdatePassword />} />
+          </Routes>
+        </div>
+      </div>
     </>
   );
-}
+};
 
 export default App;
