@@ -15,7 +15,7 @@ export default function EventDetailModal(props) {
                   <label className="font-semibold">Fecha:</label>
                   <label className="font-semibold">Hora:</label>
                   <label className="font-semibold">Lugar:</label>
-                  <label className="font-semibold">Imagen:p</label>
+                  <label className="font-semibold">Imagen:</label>
                   <label className="font-semibold">Enlace:</label>
                   <label className="font-semibold">Estado:</label>
                 </div>

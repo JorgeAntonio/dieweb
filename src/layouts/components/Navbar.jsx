@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -29,10 +29,10 @@ export default function Navbar() {
               <a href="/">Inicio</a>
             </li>
             <li>
-            <NavLink to="servicios">Servicios</NavLink>
+              <NavLink to="servicios">Servicios</NavLink>
             </li>
             <li>
-              <a href="">Blog</a>
+              <a href="/blog">Blog</a>
             </li>
             <li>
               <NavLink to="eventosHome">Eventos</NavLink>
@@ -40,9 +40,7 @@ export default function Navbar() {
             <li>
               <a>Nosotros</a>
             </li>
-            <li>
-              <NavLink to={"signin"}>Iniciar sesión</NavLink>
-            </li>
+
             <li>
               <NavLink to={"signup"}>Comenzar</NavLink>
             </li>
@@ -58,22 +56,18 @@ export default function Navbar() {
             <a href="/">Inicio</a>
           </li>
           <li>
-          <NavLink to="servicios">Servicios</NavLink>
+            <NavLink to="servicios">Servicios</NavLink>
           </li>
           <li>
-            <a href="">Blog</a>
+            <a href="/blog">Blog</a>
           </li>
           <li>
-          <NavLink to="eventosHome">Eventos</NavLink>
+            <NavLink to="eventosHome">Eventos</NavLink>
           </li>
           <li>
             <a>Nosotros</a>
           </li>
-          <li>
-            <NavLink to={"signin"}>Iniciar sesión</NavLink>
-          </li>
         </ul>
-        <a className="btn btn-primary btn-sm">Comenzar</a>
       </div>
     </div>
   );

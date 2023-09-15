@@ -1,8 +1,17 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import SolicitudFormDos from "../components/solicitud/NewSolicitud.jsx";
+import SolicitudFormTres from "../components/solicitud/NewSolicitudTres.jsx";
 import { UserAuth } from "../context/AuthContext.jsx";
+import BlogProvider from "../context/BlogContext.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
+import EventsLayout from "../layouts/EventsLayout.jsx";
 import LoginLayout from "../layouts/LoginLayout.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
+import ServiciosLayout from "../layouts/ServiciosLayout.jsx";
+import {
+  default as AdminBlogPage,
+  default as BlogList,
+} from "../pages/admin/AdminBlogPage.jsx";
 import AdminPage from "../pages/admin/AdminPage.jsx";
 import CreateEntrepreneurPage from "../pages/admin/CreateEntrepreneurPage.jsx";
 import EntrepreneursPage from "../pages/admin/EntrepreneursPage.jsx";
@@ -10,10 +19,10 @@ import EventPage from "../pages/admin/EventPage.jsx";
 import SigInPage from "../pages/admin/SigninPage.jsx";
 import UpdateEntrepreneurPage from "../pages/admin/UpdateEntrepreneurPage.jsx";
 import UpdateEventPage from "../pages/admin/UpdateEventPage.jsx";
+import BlogPage from "../pages/client/BlogPage.jsx";
+import SolicitudForm from "../pages/client/SolicitudPage.jsx";
 import HomePage from "../pages/client/home_page.jsx";
 import ErrorPage from "../pages/error/ErrorPage.jsx";
-import EventsLayout from "../layouts/EventsLayout.jsx";
-import ServiciosLayout from "../layouts/ServiciosLayout.jsx";
 
 export default function MyRouter() {
   const { user } = UserAuth();
@@ -24,6 +33,10 @@ export default function MyRouter() {
 
       <Route path={"/"} element={<MainLayout />}>
         <Route index element={<HomePage />} />
+        <Route path={"/blog"} element={<BlogPage />} />
+        <Route path={"/solicitar"} element={<SolicitudForm />} />
+        <Route path={"/solicitar2"} element={<SolicitudFormDos />} />
+        <Route path={"/solicitar3"} element={<SolicitudFormTres />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
       <Route path={"/signin"} element={<LoginLayout />}>
@@ -37,8 +50,17 @@ export default function MyRouter() {
         <Route path={"panel"} element={<AdminPage />} />
         <Route path={"emprendedor"} element={<EntrepreneursPage />} />
         <Route path={"eventos"} element={<EventPage />} />
+        <Route path={"adminblog"} element={<AdminBlogPage />} />
         <Route path={"emprendedor/eventos"} element={<EventPage />} />
 
+        <Route
+          path="bloglist"
+          element={
+            <BlogProvider>
+              <BlogList />
+            </BlogProvider>
+          }
+        />
         <Route
           path={"emprendedor/registrar"}
           element={<CreateEntrepreneurPage />}

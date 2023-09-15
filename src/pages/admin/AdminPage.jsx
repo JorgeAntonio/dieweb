@@ -25,10 +25,10 @@ const AdminPage = () => {
   }, [showAlert]);
 
   return (
-    <div className="mx-auto p-4 md:px-8 md:py-16">
+    <div className="mx-auto p-4 md:px-8 md:py-16 h-full md:h-[600px]">
       {showAlert && <div className="alert"> Bienvenido, {user.email}</div>}
-      <h1 className="text-2xl font-bold pb-8">Panel de Administración</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center gap-4">
+      <h1 className="text-2xl font-bold">Panel de Administración</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center gap-4 py-8 md:py-16">
         <Link to="/admin/emprendedor">
           <CasesCard
             title="Emprendedores"
@@ -49,11 +49,13 @@ const AdminPage = () => {
           />
         </Link>
 
-        <CasesCard
-          title="Publicaciones"
-          description="Gestiona las publicaciones y contenido."
-          image="https://img.freepik.com/free-psd/wedding-planner-instagram-posts_23-2150742720.jpg?w=996&t=st=1694155173~exp=1694155773~hmac=3b7562dd2752e46cdf47263bcd9f364bdc1f41c73313dd7a56d3da023bc47d12"
-        />
+        <Link to={"/admin/adminblog"}>
+          <CasesCard
+            title="Publicaciones"
+            description="Gestiona las publicaciones y contenido."
+            image="https://img.freepik.com/free-psd/wedding-planner-instagram-posts_23-2150742720.jpg?w=996&t=st=1694155173~exp=1694155773~hmac=3b7562dd2752e46cdf47263bcd9f364bdc1f41c73313dd7a56d3da023bc47d12"
+          />
+        </Link>
       </div>
     </div>
   );

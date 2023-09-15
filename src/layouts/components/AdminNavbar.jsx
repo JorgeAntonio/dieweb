@@ -31,13 +31,13 @@ export default function AdminNavbar() {
               <NavLink to="/admin/eventos">Eventos</NavLink>
             </li>
             <li>
-              <NavLink to="/admin/blog">blog</NavLink>
+              <NavLink to="/admin/adminblog">blog</NavLink>
             </li>
             <li>
               <NavLink
                 to="/"
                 target="_blank"
-                className="btn btn-sm btn-primary"
+                className={"bg-primary text-base-100"}
               >
                 Ver a Website
               </NavLink>

@@ -19,7 +19,7 @@ const HeroSection = () => {
               MÁS.
             </p>
             <Link
-              to={`signup`}
+              to={`solicitar`}
               className="btn btn-primary text-lg md:text-xl px-6 py-3 rounded-full hover:scale-105 transform transition-transform duration-300"
             >
               Comenzar
