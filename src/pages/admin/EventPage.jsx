@@ -94,58 +94,66 @@ const EventPage = () => {
         </button>
       </div>
       <div className="overflow-x-auto">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Titulo</th>
-              <th>Fecha</th>
-              <th>Hora</th>
-              <th>Lugar</th>
-              <th>Descripción</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {events.map((event, idx) => (
-              <tr key={idx}>
-                <td>{event.name}</td>
-                <td>{event.date}</td>
-                <td>{event.time}</td>
-                <td>{event.location}</td>
-                <td>{event.description}</td>
-                <td className="flex gap-2">
-                  <IconButton
-                    onClick={() => {
-                      setActiveEvent(event);
-                      setType("View");
-                      setShowEventModal(true);
-                      handleViewEvent(event);
-                    }}
-                    icon={detailIcon}
-                  />
-                  <IconButton
-                    onClick={() => {
-                      setActiveEvent(event);
-                      setType("Edit");
-                      setShowEventModal(true);
-                      handleEditEvent(event);
-                    }}
-                    icon={editIcon}
-                  />
-
-                  <IconButton
-                    onClick={() => {
-                      setActiveEvent(event);
-                      setShowConfirmModal(true);
-                      handleDeleteEvent(event);
-                    }}
-                    icon={trashIcon}
-                  />
-                </td>
+        {events && events.length > 0 ? (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Titulo</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Lugar</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {events.map((event, idx) => (
+                <tr key={idx}>
+                  <td>{event.name}</td>
+                  <td>{event.date}</td>
+                  <td>{event.time}</td>
+                  <td>{event.location}</td>
+                  <td>{event.description}</td>
+                  <td className="flex gap-2">
+                    <IconButton
+                      onClick={() => {
+                        setActiveEvent(event);
+                        setType("View");
+                        setShowEventModal(true);
+                        handleViewEvent(event);
+                      }}
+                      icon={detailIcon}
+                    />
+                    <IconButton
+                      onClick={() => {
+                        setActiveEvent(event);
+                        setType("Edit");
+                        setShowEventModal(true);
+                        handleEditEvent(event);
+                      }}
+                      icon={editIcon}
+                    />
+
+                    <IconButton
+                      onClick={() => {
+                        setActiveEvent(event);
+                        setShowConfirmModal(true);
+                        handleDeleteEvent(event);
+                      }}
+                      icon={trashIcon}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div>
+            <div className="h-[300px] w-full flex justify-center items-center">
+              <span className="loading loading-spinner loading-lg"></span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
