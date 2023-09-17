@@ -33,19 +33,29 @@ const EventPage = () => {
   const handleAdd = () => {
     setType("Add");
     setShowEventModal(true);
-    document.getElementById("my_modal_4").showModal();
   };
 
-  const handleView = (event) => {
+  const handleViewEvent = (event) => {
     setActiveEvent(event);
     setType("View");
     setShowEventModal(true);
   };
 
+  const handleEditEvent = (event) => {
+    setActiveEvent(event);
+    setType("Edit");
+    setShowEventModal(true);
+  };
+
+  const handleDeleteEvent = (event) => {
+    setActiveEvent(event);
+    setShowConfirmModal(true);
+  };
+
   return (
     <div className="p-8 md:p-16">
       <ToastMessage
-        type="Success"
+        type="Exito"
         show={msg ? true : false}
         message={msg}
         handleClose={() => setMsg("")}
@@ -57,7 +67,7 @@ const EventPage = () => {
         handleClose={() => setErrorMsg("")}
       />
       <EventModal
-        show={showEventModal}
+        isOpen={showEventModal}
         handleClose={closeEventModal}
         type={type}
         event={activeEvent}
@@ -109,7 +119,7 @@ const EventPage = () => {
                       setActiveEvent(event);
                       setType("View");
                       setShowEventModal(true);
-                      document.getElementById("my_modal_4").showModal();
+                      handleViewEvent(event);
                     }}
                     icon={detailIcon}
                   />
@@ -118,7 +128,7 @@ const EventPage = () => {
                       setActiveEvent(event);
                       setType("Edit");
                       setShowEventModal(true);
-                      document.getElementById("my_modal_4").showModal();
+                      handleEditEvent(event);
                     }}
                     icon={editIcon}
                   />
@@ -127,7 +137,7 @@ const EventPage = () => {
                     onClick={() => {
                       setActiveEvent(event);
                       setShowConfirmModal(true);
-                      document.getElementById("my_modal_3").showModal();
+                      handleDeleteEvent(event);
                     }}
                     icon={trashIcon}
                   />

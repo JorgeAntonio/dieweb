@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useEvents } from "../../context/EventProvider";
 
@@ -33,15 +34,16 @@ const ConfirmEventModal = ({ show, handleClose, id }) => {
     <dialog id="my_modal_1" className="modal">
       <div className="modal-box">
         <h3 className="font-bold text-lg">Eliminar evento</h3>
-        <p className="py-4">Press ESC key or click the button below to close</p>
+        <p className="py-4"> Precione el boton ESC o click No para cerrar </p>
+        <p className="py-4 text-lg font-semibold">
+          ¿Está seguro que desea eliminar el evento?
+        </p>
         <div className="modal-action">
-          <form method="dialog">
-            <p>¿Está seguro que desea eliminar el evento?</p>
-            {/* if there is a button in form, it will close the modal */}
+          <form method="dialog" className="flex gap-2">
             <button className="btn" disabled={loading} onClick={handleDelete}>
               Sí
             </button>
-            <button className="btn" onClick={handleClose}>
+            <button className="btn btn-primary" onClick={handleClose}>
               No
             </button>
           </form>
@@ -49,6 +51,12 @@ const ConfirmEventModal = ({ show, handleClose, id }) => {
       </div>
     </dialog>
   );
+};
+
+ConfirmEventModal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  // id: PropTypes.string.isRequired,
 };
 
 export default ConfirmEventModal;

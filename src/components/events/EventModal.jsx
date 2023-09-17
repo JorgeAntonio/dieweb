@@ -1,8 +1,10 @@
-import { useRef, useState } from "react";
+import PropTypes from "prop-types";
+import { useEffect, useRef, useState } from "react";
 import { useEvents } from "../../context/EventProvider";
+import { Divider } from "../Divider";
 import ToastMessage from "../ToastMessage";
 
-const EventModal = ({ show, handleClose, type, event }) => {
+const EventModal = ({ isOpen, handleClose, type, event }) => {
   const [loading, setLoading] = useState(false);
   const nameRef = useRef(null);
   const dateRef = useRef(null);
@@ -64,7 +66,14 @@ const EventModal = ({ show, handleClose, type, event }) => {
     handleClose();
   };
 
-  return show ? (
+  useEffect(() => {
+    const modal = document.getElementById("my_modal_4");
+    if (isOpen) {
+      modal.showModal();
+    }
+  }, [isOpen]);
+
+  return isOpen ? (
     <dialog id="my_modal_4" className="modal">
       <div className="modal-box w-11/12 max-w-5xl">
         <h3 className="font-bold text-lg">Agregar evento</h3>
@@ -72,31 +81,39 @@ const EventModal = ({ show, handleClose, type, event }) => {
           Presiona la tecla Esc o el boton de Cancelar para cerrar.
         </p>
         {type === "View" ? (
-          <div className="flex">
+          <div className="flex flex-col justify-between items-start gap-2">
             <p>
               <strong>Titulo:</strong> {event?.name}
             </p>
+            <Divider />
             <p>
               <strong>Descripción:</strong> {event?.description}
             </p>
+            <Divider />
             <p>
               <strong>Fecha:</strong> {event?.date}
             </p>
+            <Divider />
             <p>
               <strong>Hora:</strong> {event?.time}
             </p>
+            <Divider />
             <p>
               <strong>Lugar:</strong> {event?.location}
             </p>
+            <Divider />
             <p>
               <strong>Enlace:</strong> {event?.link}
             </p>
+            <Divider />
             <p>
               <strong>Portada:</strong> {event?.image}
             </p>
+            <Divider />
             <p>
               <strong>Status:</strong> {event?.status}
             </p>
+            <Divider />
           </div>
         ) : (
           <section className="modal-action">
@@ -233,9 +250,6 @@ const EventModal = ({ show, handleClose, type, event }) => {
               </>
             ) : (
               <div className="flex gap-2">
-                <button className="btn" onClick={handleClose}>
-                  Cancelar
-                </button>
                 {loading ? (
                   <button disabled className="btn btn-primary">
                     Guardando...
@@ -245,6 +259,9 @@ const EventModal = ({ show, handleClose, type, event }) => {
                     Guardar
                   </button>
                 )}
+                <button className="btn" onClick={handleClose}>
+                  Cancelar
+                </button>
               </div>
             )}
           </form>
@@ -252,6 +269,13 @@ const EventModal = ({ show, handleClose, type, event }) => {
       </div>
     </dialog>
   ) : null;
+};
+
+EventModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  handleClose: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  event: PropTypes.object,
 };
 
 export default EventModal;

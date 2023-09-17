@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../supabase/supabase.client";
 
@@ -17,7 +18,7 @@ const EventProvider = ({ children }) => {
       .select();
     if (data) {
       setEvents((prevEvents) => [...prevEvents, data[0]]);
-      setMsg("Event Added Successfully");
+      setMsg("Evento agregado exitosamente");
     }
     if (error) {
       setErrorMsg(error.message);
@@ -27,7 +28,7 @@ const EventProvider = ({ children }) => {
   const fetchAll = async () => {
     const { data, error } = await supabase.from("events").select();
     if (data) setEvents(data);
-    if (error) setErrorMsg("Error in Fetching Events");
+    if (error) setErrorMsg("Error cargando eventos");
   };
 
   const editEvent = async (event, id) => {
@@ -41,7 +42,7 @@ const EventProvider = ({ children }) => {
       console.error(error);
     }
     if (data) {
-      setMsg("Event Updated");
+      setMsg("Evento actualizado exitosamente");
       const updatedEvents = events.map((event) => {
         if (id === event.id) {
           return { ...event, ...data[0] };
@@ -62,7 +63,7 @@ const EventProvider = ({ children }) => {
       setErrorMsg(error.message);
     }
     if (data) {
-      setMsg("Event Updated");
+      setMsg("Evento actualizado exitosamente");
       const updatedEvents = events.map((event) => {
         if (id === event.id) {
           return { ...event, ...data[0] };
@@ -78,7 +79,7 @@ const EventProvider = ({ children }) => {
     if (error) {
       setErrorMsg(error.message);
     } else {
-      setMsg("Event Deleted Successfully");
+      setMsg("Evento eliminado exitosamente");
       const updatedEvents = events.filter((event) => event.id !== id);
       setEvents(updatedEvents);
     }
@@ -106,6 +107,10 @@ const EventProvider = ({ children }) => {
       {children}
     </EventContext.Provider>
   );
+};
+
+EventProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default EventProvider;
