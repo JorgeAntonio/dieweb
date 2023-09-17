@@ -13,6 +13,7 @@ import Login from "./pages/client/Login";
 import PasswordReset from "./pages/client/PasswordReset";
 import Register from "./pages/client/Register";
 import UpdatePassword from "./pages/client/UpdatePassword";
+import ErrorPage from "./pages/error/ErrorPage";
 
 const App = () => {
   return (
@@ -24,7 +25,7 @@ const App = () => {
             <Route element={<AuthRoute />}>
               <Route path="/" element={<AdminPage />} />
               <Route path="/home" element={<AdminPage />} />
-              <Route path="*" element={<h1>Not Found</h1>} />
+              <Route path="*" element={<ErrorPage />} />
               <Route
                 path="/emprendedor"
                 element={

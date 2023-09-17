@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -26,25 +26,25 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a href="/">Inicio</a>
+              <NavLink to="/">Inicio</NavLink>
             </li>
             <li>
-              <a href="">Servicios</a>
+              <NavLink to={"servicios"}>Servicios</NavLink>
             </li>
             <li>
-              <a href="">Blog</a>
+              <NavLink to="publicaciones">Blog</NavLink>
             </li>
             <li>
-              <a href="">Eventos</a>
+              <NavLink to="eventos">Eventos</NavLink>
             </li>
             <li>
-              <a>Nosotros</a>
+              <NavLink to={"nosotros"}>Nosotros</NavLink>
             </li>
             <li>
-              <NavLink to={"signin"}>Iniciar sesión</NavLink>
+              <NavLink to={"login"}>Iniciar sesión</NavLink>
             </li>
             <li>
-              <NavLink to={"signup"}>Comenzar</NavLink>
+              <Link to={"register"}>Comenzar</Link>
             </li>
           </ul>
         </div>
@@ -55,25 +55,27 @@ export default function Navbar() {
       <div className="navbar-end">
         <ul className="menu md:menu-horizontal px-1 hidden">
           <li>
-            <a href="/">Inicio</a>
+            <NavLink to="/">Inicio</NavLink>
           </li>
           <li>
-            <a href="">Servicios</a>
+            <NavLink to={"servicios"}>Servicios</NavLink>
           </li>
           <li>
-            <a href="">Blog</a>
+            <NavLink to="publicaciones">Blog</NavLink>
           </li>
           <li>
-            <a href="">Eventos</a>
+            <NavLink to="eventos">Eventos</NavLink>
           </li>
           <li>
-            <a>Nosotros</a>
+            <NavLink to={"nosotros"}>Nosotros</NavLink>
           </li>
           <li>
-            <NavLink to={"signin"}>Iniciar sesión</NavLink>
+            <NavLink to={"login"}>Iniciar sesión</NavLink>
           </li>
         </ul>
-        <a className="btn btn-primary btn-sm">Comenzar</a>
+        <Link to={"register"} className="btn btn-primary btn-sm">
+          Comenzar
+        </Link>
       </div>
     </div>
   );

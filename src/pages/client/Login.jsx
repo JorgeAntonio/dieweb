@@ -12,6 +12,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!passwordRef.current?.value || !emailRef.current?.value) {
+      setErrorMsg("Please fill in the fields");
+      return;
+    }
     try {
       setErrorMsg("");
       setLoading(true);
@@ -86,14 +90,55 @@ const Login = () => {
                   ref={passwordRef}
                 />
                 <label className="label">
-                  <div className="label-text-alt link link-hover">
-                    Forgot password?{" "}
-                    <Link to={"/passwordreset"}>Click Here</Link>
+                  <div className="label-text-alt">
+                    ¿Olvidaste tu contraseña?{" "}
+                    <Link to={"/passwordreset"} className="link link-hover">
+                      Recuperalo aquí.
+                    </Link>
                   </div>
                 </label>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
+                {loading ? (
+                  <button className="btn btn-primary btn-block" disabled>
+                    <svg
+                      className="animate-spin inline-block mr-2 h-5 w-5 text-white"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      />
+                    </svg>
+                    Validando...
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-primary btn-block"
+                    onClick={handleSubmit}
+                  >
+                    Iniciar sesión
+                  </button>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <div className="label-text-alt">
+                    ¿Todavia no eres usuario?{" "}
+                    <Link to={"/register"} className="link link-hover">
+                      Registrate aquí.
+                    </Link>
+                  </div>
+                </label>
               </div>
             </div>
           </div>
