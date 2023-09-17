@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import AuthRoute from "./components/AuthRoute";
-import EntrepreneurProvider from "./context/EntrepreneurContext";
+import EntrepreneurProvider from "./context/EntrepreneurProvider";
 import EventProvider from "./context/EventProvider";
 import PostProvider from "./context/PostProvider";
 import Navbar from "./layouts/components/Navbar";

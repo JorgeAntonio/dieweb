@@ -15,10 +15,6 @@ const EventPage = () => {
   const [activeEvent, setActiveEvent] = useState({});
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const detailIcon = detail;
-  const editIcon = edit;
-  const trashIcon = trash;
-
   const closeConfirmModal = () => {
     setActiveEvent({});
     setShowConfirmModal(false);
@@ -122,7 +118,7 @@ const EventPage = () => {
                         setShowEventModal(true);
                         handleViewEvent(event);
                       }}
-                      icon={detailIcon}
+                      icon={detail}
                     />
                     <IconButton
                       onClick={() => {
@@ -131,7 +127,7 @@ const EventPage = () => {
                         setShowEventModal(true);
                         handleEditEvent(event);
                       }}
-                      icon={editIcon}
+                      icon={edit}
                     />
 
                     <IconButton
@@ -140,7 +136,7 @@ const EventPage = () => {
                         setShowConfirmModal(true);
                         handleDeleteEvent(event);
                       }}
-                      icon={trashIcon}
+                      icon={trash}
                     />
                   </td>
                 </tr>

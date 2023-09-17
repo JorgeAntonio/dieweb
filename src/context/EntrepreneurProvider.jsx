@@ -1,9 +1,10 @@
+import PropTypes from "prop-types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../supabase/supabase.client";
 
-const EntrepreneurContext = createContext({});
+const ContactContext = createContext({});
 
-export const useContacts = () => useContext(EntrepreneurContext);
+export const useContacts = () => useContext(ContactContext);
 
 const EntrepreneurProvider = ({ children }) => {
   const [contacts, setContacts] = useState([]);
@@ -12,12 +13,12 @@ const EntrepreneurProvider = ({ children }) => {
 
   const addContact = async (contact) => {
     const { data, error } = await supabase
-      .from("contacts")
+      .from("entrepreneurs")
       .insert(contact)
       .select();
     if (data) {
       setContacts((prevContacts) => [...prevContacts, data[0]]);
-      setMsg("Contact Added Successfully");
+      setMsg("Emprendedor agregado exitosamente");
     }
     if (error) {
       setErrorMsg(error.message);
@@ -27,18 +28,20 @@ const EntrepreneurProvider = ({ children }) => {
   const fetchAll = async () => {
     const { data, error } = await supabase.from("entrepreneurs").select();
     if (data) setContacts(data);
-    if (error) setErrorMsg("Error in Fetching Contacts");
+    if (error) setErrorMsg("Error cargando emprendedores");
   };
 
   const fetchById = async (id) => {
     const { data, error } = await supabase
-      .from("contacts")
+      .from("entrepreneurs")
       .select("*")
       .eq("id", id)
       .single();
-    if (error) setErrorMsg("Error in Fetching Contacts");
+    if (error) {
+      setErrorMsg(error.message);
+    }
     if (data) {
-      setMsg("Contact Viewed Successfully");
+      setMsg("Emprendedor actualizado exitosamente");
       const updatedContacts = contacts.map((contact) => {
         if (id === contact.id) {
           return { ...contact, ...data[0] };
@@ -60,7 +63,7 @@ const EntrepreneurProvider = ({ children }) => {
       console.error(error);
     }
     if (data) {
-      setMsg("Contact Updated");
+      setMsg("Emprendedor actualizado exitosamente");
       const updatedContacts = contacts.map((contact) => {
         if (id === contact.id) {
           return { ...contact, ...data[0] };
@@ -79,7 +82,7 @@ const EntrepreneurProvider = ({ children }) => {
     if (error) {
       setErrorMsg(error.message);
     } else {
-      setMsg("Contact Deleted Successfully");
+      setMsg("Emprendedor eliminado exitosamente");
       setContacts((prevContacts) =>
         prevContacts.filter((contact) => contact.id !== id)
       );
@@ -91,7 +94,7 @@ const EntrepreneurProvider = ({ children }) => {
   }, []);
 
   return (
-    <EntrepreneurContext.Provider
+    <ContactContext.Provider
       value={{
         contacts,
         msg,
@@ -106,8 +109,12 @@ const EntrepreneurProvider = ({ children }) => {
       }}
     >
       {children}
-    </EntrepreneurContext.Provider>
+    </ContactContext.Provider>
   );
+};
+
+EntrepreneurProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default EntrepreneurProvider;
