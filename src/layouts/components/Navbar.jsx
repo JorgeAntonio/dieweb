@@ -29,22 +29,16 @@ export default function Navbar() {
               <NavLink to="/">Inicio</NavLink>
             </li>
             <li>
-              <NavLink to={"servicios"}>Servicios</NavLink>
+              <NavLink to={"emprendedor"}>Emprendedor</NavLink>
             </li>
             <li>
-              <NavLink to="publicaciones">Blog</NavLink>
+              <NavLink to="blog">Blog</NavLink>
             </li>
             <li>
               <NavLink to="eventos">Eventos</NavLink>
             </li>
             <li>
-              <NavLink to={"nosotros"}>Nosotros</NavLink>
-            </li>
-            <li>
-              <NavLink to={"login"}>Iniciar sesión</NavLink>
-            </li>
-            <li>
-              <Link to={"register"}>Comenzar</Link>
+              <Link to={"landing"}>Landing</Link>
             </li>
           </ul>
         </div>
@@ -58,23 +52,18 @@ export default function Navbar() {
             <NavLink to="/">Inicio</NavLink>
           </li>
           <li>
-            <NavLink to={"servicios"}>Servicios</NavLink>
+            <NavLink to={"emprendedor"}>Emprendedor</NavLink>
           </li>
-          <li>
-            <NavLink to="publicaciones">Blog</NavLink>
-          </li>
+
           <li>
             <NavLink to="eventos">Eventos</NavLink>
           </li>
           <li>
-            <NavLink to={"nosotros"}>Nosotros</NavLink>
-          </li>
-          <li>
-            <NavLink to={"login"}>Iniciar sesión</NavLink>
+            <NavLink to="blog">Blog</NavLink>
           </li>
         </ul>
-        <Link to={"register"} className="btn btn-primary btn-sm">
-          Comenzar
+        <Link to={"landing"} className="btn btn-primary btn-sm">
+          Landing
         </Link>
       </div>
     </div>

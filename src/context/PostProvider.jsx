@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { supabase } from "../supabase/supabase.client";
 
@@ -104,6 +105,10 @@ const PostProvider = ({ children }) => {
       {children}
     </PostContext.Provider>
   );
+};
+
+PostProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default PostProvider;
