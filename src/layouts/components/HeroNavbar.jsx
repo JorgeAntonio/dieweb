@@ -1,11 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 
-export default function ClientNavbar() {
+export default function HeroNavbar() {
   return (
     <div className="navbar bg-transparent absolute top-0">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden  text-white">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -41,24 +41,33 @@ export default function ClientNavbar() {
             </li>
           </ul>
         </div>
-        <NavLink to={"/landing"} className="btn btn-ghost normal-case text-xl">
+        <NavLink
+          to={"/landing"}
+          className="btn btn-ghost normal-case text-xl text-white"
+        >
           DIE UNAP
         </NavLink>
       </div>
       <div className="navbar-end">
         <ul className="menu md:menu-horizontal px-1 hidden">
           <li>
-            <NavLink to="/landing" className={""}>
+            <NavLink to="/landing" className={"text-base-100 hover:text-white"}>
               Inicio
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/servicios"} className={""}>
+            <NavLink
+              to={"/servicios"}
+              className={"text-base-100 hover:text-white"}
+            >
               Servicios
             </NavLink>
           </li>
           <li>
-            <NavLink to="/publicaciones" className={""}>
+            <NavLink
+              to="/publicaciones"
+              className={"text-base-100 hover:text-white"}
+            >
               Blog
             </NavLink>
           </li>

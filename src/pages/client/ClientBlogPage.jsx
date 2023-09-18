@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import ClientNavbar from "../../layouts/components/ClientNavbar";
 import { supabase } from "../../supabase/supabase.client";
 
-export default function BlogPage() {
+export default function ClientBlogPage() {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
@@ -23,6 +24,7 @@ export default function BlogPage() {
 
   return (
     <div>
+      <ClientNavbar />
       <div className="p-4 md:p-8">
         <h1 className="mt-4 mb-3 text-3xl font-bold pb-8">Publicaciones</h1>
 

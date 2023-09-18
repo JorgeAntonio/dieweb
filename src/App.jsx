@@ -8,10 +8,12 @@ import AdminPage from "./pages/admin/AdminPage";
 import BlogPage from "./pages/admin/BlogPage";
 import EntrepreneurPage from "./pages/admin/EntrepreneurPage";
 import EventPage from "./pages/admin/EventPage";
+import ClientBlogPage from "./pages/client/ClientBlogPage";
 import HomePage from "./pages/client/HomePage";
 import Login from "./pages/client/Login";
 import PasswordReset from "./pages/client/PasswordReset";
 import Register from "./pages/client/Register";
+import ServiciosPage from "./pages/client/ServicesPage.jsx";
 import UpdatePassword from "./pages/client/UpdatePassword";
 import ErrorPage from "./pages/error/ErrorPage";
 
@@ -54,6 +56,8 @@ const App = () => {
         </Route>
       </Route>
       <Route path="/landing" element={<HomePage />} />
+      <Route path="/servicios" element={<ServiciosPage />} />
+      <Route path="/publicaciones" element={<ClientBlogPage />} />
     </Routes>
   );
 };
