@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -26,45 +26,49 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a href="/">Inicio</a>
+              <NavLink to="/">Inicio</NavLink>
             </li>
             <li>
-              <NavLink to="servicios">Servicios</NavLink>
+              <NavLink to={"emprendedor"}>Emprendedor</NavLink>
             </li>
             <li>
-              <a href="/blog">Blog</a>
+              <NavLink to="blog">Blog</NavLink>
             </li>
             <li>
-              <NavLink to="eventosHome">Eventos</NavLink>
+              <NavLink to="eventos">Eventos</NavLink>
             </li>
             <li>
-              <a>Nosotros</a>
-            </li>
-
-            <li>
-              <NavLink to={"signup"}>Comenzar</NavLink>
+              <Link to={"landing"}>Landing</Link>
             </li>
           </ul>
         </div>
-        <NavLink to={"/"} className="btn btn-ghost normal-case text-xl">
+        <NavLink
+          to={"/"}
+          target="_blank"
+          className="btn btn-ghost normal-case text-xl"
+        >
           DIE UNAP
         </NavLink>
       </div>
       <div className="navbar-end">
         <ul className="menu md:menu-horizontal px-1 hidden">
           <li>
-            <a href="/">Inicio</a>
+            <NavLink to="/">Inicio</NavLink>
           </li>
           <li>
-            <NavLink to="servicios">Servicios</NavLink>
+            <NavLink to={"emprendedor"}>Emprendedor</NavLink>
+          </li>
+
+          <li>
+            <NavLink to="eventos">Eventos</NavLink>
           </li>
           <li>
-            <a href="/blog">Blog</a>
-          </li>
-          <li>
-            <NavLink to="eventosHome">Eventos</NavLink>
+            <NavLink to="blog">Blog</NavLink>
           </li>
         </ul>
+        <Link to={"landing"} target="_blank" className="btn btn-primary btn-sm">
+          Landing
+        </Link>
       </div>
     </div>
   );

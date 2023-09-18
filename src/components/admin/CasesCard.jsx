@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const CasesCard = ({ title, description, image }) => {
   return (
-    <div className="card card-compact bg-white shadow-2xl hover:opacity-80 hover:shadow-md">
+    <div className="card card-compact bg-white shadow-md hover:opacity-80 hover:shadow-2xl">
       <figure>
         <img src={image} alt="Shoes" className="h-[220px]" />
       </figure>
