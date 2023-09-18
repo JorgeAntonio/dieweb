@@ -1,6 +1,6 @@
 const ServicesSection = () => {
   return (
-    <div className="container mx-auto mt-8 bg-gray-100 p-8 md:p-16 text-balance">
+    <div className="container mx-auto mt-8 bg-base-300 p-8 md:p-16 text-balance">
       <h1 className="text-4xl font-sans text-center mb-4">
         Nuestros Servicios
       </h1>

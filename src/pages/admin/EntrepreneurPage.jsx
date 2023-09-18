@@ -2,6 +2,7 @@ import { useState } from "react";
 import detail from "../../assets/icons/eye.png";
 import edit from "../../assets/icons/pen.png";
 import trash from "../../assets/icons/trash.png";
+import { LoadingSpinner } from "../../components/LoadingSpinner";
 import ToastMessage from "../../components/ToastMessage";
 import ConfirmModal from "../../components/entrepreneur/ConfirmModal";
 import EntrepreneurModal from "../../components/entrepreneur/EntrepreneurModal";
@@ -133,11 +134,7 @@ const EntrepreneurPage = () => {
             </tbody>
           </table>
         ) : (
-          <div>
-            <div className="h-[300px] w-full flex justify-center items-center">
-              <span className="loading loading-spinner loading-lg"></span>
-            </div>
-          </div>
+          <LoadingSpinner />
         )}
       </div>
     </div>
