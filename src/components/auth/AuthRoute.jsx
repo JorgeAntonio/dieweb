@@ -1,5 +1,5 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-import { useAuth } from "../context/AuthProvider";
+import { useAuth } from "../../context/AuthProvider";
 
 const AuthRoute = () => {
   const { auth } = useAuth();
@@ -8,7 +8,7 @@ const AuthRoute = () => {
   return auth ? (
     <Outlet />
   ) : (
-    <Navigate to={"/login"} replace state={{ path: location.pathname }} />
+    <Navigate to={"/landing"} replace state={{ path: location.pathname }} />
   );
 };
 

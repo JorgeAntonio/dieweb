@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import AuthRoute from "./components/AuthRoute";
+import AuthRoute from "./components/auth/AuthRoute";
 import EntrepreneurProvider from "./context/EntrepreneurProvider";
 import EventProvider from "./context/EventProvider";
 import PostProvider from "./context/PostProvider";
@@ -58,6 +58,7 @@ const App = () => {
       <Route path="/landing" element={<HomePage />} />
       <Route path="/servicios" element={<ServiciosPage />} />
       <Route path="/publicaciones" element={<ClientBlogPage />} />
+      <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
 };

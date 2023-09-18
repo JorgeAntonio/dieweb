@@ -1,6 +1,10 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { LogoutMenu } from "../../components/auth/LogoutMenu";
+import { useAuth } from "../../context/AuthProvider";
 
 export default function Navbar() {
+  const { auth, signOut } = useAuth();
+
   return (
     <div className="navbar bg-transparent">
       <div className="navbar-start">
@@ -38,9 +42,23 @@ export default function Navbar() {
               <NavLink to="eventos">Eventos</NavLink>
             </li>
             <li>
-              <Link to={"landing"} target="_blank">
+              <NavLink to={"landing"}>Landing</NavLink>
+            </li>
+            <li>
+              <NavLink to={"/landing"} className="btn btn-primary btn-sm">
                 Landing
-              </Link>
+              </NavLink>
+            </li>
+            <li>
+              {auth && (
+                <NavLink
+                  to="/landing"
+                  onClick={signOut}
+                  className={"btn btn-error btn-sm"}
+                >
+                  Cerrar sesión
+                </NavLink>
+              )}
             </li>
           </ul>
         </div>
@@ -63,10 +81,11 @@ export default function Navbar() {
           <li>
             <NavLink to="blog">Blog</NavLink>
           </li>
+          <li>
+            <NavLink to={"/landing"}>Landing</NavLink>
+          </li>
         </ul>
-        <Link to={"landing"} target="_blank" className="btn btn-primary btn-sm">
-          Landing
-        </Link>
+        {auth && <LogoutMenu />}
       </div>
     </div>
   );
