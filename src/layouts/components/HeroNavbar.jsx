@@ -1,6 +1,10 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { LogoutMenu } from "../../components/auth/LogoutMenu";
+import { useAuth } from "../../context/AuthProvider";
 
 export default function HeroNavbar() {
+  const { auth } = useAuth();
+
   return (
     <div className="navbar bg-transparent absolute top-0">
       <div className="navbar-start">
@@ -34,11 +38,7 @@ export default function HeroNavbar() {
             <li>
               <NavLink to="/publicaciones">Blog</NavLink>
             </li>
-            <li>
-              <Link to={"landing"} target="_blank">
-                Landing
-              </Link>
-            </li>
+            <li>{auth && <NavLink to="/admin">Panel</NavLink>}</li>
           </ul>
         </div>
         <NavLink
@@ -72,9 +72,12 @@ export default function HeroNavbar() {
             </NavLink>
           </li>
         </ul>
-        <Link to={"landing"} target="_blank" className="btn btn-primary btn-sm">
-          Landing
-        </Link>
+        {auth && (
+          <NavLink to="/" className={"text-base-100 hover:text-white"}>
+            Panel
+          </NavLink>
+        )}
+        {auth && <LogoutMenu />}
       </div>
     </div>
   );

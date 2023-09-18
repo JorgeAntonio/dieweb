@@ -1,6 +1,10 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { LogoutMenu } from "../../components/auth/LogoutMenu";
+import { useAuth } from "../../context/AuthProvider";
 
 export default function ClientNavbar() {
+  const { auth } = useAuth();
+
   return (
     <div className="navbar bg-base-100 shadow-sm fixed">
       <div className="navbar-start">
@@ -35,9 +39,11 @@ export default function ClientNavbar() {
               <NavLink to="/publicaciones">Blog</NavLink>
             </li>
             <li>
-              <Link to={"landing"} target="_blank">
-                Landing
-              </Link>
+              {auth && (
+                <NavLink to="/" className={"btn btn-primary btn-sm"}>
+                  Panel
+                </NavLink>
+              )}
             </li>
           </ul>
         </div>
@@ -63,9 +69,8 @@ export default function ClientNavbar() {
             </NavLink>
           </li>
         </ul>
-        <Link to={"landing"} target="_blank" className="btn btn-primary btn-sm">
-          Landing
-        </Link>
+        {auth && <NavLink to="/">Panel</NavLink>}
+        {auth && <LogoutMenu />}
       </div>
     </div>
   );
