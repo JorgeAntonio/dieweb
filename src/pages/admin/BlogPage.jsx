@@ -3,49 +3,37 @@ import detail from "../../assets/icons/eye.png";
 import edit from "../../assets/icons/pen.png";
 import trash from "../../assets/icons/trash.png";
 import ToastMessage from "../../components/ToastMessage";
-import ConfirmEventModal from "../../components/events/ConfirmEventModal";
-import EventModal from "../../components/events/EventModal";
+import ConfirmModalPost from "../../components/blog/ConfirmModalPost";
+import PostModal from "../../components/blog/PostModal";
 import { IconButton } from "../../components/icons/IconButton";
-import { useEvents } from "../../context/EventProvider";
+import { usePosts } from "../../context/PostProvider";
 
-const EventPage = () => {
-  const { events, msg, setMsg, errorMsg, setErrorMsg } = useEvents();
-  const [showEventModal, setShowEventModal] = useState(false);
+const BlogPage = () => {
+  const { posts, msg, setMsg, errorMsg, setErrorMsg } = usePosts();
+  const [showPostModal, setShowPostModal] = useState(false);
   const [type, setType] = useState("");
-  const [activeEvent, setActiveEvent] = useState({});
+  const [activePost, setActivePost] = useState({});
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "numeric", day: "numeric" };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   const closeConfirmModal = () => {
-    setActiveEvent({});
+    setActivePost({});
     setShowConfirmModal(false);
   };
 
-  const closeEventModal = () => {
-    setActiveEvent({});
-    setShowEventModal(false);
+  const closePostModal = () => {
+    setActivePost({});
+    setShowPostModal(false);
     setType("");
   };
 
   const handleAdd = () => {
     setType("Add");
-    setShowEventModal(true);
-  };
-
-  const handleViewEvent = (event) => {
-    setActiveEvent(event);
-    setType("View");
-    setShowEventModal(true);
-  };
-
-  const handleEditEvent = (event) => {
-    setActiveEvent(event);
-    setType("Edit");
-    setShowEventModal(true);
-  };
-
-  const handleDeleteEvent = (event) => {
-    setActiveEvent(event);
-    setShowConfirmModal(true);
+    setShowPostModal(true);
   };
 
   return (
@@ -62,16 +50,16 @@ const EventPage = () => {
         message={errorMsg}
         handleClose={() => setErrorMsg("")}
       />
-      <EventModal
-        isOpen={showEventModal}
-        handleClose={closeEventModal}
+      <PostModal
+        isOpen={showPostModal}
+        handleClose={closePostModal}
         type={type}
-        event={activeEvent}
+        post={activePost}
       />
-      <ConfirmEventModal
+      <ConfirmModalPost
         show={showConfirmModal}
         handleClose={closeConfirmModal}
-        id={activeEvent.id}
+        id={activePost.id}
       />
       <div
         style={{
@@ -79,62 +67,57 @@ const EventPage = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          marginBottom: "10px",
+          marginBottom: "1rem",
         }}
       >
         <h2 className="text-center text-xl font-semibold">
-          Mantenimiento de eventos
+          Mantenimiento de blog
         </h2>
         <button className="btn btn-primary" onClick={handleAdd}>
-          Crear evento
+          Crear blog
         </button>
       </div>
       <div className="overflow-x-auto">
-        {events && events.length > 0 ? (
+        {posts && posts.length > 0 ? (
           <table className="table">
             <thead>
               <tr>
                 <th>Titulo</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Lugar</th>
-                <th>Descripción</th>
+                <th>Autor</th>
+                <th>Publicado</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {events.map((event, idx) => (
-                <tr key={idx}>
-                  <td>{event.name}</td>
-                  <td>{event.date}</td>
-                  <td>{event.time}</td>
-                  <td>{event.location}</td>
-                  <td>{event.description}</td>
+              {posts.map((post) => (
+                <tr key={post.id}>
+                  <td>{post.title}</td>
+                  <td>{post.author}</td>
+                  <td>{formatDate(post.publish_date)}</td>
                   <td className="flex gap-2">
                     <IconButton
+                      className="bi bi-eye icon"
                       onClick={() => {
-                        setActiveEvent(event);
+                        setActivePost(post);
                         setType("View");
-                        setShowEventModal(true);
-                        handleViewEvent(event);
+                        setShowPostModal(true);
                       }}
                       icon={detail}
                     />
                     <IconButton
+                      className="bi bi-pencil-square icon"
                       onClick={() => {
-                        setActiveEvent(event);
+                        setActivePost(post);
                         setType("Edit");
-                        setShowEventModal(true);
-                        handleEditEvent(event);
+                        setShowPostModal(true);
                       }}
                       icon={edit}
                     />
-
                     <IconButton
+                      className="bi bi-trash3 icon"
                       onClick={() => {
-                        setActiveEvent(event);
+                        setActivePost(post);
                         setShowConfirmModal(true);
-                        handleDeleteEvent(event);
                       }}
                       icon={trash}
                     />
@@ -155,4 +138,4 @@ const EventPage = () => {
   );
 };
 
-export default EventPage;
+export default BlogPage;

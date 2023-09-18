@@ -3,48 +3,48 @@ import detail from "../../assets/icons/eye.png";
 import edit from "../../assets/icons/pen.png";
 import trash from "../../assets/icons/trash.png";
 import ToastMessage from "../../components/ToastMessage";
-import ConfirmEventModal from "../../components/events/ConfirmEventModal";
-import EventModal from "../../components/events/EventModal";
+import ConfirmModal from "../../components/entrepreneur/ConfirmModal";
+import EntrepreneurModal from "../../components/entrepreneur/EntrepreneurModal";
 import { IconButton } from "../../components/icons/IconButton";
-import { useEvents } from "../../context/EventProvider";
+import { useContacts } from "../../context/EntrepreneurProvider";
 
-const EventPage = () => {
-  const { events, msg, setMsg, errorMsg, setErrorMsg } = useEvents();
-  const [showEventModal, setShowEventModal] = useState(false);
+const EntrepreneurPage = () => {
+  const { contacts, msg, setMsg, errorMsg, setErrorMsg } = useContacts();
+  const [showEntrepreneurModal, setShowEntrepreneurModal] = useState(false);
   const [type, setType] = useState("");
-  const [activeEvent, setActiveEvent] = useState({});
+  const [activeContact, setActiveContact] = useState({});
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const closeConfirmModal = () => {
-    setActiveEvent({});
+    setActiveContact({});
     setShowConfirmModal(false);
   };
 
-  const closeEventModal = () => {
-    setActiveEvent({});
-    setShowEventModal(false);
+  const closeEntrepreneurModal = () => {
+    setActiveContact({});
+    setShowEntrepreneurModal(false);
     setType("");
   };
 
   const handleAdd = () => {
     setType("Add");
-    setShowEventModal(true);
+    setShowEntrepreneurModal(true);
   };
 
-  const handleViewEvent = (event) => {
-    setActiveEvent(event);
+  const handleViewContact = (contact) => {
+    setActiveContact(contact);
     setType("View");
-    setShowEventModal(true);
+    setShowEntrepreneurModal(true);
   };
 
-  const handleEditEvent = (event) => {
-    setActiveEvent(event);
+  const handleEditContact = (contact) => {
+    setActiveContact(contact);
     setType("Edit");
-    setShowEventModal(true);
+    setShowEntrepreneurModal(true);
   };
 
-  const handleDeleteEvent = (event) => {
-    setActiveEvent(event);
+  const handleDeleteContact = (contact) => {
+    setActiveContact(contact);
     setShowConfirmModal(true);
   };
 
@@ -62,79 +62,77 @@ const EventPage = () => {
         message={errorMsg}
         handleClose={() => setErrorMsg("")}
       />
-      <EventModal
-        isOpen={showEventModal}
-        handleClose={closeEventModal}
+      <EntrepreneurModal
+        isOpen={showEntrepreneurModal}
+        handleClose={closeEntrepreneurModal}
         type={type}
-        event={activeEvent}
+        contact={activeContact}
       />
-      <ConfirmEventModal
+      <ConfirmModal
         show={showConfirmModal}
         handleClose={closeConfirmModal}
-        id={activeEvent.id}
+        id={activeContact.id}
       />
       <div
         style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          alignItems: "center",
+          marginTop: "10px",
           marginBottom: "10px",
         }}
       >
         <h2 className="text-center text-xl font-semibold">
-          Mantenimiento de eventos
+          Mantenimiento de emprendedores
         </h2>
         <button className="btn btn-primary" onClick={handleAdd}>
-          Crear evento
+          Crear emprendedor
         </button>
       </div>
       <div className="overflow-x-auto">
-        {events && events.length > 0 ? (
+        {contacts && contacts.length > 0 ? (
           <table className="table">
             <thead>
               <tr>
-                <th>Titulo</th>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Lugar</th>
-                <th>Descripción</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Telefono</th>
+                <th>Startup</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
-              {events.map((event, idx) => (
+              {contacts.map((contact, idx) => (
                 <tr key={idx}>
-                  <td>{event.name}</td>
-                  <td>{event.date}</td>
-                  <td>{event.time}</td>
-                  <td>{event.location}</td>
-                  <td>{event.description}</td>
-                  <td className="flex gap-2">
+                  <td>{contact.name}</td>
+                  <td>{contact.lastname}</td>
+                  <td>{contact.phone}</td>
+                  <td>{contact.startup}</td>
+                  <td className="d-flex flex-row justify-content-around">
                     <IconButton
                       onClick={() => {
-                        setActiveEvent(event);
+                        setActiveContact(contact);
                         setType("View");
-                        setShowEventModal(true);
-                        handleViewEvent(event);
+                        setShowEntrepreneurModal(true);
+                        handleViewContact(contact);
                       }}
                       icon={detail}
                     />
                     <IconButton
                       onClick={() => {
-                        setActiveEvent(event);
+                        setActiveContact(contact);
                         setType("Edit");
-                        setShowEventModal(true);
-                        handleEditEvent(event);
+                        setShowEntrepreneurModal(true);
+                        handleEditContact(contact);
                       }}
                       icon={edit}
                     />
-
                     <IconButton
+                      className="bi bi-trash3 icon"
                       onClick={() => {
-                        setActiveEvent(event);
+                        setActiveContact(contact);
                         setShowConfirmModal(true);
-                        handleDeleteEvent(event);
+                        handleDeleteContact(contact);
                       }}
                       icon={trash}
                     />
@@ -155,4 +153,4 @@ const EventPage = () => {
   );
 };
 
-export default EventPage;
+export default EntrepreneurPage;

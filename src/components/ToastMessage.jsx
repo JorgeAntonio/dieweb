@@ -1,22 +1,36 @@
-import { Toast, ToastContainer } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const ToastMessage = ({ show, type, message, handleClose }) => {
-  return (
-    <ToastContainer position="top-end">
-      <Toast
-        className="d-inline-block m-1"
-        bg="light"
-        onClose={handleClose}
-        show={show}
-        delay={5000}
-        autohide>
-        <Toast.Header>
-          <strong className="me-auto">{type}</strong>
-        </Toast.Header>
-        <Toast.Body>{message}</Toast.Body>
-      </Toast>
-    </ToastContainer>
-  );
+  setTimeout(() => {
+    handleClose();
+  }, 5000);
+
+  if (type === "Error") {
+    return show ? (
+      <div className="toast toast-top toast-end">
+        <div className="alert alert-error">
+          <p className="text-lg font-bold">{type}</p>
+          <span>{message}.</span>
+        </div>
+      </div>
+    ) : null;
+  }
+
+  return show ? (
+    <div className="toast toast-top toast-end">
+      <div className="alert alert-success">
+        <p className="text-lg font-bold">{type}</p>
+        <span>{message}.</span>
+      </div>
+    </div>
+  ) : null;
+};
+
+ToastMessage.propTypes = {
+  show: PropTypes.bool.isRequired,
+  type: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  handleClose: PropTypes.func.isRequired,
 };
 
 export default ToastMessage;
