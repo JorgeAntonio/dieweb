@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function ClientNavbar() {
   return (
-    <div className="navbar bg-transparent absolute top-0">
+    <div className="navbar bg-base-100 shadow-sm fixed">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
