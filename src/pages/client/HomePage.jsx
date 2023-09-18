@@ -1,9 +1,10 @@
-import AboutSection from "../../components/home/AboutSection.jsx";
-import HeroSection from "../../components/home/HeroSection.jsx";
-import MisionSection from "../../components/home/MisionSection.jsx";
-import ProblemSection from "../../components/home/ProblemSection.jsx";
-import ServicesSection from "../../components/home/ServicesSection.jsx";
-import SidebarSection from "../../components/home/SidebarSection.jsx";
+import AboutSection from "../../components/home/AboutSection";
+import HeroSection from "../../components/home/HeroSection";
+import MisionSection from "../../components/home/MisionSection";
+import ProblemSection from "../../components/home/ProblemSection";
+import ServicesSection from "../../components/home/ServicesSection";
+import SidebarSection from "../../components/home/SidebarSection";
+import Footer from "../../layouts/components/Footer";
 
 const HomePage = () => {
   return (
@@ -24,6 +25,7 @@ const HomePage = () => {
           </ul>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

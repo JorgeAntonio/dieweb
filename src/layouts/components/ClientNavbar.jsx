@@ -1,6 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
-export default function Navbar() {
+export default function ClientNavbar() {
   return (
     <div className="navbar bg-transparent">
       <div className="navbar-start">
@@ -29,13 +29,13 @@ export default function Navbar() {
               <NavLink to="/">Inicio</NavLink>
             </li>
             <li>
-              <NavLink to={"emprendedor"}>Emprendedor</NavLink>
-            </li>
-            <li>
-              <NavLink to="blog">Blog</NavLink>
+              <NavLink to={"servicios"}>Servicios</NavLink>
             </li>
             <li>
               <NavLink to="eventos">Eventos</NavLink>
+            </li>
+            <li>
+              <NavLink to="blog">Blog</NavLink>
             </li>
             <li>
               <Link to={"landing"} target="_blank">
@@ -54,9 +54,8 @@ export default function Navbar() {
             <NavLink to="/">Inicio</NavLink>
           </li>
           <li>
-            <NavLink to={"emprendedor"}>Emprendedor</NavLink>
+            <NavLink to={"emprendedor"}>Servicios</NavLink>
           </li>
-
           <li>
             <NavLink to="eventos">Eventos</NavLink>
           </li>

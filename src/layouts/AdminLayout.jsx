@@ -1,15 +1,13 @@
 import { Outlet } from "react-router-dom";
-import AdminNavbar from "./components/AdminNavbar.jsx";
-import Footer from "./components/Footer.jsx";
+import Navbar from "./components/Navbar.jsx";
 
 const AdminLayout = () => {
   return (
     <div>
-      <AdminNavbar />
+      <Navbar />
       <main className="container max-w-screen-2xl mx-auto">
         <Outlet />
       </main>
-      <Footer />
     </div>
   );
 };

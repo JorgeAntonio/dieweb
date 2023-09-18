@@ -56,7 +56,7 @@ const ConfirmModal = ({ show, handleClose, id }) => {
 ConfirmModal.propTypes = {
   show: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
+  // id: PropTypes.string.isRequired,
 };
 
 export default ConfirmModal;

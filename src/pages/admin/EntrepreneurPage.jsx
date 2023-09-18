@@ -85,7 +85,7 @@ const EntrepreneurPage = () => {
         <h2 className="text-center text-xl font-semibold">
           Mantenimiento de emprendedores
         </h2>
-        <button className="btn btn-primary" onClick={handleAdd}>
+        <button className="btn btn-primary btn-sm" onClick={handleAdd}>
           Crear emprendedor
         </button>
       </div>
@@ -111,27 +111,18 @@ const EntrepreneurPage = () => {
                   <td className="d-flex flex-row justify-content-around">
                     <IconButton
                       onClick={() => {
-                        setActiveContact(contact);
-                        setType("View");
-                        setShowEntrepreneurModal(true);
                         handleViewContact(contact);
                       }}
                       icon={detail}
                     />
                     <IconButton
                       onClick={() => {
-                        setActiveContact(contact);
-                        setType("Edit");
-                        setShowEntrepreneurModal(true);
                         handleEditContact(contact);
                       }}
                       icon={edit}
                     />
                     <IconButton
-                      className="bi bi-trash3 icon"
                       onClick={() => {
-                        setActiveContact(contact);
-                        setShowConfirmModal(true);
                         handleDeleteContact(contact);
                       }}
                       icon={trash}

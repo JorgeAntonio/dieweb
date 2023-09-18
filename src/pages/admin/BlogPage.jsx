@@ -36,6 +36,23 @@ const BlogPage = () => {
     setShowPostModal(true);
   };
 
+  const handleViewPost = (post) => {
+    setActivePost(post);
+    setType("View");
+    setShowPostModal(true);
+  };
+
+  const handleEditPost = (post) => {
+    setActivePost(post);
+    setType("Edit");
+    setShowPostModal(true);
+  };
+
+  const handleDeletePost = (post) => {
+    setActivePost(post);
+    setShowConfirmModal(true);
+  };
+
   return (
     <div className="p-8 md:p-16">
       <ToastMessage
@@ -73,7 +90,7 @@ const BlogPage = () => {
         <h2 className="text-center text-xl font-semibold">
           Mantenimiento de blog
         </h2>
-        <button className="btn btn-primary" onClick={handleAdd}>
+        <button className="btn btn-primary btn-sm" onClick={handleAdd}>
           Crear blog
         </button>
       </div>
@@ -96,28 +113,20 @@ const BlogPage = () => {
                   <td>{formatDate(post.publish_date)}</td>
                   <td className="flex gap-2">
                     <IconButton
-                      className="bi bi-eye icon"
                       onClick={() => {
-                        setActivePost(post);
-                        setType("View");
-                        setShowPostModal(true);
+                        handleViewPost(post);
                       }}
                       icon={detail}
                     />
                     <IconButton
-                      className="bi bi-pencil-square icon"
                       onClick={() => {
-                        setActivePost(post);
-                        setType("Edit");
-                        setShowPostModal(true);
+                        handleEditPost(post);
                       }}
                       icon={edit}
                     />
                     <IconButton
-                      className="bi bi-trash3 icon"
                       onClick={() => {
-                        setActivePost(post);
-                        setShowConfirmModal(true);
+                        handleDeletePost(post);
                       }}
                       icon={trash}
                     />
