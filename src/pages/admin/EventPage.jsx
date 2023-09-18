@@ -85,7 +85,7 @@ const EventPage = () => {
         <h2 className="text-center text-xl font-semibold">
           Mantenimiento de eventos
         </h2>
-        <button className="btn btn-primary" onClick={handleAdd}>
+        <button className="btn btn-primary btn-sm" onClick={handleAdd}>
           Crear evento
         </button>
       </div>
@@ -113,18 +113,12 @@ const EventPage = () => {
                   <td className="flex gap-2">
                     <IconButton
                       onClick={() => {
-                        setActiveEvent(event);
-                        setType("View");
-                        setShowEventModal(true);
                         handleViewEvent(event);
                       }}
                       icon={detail}
                     />
                     <IconButton
                       onClick={() => {
-                        setActiveEvent(event);
-                        setType("Edit");
-                        setShowEventModal(true);
                         handleEditEvent(event);
                       }}
                       icon={edit}
@@ -132,8 +126,6 @@ const EventPage = () => {
 
                     <IconButton
                       onClick={() => {
-                        setActiveEvent(event);
-                        setShowConfirmModal(true);
                         handleDeleteEvent(event);
                       }}
                       icon={trash}
