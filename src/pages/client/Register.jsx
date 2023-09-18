@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import ToastMessage from "../../components/ToastMessage";
 import { supabase } from "../../supabase/supabase.client";
 
 const Register = () => {
@@ -50,119 +51,103 @@ const Register = () => {
 
   return (
     <>
-      <div className="hero min-h-screen bg-base-200">
-        <div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold">Register now!</h1>
-            <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
-            </p>
+      <div className="h-full md:h-screen grid grid-cols-1 md:grid-cols-5 px-2 py-10 md:py-0 md:px-0">
+        <ToastMessage
+          type="Error"
+          show={errorMsg ? true : false}
+          message={errorMsg}
+          handleClose={() => setErrorMsg("")}
+        />
+        <ToastMessage
+          type="Success"
+          show={msg ? true : false}
+          message={msg}
+          handleClose={() => setMsg("")}
+        />
+        <div className="col-span-2">
+          <div className="flex flex-col justify-center items-start h-full">
+            <img
+              src="https://source.unsplash.com/random"
+              alt="login"
+              className="hidden md:flex md:w-full md:h-screen md:object-cover rounded"
+            />
           </div>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            {errorMsg && (
-              <div className="alert alert-error">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="stroke-current shrink-0 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+        </div>
+        <div className="col-span-2">
+          <div className="flex flex-col justify-center items-center md:items-center h-full">
+            <div className="card flex-shrink-0 w-full max-w-sm bg-transparent">
+              <div className="card-body">
+                <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-4">
+                  Bienvenido a DIE
+                </h1>
+                <p className="text-start mb-4 text-sm">
+                  Registrate con tu correo electronico para continuar
+                </p>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Correo electronico</span>
+                  </label>
+                  <input
+                    type="email"
+                    placeholder="ejemplo@ejemplo.com"
+                    className="input input-bordered"
+                    ref={emailRef}
+                    required
                   />
-                </svg>
-                <span>Error! {errorMsg}</span>
-              </div>
-            )}
-
-            {msg && (
-              <div className="alert alert-success">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="stroke-current shrink-0 h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M5 13l4 4L19 7"
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Contraseña</span>
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="********"
+                    className="input input-bordered"
+                    ref={passwordRef}
                   />
-                </svg>
-                <span>{msg}</span>
-              </div>
-            )}
-            <div className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Correo electronico</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="email"
-                  className="input input-bordered"
-                  ref={emailRef}
-                  required
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Contraseña</span>
-                </label>
-                <input
-                  type="text"
-                  placeholder="password"
-                  className="input input-bordered"
-                  ref={passwordRef}
-                />
-              </div>
-              <div className="form-control mt-6">
-                {loading ? (
-                  <button className="btn btn-primary btn-block" disabled>
-                    <svg
-                      className="animate-spin inline-block mr-2 h-5 w-5 text-white"
-                      viewBox="0 0 24 24"
+                </div>
+                <div className="form-control mt-6">
+                  {loading ? (
+                    <button className="btn btn-primary btn-block" disabled>
+                      <svg
+                        className="animate-spin inline-block mr-2 h-5 w-5 text-white"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                        />
+                      </svg>
+                      Validando...
+                    </button>
+                  ) : (
+                    <button
+                      className="btn btn-primary btn-block"
+                      onClick={handleSubmit}
                     >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      />
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                      />
-                    </svg>
-                    Validando...
-                  </button>
-                ) : (
-                  <button
-                    className="btn btn-primary btn-block"
-                    onClick={handleSubmit}
-                  >
-                    Registrate
-                  </button>
-                )}
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <div className="label-text-alt">
-                    ¿Ya eres usuario?{" "}
-                    <Link to={"/login"} className="link link-hover">
-                      Iniciar sesión.
-                    </Link>
-                  </div>
-                </label>
+                      Registrarse
+                    </button>
+                  )}
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <div className="label-text-alt">
+                      ¿Ya eres usuario?{" "}
+                      <Link to={"/login"} className="link link-hover">
+                        Iniciar sesión.
+                      </Link>
+                    </div>
+                  </label>
+                </div>
               </div>
             </div>
           </div>

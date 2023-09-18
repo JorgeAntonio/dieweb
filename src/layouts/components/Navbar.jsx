@@ -42,7 +42,11 @@ export default function Navbar() {
             </li>
           </ul>
         </div>
-        <NavLink to={"/"} className="btn btn-ghost normal-case text-xl">
+        <NavLink
+          to={"/"}
+          target="_blank"
+          className="btn btn-ghost normal-case text-xl"
+        >
           DIE UNAP
         </NavLink>
       </div>
@@ -62,7 +66,7 @@ export default function Navbar() {
             <NavLink to="blog">Blog</NavLink>
           </li>
         </ul>
-        <Link to={"landing"} className="btn btn-primary btn-sm">
+        <Link to={"landing"} target="_blank" className="btn btn-primary btn-sm">
           Landing
         </Link>
       </div>
