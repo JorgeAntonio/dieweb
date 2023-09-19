@@ -1,3 +1,11 @@
+# Variables env
+.env
+.env.local
+env
+env
+.ENV
+
+
 # Logs
 logs
 *.log
@@ -22,3 +30,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
