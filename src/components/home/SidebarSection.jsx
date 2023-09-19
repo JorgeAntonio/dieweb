@@ -25,7 +25,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     getEvents();
-  }, [getEvents]);
+  }, []);
 
   return (
     <>

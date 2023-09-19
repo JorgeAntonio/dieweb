@@ -14,7 +14,7 @@ const ServiciosPage = () => {
     <>
       <ClientNavbar />
       <div className="px-4 md:px-8 md:pb-16 pt-24">
-        <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-4">
+        <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-6">
           Estructura de servicios
         </h1>
 
