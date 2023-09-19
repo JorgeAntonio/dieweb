@@ -26,7 +26,7 @@ const EventProvider = ({ children }) => {
   };
 
   const fetchAll = async () => {
-    const { data, error } = await supabase.from("events").select();
+    const { data, error } = await supabase.from("events").select("*");
     if (data) setEvents(data);
     if (error) setErrorMsg("Error cargando eventos");
   };
