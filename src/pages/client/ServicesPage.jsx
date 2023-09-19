@@ -27,6 +27,7 @@ const ServiciosPage = () => {
             handleNavigate={() => {
               handleNavigate();
             }}
+            isleftImage={true}
           />
 
           <ServicesCard
@@ -55,6 +56,7 @@ const ServiciosPage = () => {
             handleNavigate={() => {
               navigate("/solicitar3");
             }}
+            isleftImage={true}
           />
         </div>
       </div>
