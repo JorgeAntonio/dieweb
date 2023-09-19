@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import BlogCard from "../../components/client/BlogCard";
 import ClientNavbar from "../../layouts/components/ClientNavbar";
@@ -20,15 +20,25 @@ export default function ClientBlogPage() {
         .from("post")
         .select("*")
         .order("id", { ascending: false });
-      if (error) throw error;
-      setPosts(data);
+      if (error) {
+        throw error;
+      }
+      if (data) {
+        setPosts(data);
+        console.log("Posts cargados correctamente");
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  useEffect(() => {
-    getPosts();
+  React.useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(async () => {
+      getPosts();
+    });
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
   }, []);
 
   return (
@@ -36,10 +46,10 @@ export default function ClientBlogPage() {
       <ClientNavbar />
       {posts && posts.length > 0 ? (
         <div className="px-4 md:px-8 md:pb-16 pt-24">
-          <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-4">
+          <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-6">
             Publicaciones
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
             {posts.map((post, idx) => (
               <BlogCard
                 key={idx}
