@@ -75,6 +75,28 @@ const PostProvider = ({ children }) => {
     }
   };
 
+  const searchPost = async (title) => {
+    const { data, error } = await supabase
+      .from("post")
+      .select("*")
+      .ilike("title", `%${title}%`)
+      .order("id", { ascending: false });
+    if (error) {
+      setErrorMsg(error.message);
+      console.error(error);
+    }
+    if (data) {
+      setMsg("Post Found");
+      const updatedPosts = posts.map((post) => {
+        if (title === post.title) {
+          return { ...post, ...data[0] };
+        }
+        return post;
+      });
+      setPosts(updatedPosts);
+    }
+  };
+
   const deletePost = async (id) => {
     const { error } = await supabase.from("post").delete().eq("id", id);
     if (error) {
@@ -103,6 +125,7 @@ const PostProvider = ({ children }) => {
         fetchAll,
         editPost,
         deletePost,
+        searchPost,
       }}
     >
       {children}

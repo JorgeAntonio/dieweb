@@ -57,7 +57,14 @@ const App = () => {
       </Route>
       <Route path="/landing" element={<HomePage />} />
       <Route path="/servicios" element={<ServiciosPage />} />
-      <Route path="/publicaciones" element={<ClientBlogPage />} />
+      <Route
+        path="/publicaciones"
+        element={
+          <PostProvider>
+            <ClientBlogPage />
+          </PostProvider>
+        }
+      />
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
