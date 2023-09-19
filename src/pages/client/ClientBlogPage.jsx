@@ -29,18 +29,18 @@ export default function ClientBlogPage() {
       <ClientNavbar />
       <BlogHeader />
 
-      {posts && posts.length > 0 ? (
-        <div className="px-4 md:px-8 md:pb-16 md:pt-4">
-          <div className="flex flex-col md:flex-row justify-between items-center py-16">
-            <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start pb-2">
-              Publicaciones recientes
-            </h1>
-            <input
-              type="text"
-              placeholder="Buscar..."
-              className="input input-bordered input-md w-full max-w-xs"
-            />
-          </div>
+      <div className="px-4 md:px-8 md:pb-16 md:pt-4">
+        <div className="flex flex-col md:flex-row justify-between items-center py-16">
+          <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start pb-2">
+            Publicaciones recientes
+          </h1>
+          <input
+            type="text"
+            placeholder="Buscar..."
+            className="input input-bordered input-md w-full max-w-xs"
+          />
+        </div>
+        {posts && posts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
             {posts.map((post, idx) => (
               <BlogCard
@@ -52,10 +52,10 @@ export default function ClientBlogPage() {
               />
             ))}
           </div>
-        </div>
-      ) : (
-        <LoadingSpinner />
-      )}
+        ) : (
+          <LoadingSpinner />
+        )}
+      </div>
       <Footer />
     </>
   );
