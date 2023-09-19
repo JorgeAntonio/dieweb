@@ -142,9 +142,9 @@ const EventModal = ({ isOpen, handleClose, type, event }) => {
                   <label className="label">
                     <span className="label-text">Descripción</span>
                   </label>
-                  <input
-                    type="text"
-                    className="input input-bordered w-full max-w-md"
+                  <textarea
+                    className="textarea textarea-bordered textarea-sm w-full"
+                    placeholder="Escribe aquí"
                     ref={descriptionRef}
                     defaultValue={event?.description ?? ""}
                     required

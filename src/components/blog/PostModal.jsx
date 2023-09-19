@@ -145,16 +145,15 @@ const PostModal = ({ isOpen, handleClose, type, post }) => {
                   <label className="label">
                     <span className="label-text">Contenido</span>
                   </label>
-                  <input
-                    type="text"
-                    className="input input-bordered w-full max-w-md"
+                  <textarea
+                    className="textarea textarea-bordered textarea-sm w-full"
+                    placeholder="Escribe aquí"
                     ref={contentRef}
                     defaultValue={post?.content ?? ""}
                     required
                   />
                 </div>
               </div>
-
               <div className="flex flex-col md:flex-row justify-between">
                 <div className="w-full">
                   <label className="label">

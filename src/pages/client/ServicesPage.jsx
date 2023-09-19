@@ -27,6 +27,9 @@ const ServiciosPage = () => {
             handleNavigate={() => {
               handleNavigate();
             }}
+            image={
+              "https://img.freepik.com/free-photo/young-pretty-tailors-happily-looking-camera-drawing-sketches-new-clothes-together-cozy-sewing-workshop_574295-3698.jpg?w=1060&t=st=1695097126~exp=1695097726~hmac=a0df97d6d5a706d440dbf81aecf2f55b0d56263fdfb32748f5323e14abfc09e3"
+            }
             isleftImage={true}
           />
 
@@ -42,6 +45,9 @@ const ServiciosPage = () => {
             handleNavigate={() => {
               navigate("/solicitar2");
             }}
+            image={
+              "https://img.freepik.com/free-photo/young-professional-carpenter-holding-wood-material-looking-tablet-carpentry-workshop_342744-843.jpg?w=1060&t=st=1695097193~exp=1695097793~hmac=3e359e0570f1bd102f82b8938bc42ecf1f2f7446cb15ce3e5b294f6e9b8e445d"
+            }
           />
 
           <ServicesCard
@@ -56,6 +62,9 @@ const ServiciosPage = () => {
             handleNavigate={() => {
               navigate("/solicitar3");
             }}
+            image={
+              "https://img.freepik.com/free-photo/asia-female-ceramist-with-apron-hand-confident-chest-her-workshop-clay-sculpture-studio-with-positive-smiling-warm-welcome-ready-start-new-factory-ceramic-workshop-with-new-collection-work_609648-2716.jpg?w=1060&t=st=1695096773~exp=1695097373~hmac=d309e34189d4df6f5a0dda3e31223528ec6c2daa06734c6cefaf8442c93c73ce"
+            }
             isleftImage={true}
           />
         </div>

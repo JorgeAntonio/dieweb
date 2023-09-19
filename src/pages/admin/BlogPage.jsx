@@ -100,18 +100,18 @@ const BlogPage = () => {
           <table className="table">
             <thead>
               <tr>
+                <th>Publicado</th>
                 <th>Titulo</th>
                 <th>Autor</th>
-                <th>Publicado</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {posts.map((post) => (
                 <tr key={post.id}>
+                  <td>{formatDate(post.publish_date)}</td>
                   <td>{post.title}</td>
                   <td>{post.author}</td>
-                  <td>{formatDate(post.publish_date)}</td>
                   <td className="flex gap-2">
                     <IconButton
                       onClick={() => {

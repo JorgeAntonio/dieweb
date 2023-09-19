@@ -23,7 +23,10 @@ const PostProvider = ({ children }) => {
   };
 
   const fetchAll = async () => {
-    const { data, error } = await supabase.from("post").select();
+    const { data, error } = await supabase
+      .from("post")
+      .select()
+      .order("id", { ascending: false });
     if (data) setPosts(data);
     if (error) setErrorMsg("Error in Fetching Posts");
   };
