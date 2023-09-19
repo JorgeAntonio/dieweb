@@ -95,22 +95,20 @@ const EventPage = () => {
           <table className="table">
             <thead>
               <tr>
-                <th>Titulo</th>
                 <th>Fecha</th>
+                <th>Titulo</th>
                 <th>Hora</th>
                 <th>Lugar</th>
-                <th>Descripción</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {events.map((event, idx) => (
                 <tr key={idx}>
-                  <td>{event.name}</td>
                   <td>{event.date}</td>
+                  <td>{event.name}</td>
                   <td>{event.time}</td>
                   <td>{event.location}</td>
-                  <td>{event.description}</td>
                   <td className="flex gap-2">
                     <IconButton
                       onClick={() => {
