@@ -83,11 +83,11 @@ const EntrepreneurPage = () => {
           marginBottom: "10px",
         }}
       >
-        <h2 className="text-center text-xl font-semibold">
+        <h2 className="text-xl font-semibold">
           Mantenimiento de emprendedores
         </h2>
         <button className="btn btn-primary btn-sm" onClick={handleAdd}>
-          Crear emprendedor
+          Crear
         </button>
       </div>
       <div className="overflow-x-auto">

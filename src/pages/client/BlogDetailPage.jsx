@@ -5,7 +5,7 @@ import { SocialMediaLink } from "../../components/client/SocialMediaLink";
 import ClientNavbar from "../../layouts/components/ClientNavbar";
 import Footer from "../../layouts/components/Footer";
 import { supabase } from "../../supabase/supabase.client";
-import FormatDate from "../../utils/FormatDate";
+import FormatDate, { SplitContent } from "../../utils/Utils";
 
 export const BlogDetailPage = () => {
   const { id } = useParams();
@@ -34,17 +34,6 @@ export const BlogDetailPage = () => {
     getPost();
   }, [id]);
 
-  //function para separar el contenido del post en parrafos
-
-  const splitContent = (content) => {
-    if (!content) {
-      return [];
-    }
-
-    const paragraphs = content.split("\n");
-    return paragraphs;
-  };
-
   return (
     <>
       <ClientNavbar />
@@ -68,7 +57,7 @@ export const BlogDetailPage = () => {
               </div>
 
               <article className="text-base md:text-lg">
-                {splitContent(post.content).map((paragraph, index) => (
+                {SplitContent(post.content).map((paragraph, index) => (
                   <p className="pb-4" key={index}>
                     {paragraph}
                   </p>

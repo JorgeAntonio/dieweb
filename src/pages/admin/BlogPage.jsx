@@ -88,11 +88,9 @@ const BlogPage = () => {
           marginBottom: "1rem",
         }}
       >
-        <h2 className="text-center text-xl font-semibold">
-          Mantenimiento de blog
-        </h2>
+        <h2 className="text-xl font-semibold">Mantenimiento de blog</h2>
         <button className="btn btn-primary btn-sm" onClick={handleAdd}>
-          Crear blog
+          Crear
         </button>
       </div>
       <div className="overflow-x-auto">

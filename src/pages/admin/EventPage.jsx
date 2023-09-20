@@ -83,11 +83,9 @@ const EventPage = () => {
           marginBottom: "10px",
         }}
       >
-        <h2 className="text-center text-xl font-semibold">
-          Mantenimiento de eventos
-        </h2>
+        <h2 className="text text-xl font-semibold">Mantenimiento de eventos</h2>
         <button className="btn btn-primary btn-sm" onClick={handleAdd}>
-          Crear evento
+          Crear
         </button>
       </div>
       <div className="overflow-x-auto">
