@@ -1,10 +1,7 @@
-import Breadcrumb from "../Breadcrumb";
-
 export const BlogHeader = () => {
   return (
     <>
-      <div className="px-4 md:px-8 pt-24">
-        <Breadcrumb />
+      <div className="px-4 md:px-8 pt-20">
         <div className="grid grid-cols-1 md:grid-cols-3 justify-center items-center h-96">
           <div className="col-span-2">
             <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-center md:text-start mb-6">
