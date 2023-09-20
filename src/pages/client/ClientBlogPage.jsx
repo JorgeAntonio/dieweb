@@ -14,7 +14,7 @@ export default function ClientBlogPage() {
     return newDate.toLocaleDateString("es-ES", options);
   };
 
-  const cutWords = (content) => {
+  const cutWordsTitle = (content) => {
     const words = content.split(" ");
     return words.slice(0, 10).join(" ");
   };
@@ -41,11 +41,12 @@ export default function ClientBlogPage() {
         </div>
         {posts && posts.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 lg:gap-10">
-            {posts.map((post, idx) => (
+            {posts.map((post) => (
               <BlogCard
-                key={idx}
+                key={post.id}
+                id={post.id}
                 image={post.featured_image_url}
-                title={cutWords(post.title) + "..."}
+                title={cutWordsTitle(post.title) + "..."}
                 content={cutWordsContent(post.content) + "..."}
                 date={formatDate(post.created_at)}
               />
