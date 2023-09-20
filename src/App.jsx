@@ -8,6 +8,7 @@ import AdminPage from "./pages/admin/AdminPage";
 import BlogPage from "./pages/admin/BlogPage";
 import EntrepreneurPage from "./pages/admin/EntrepreneurPage";
 import EventPage from "./pages/admin/EventPage";
+import { BlogDetailPage } from "./pages/client/BlogDetailPage";
 import ClientBlogPage from "./pages/client/ClientBlogPage";
 import HomePage from "./pages/client/HomePage";
 import Login from "./pages/client/Login";
@@ -62,6 +63,14 @@ const App = () => {
         element={
           <PostProvider>
             <ClientBlogPage />
+          </PostProvider>
+        }
+      />
+      <Route
+        path="publicaciones/:id"
+        element={
+          <PostProvider>
+            <BlogDetailPage />
           </PostProvider>
         }
       />
