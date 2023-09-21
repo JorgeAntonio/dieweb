@@ -69,7 +69,7 @@ const Register = () => {
             <img
               src="https://source.unsplash.com/random"
               alt="login"
-              className="hidden md:flex md:w-full md:h-screen md:object-cover rounded"
+              className="hidden md:flex md:w-full md:h-screen md:object-cover rounded-r-xl"
             />
           </div>
         </div>
@@ -142,7 +142,7 @@ const Register = () => {
                   <label className="label">
                     <div className="label-text-alt">
                       ¿Ya eres usuario?{" "}
-                      <Link to={"/login"} className="link link-hover">
+                      <Link to={"/auth"} className="link link-hover">
                         Iniciar sesión.
                       </Link>
                     </div>

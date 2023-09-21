@@ -18,6 +18,11 @@ export const CutWordsContent = (content) => {
   return words.slice(0, 13).join(" ");
 };
 
+export const CutWordsEvent = (content) => {
+  const words = content.split(" ");
+  return words.slice(0, 5).join(" ");
+};
+
 export const SplitContent = (content) => {
   if (!content) {
     return [];

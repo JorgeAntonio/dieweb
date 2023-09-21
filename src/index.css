@@ -1,12 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .text-balance {
   text-wrap: balance;
-}
-
-.limit-text {
-  max-height: calc(1.3em * 3);
-  overflow: hidden;
 }

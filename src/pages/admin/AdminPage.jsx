@@ -29,14 +29,14 @@ const AdminPage = () => {
       {showAlert && <div className="alert"> Bienvenido, {user.email}</div>}
       <h1 className="text-2xl font-bold pb-8">Panel de Administración</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center gap-4">
-        <Link to="/emprendedor">
+        <Link to="emprendedor">
           <CasesCard
             title="Emprendedores"
             description="Gestiona los datos de los emprendedores."
             image="https://img.freepik.com/free-photo/asia-female-ceramist-with-apron-hand-confident-chest-her-workshop-clay-sculpture-studio-with-positive-smiling-warm-welcome-ready-start-new-factory-ceramic-workshop-with-new-collection-work_609648-2716.jpg?w=1060&t=st=1694154668~exp=1694155268~hmac=7276541ac87f7a52491a73d583a46d28b3dcfa1098f775337c8d0d5e7a772132"
           />
         </Link>
-        <Link to={"/eventos"}>
+        <Link to={"eventos"}>
           <CasesCard
             title="Eventos"
             description="Gestiona los eventos y actividades."

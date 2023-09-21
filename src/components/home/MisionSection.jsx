@@ -1,7 +1,7 @@
 export default function MisionSection() {
   return (
     <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-8 pb-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div>
           <div className="card bg-white w-full text-balance">
             <div className="card-body">
