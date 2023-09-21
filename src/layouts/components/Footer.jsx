@@ -1,3 +1,5 @@
+import SocialMediaLink from "../../components/client/SocialMediaLink";
+
 const Footer = () => {
   return (
     <footer className="bg-neutral text-neutral-content">
@@ -6,6 +8,7 @@ const Footer = () => {
           <span className="footer-title text-3xl">DIE UNAP</span>
           <div className="h-full">
             <p>Innova ahora</p>
+            <SocialMediaLink />
           </div>
         </div>
         <div className="mb-6 md:mb-0 w-[200px]"></div>

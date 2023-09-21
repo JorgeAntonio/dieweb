@@ -5,8 +5,3 @@
 .text-balance {
   text-wrap: balance;
 }
-
-.limit-text {
-  max-height: calc(1.3em * 3);
-  overflow: hidden;
-}

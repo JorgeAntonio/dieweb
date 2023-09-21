@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
-import { SocialMediaLink } from "../../components/client/SocialMediaLink";
+import SocialMediaLink from "../../components/client/SocialMediaLink";
 import ClientNavbar from "../../layouts/components/ClientNavbar";
 import Footer from "../../layouts/components/Footer";
 import { supabase } from "../../supabase/supabase.client";

@@ -1,4 +1,4 @@
-export const SocialMediaLink = () => {
+export default function SocialMediaLink() {
   return (
     <div className="flex justify-center items-center gap-4 py-8">
       <button className="btn btn-ghost btn-sm">
@@ -21,4 +21,4 @@ export const SocialMediaLink = () => {
       </button>
     </div>
   );
-};
+}
