@@ -22,7 +22,7 @@ const Hero = () => {
           to="/accion" // Reemplaza con la URL de tu llamada a la acción
           className="btn btn-primary btn-lg w-full sm:w-auto"
         >
-          ¡Únete Ahora!
+          Inscribete
         </Link>
       </div>
     </div>

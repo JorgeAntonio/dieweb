@@ -1,6 +1,6 @@
 const ServicesSection = () => {
   return (
-    <div className="bg-base-300 text-balance">
+    <div className="bg-base-200 text-balance">
       <h1 className="text-4xl font-sans text-center mb-4">
         Nuestros Servicios
       </h1>
