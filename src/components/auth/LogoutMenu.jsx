@@ -19,7 +19,7 @@ export const LogoutMenu = () => {
           <a className="justify-between">Perfil</a>
         </li>
         <li>
-          <NavLink to="/landing" onClick={signOut}>
+          <NavLink to="/" onClick={signOut}>
             Cerrar sesión
           </NavLink>
         </li>

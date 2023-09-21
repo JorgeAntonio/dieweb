@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import SocialMediaLink from "../../components/client/SocialMediaLink";
-import ClientNavbar from "../../layouts/components/ClientNavbar";
-import Footer from "../../layouts/components/Footer";
 import { supabase } from "../../supabase/supabase.client";
 import FormatDate, { SplitContent } from "../../utils/Utils";
 
@@ -36,7 +34,6 @@ export const BlogDetailPage = () => {
 
   return (
     <>
-      <ClientNavbar />
       {post.id ? (
         <>
           <header>
@@ -64,15 +61,14 @@ export const BlogDetailPage = () => {
                 ))}
               </article>
             </section>
-            <section>
-              <SocialMediaLink />
-            </section>
+            <SocialMediaLink />
           </main>
         </>
       ) : (
         <LoadingSpinner />
       )}
-      <Footer />
     </>
   );
 };
+
+export default BlogDetailPage;

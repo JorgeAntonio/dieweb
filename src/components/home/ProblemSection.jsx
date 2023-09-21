@@ -1,7 +1,7 @@
 export default function ProblemSection() {
   return (
     <div>
-      <div className="container mx-auto mt-8 p-8 md:p-16 flex flex-col md:flex-row items-center gap-8">
+      <div className="flex flex-col md:flex-row items-center gap-8">
         <div className="w-full md:w-1/2 text-balance">
           <h1 className="text-4xl font-sans text-start mb-4 uppercase">
             El Desafío de Emprender Sin Orientación

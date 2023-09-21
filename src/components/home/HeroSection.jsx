@@ -1,33 +1,32 @@
 import { Link } from "react-router-dom";
 import background from "../../assets/images/hero.webp";
-import HeroNavbar from "../../layouts/components/HeroNavbar";
 
-const HeroSection = () => {
+const Hero = () => {
   return (
-    <div>
-      <div
-        className="hero min-h-screen bg-cover bg-center relative"
-        style={{ backgroundImage: `url(${background})` }}
-      >
-        <div className="hero-overlay bg-opacity-60 absolute inset-0"></div>
-        <HeroNavbar />
-        <div className="hero-content text-center text-white relative z-10">
-          <div className="max-w-2xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-4">
-              ¡TRAZA TU FUTURO AHORA!
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-8">
-              YA ESTÁS EN EL CAMINO DEL ÉXITO. HAREMOS QUE TUS IDEAS BRILLEN AÚN
-              MÁS.
-            </p>
-            <Link to={`solicitar`} className="btn btn-primary text-lg">
-              Unete ahora
-            </Link>
-          </div>
-        </div>
+    <div
+      className="bg-gradient-to-b from-gray-800 via-gray-700 to-gray-600 text-white h-screen flex flex-col justify-end"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+      }}
+    >
+      <div className="text-start p-4 md:p-8 bg-gradient-to-t from-slate-400 via-transparent to-transparent">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+          ¡Impulsa tu éxito con nosotros!
+        </h1>
+        <p className="text-lg sm:text-xl md:text-2xl mb-8">
+          Descubre oportunidades ilimitadas para tu negocio.
+        </p>
+        <Link
+          to="/accion" // Reemplaza con la URL de tu llamada a la acción
+          className="btn btn-primary btn-lg w-full sm:w-auto"
+        >
+          ¡Únete Ahora!
+        </Link>
       </div>
     </div>
   );
 };
 
-export default HeroSection;
+export default Hero;

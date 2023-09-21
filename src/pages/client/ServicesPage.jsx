@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import ServicesCard from "../../components/Services/ServicesCard";
-import ClientNavbar from "../../layouts/components/ClientNavbar";
-import Footer from "../../layouts/components/Footer";
+// import ClientNavbar from "../../layouts/components/ClientNavbar";
 
 const ServiciosPage = () => {
   const navigate = useNavigate();
@@ -12,9 +11,9 @@ const ServiciosPage = () => {
 
   return (
     <>
-      <ClientNavbar />
-      <div className="px-4 md:px-8 md:pb-16 pt-24">
-        <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-6">
+      {/* <ClientNavbar /> */}
+      <div className="px-4 md:px-8 py-16">
+        <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-8">
           Estructura de servicios
         </h1>
 
@@ -69,7 +68,6 @@ const ServiciosPage = () => {
           />
         </div>
       </div>
-      <Footer />
     </>
   );
 };

@@ -2,8 +2,7 @@ import { LoadingSpinner } from "../../components/LoadingSpinner";
 import BlogCard from "../../components/client/BlogCard";
 import { BlogHeader } from "../../components/client/BlogHeader";
 import { usePosts } from "../../context/PostProvider";
-import ClientNavbar from "../../layouts/components/ClientNavbar";
-import Footer from "../../layouts/components/Footer";
+// import ClientNavbar from "../../layouts/components/ClientNavbar";
 import FormatDate, { CutWordsContent, CutWordsTitle } from "../../utils/Utils";
 
 export default function ClientBlogPage() {
@@ -11,7 +10,7 @@ export default function ClientBlogPage() {
 
   return (
     <>
-      <ClientNavbar />
+      {/* <ClientNavbar /> */}
       <BlogHeader />
       <div className="px-4 md:px-8 md:pb-16 md:pt-16">
         <div className="flex flex-col md:flex-row justify-between items-center pb-8 md:pb-16">
@@ -41,7 +40,6 @@ export default function ClientBlogPage() {
           <LoadingSpinner />
         )}
       </div>
-      <Footer />
     </>
   );
 }

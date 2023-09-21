@@ -47,14 +47,14 @@ export default function ClientNavbar() {
             </li>
           </ul>
         </div>
-        <NavLink to={"/landing"} className="btn btn-ghost normal-case text-xl">
+        <NavLink to={"/"} className="btn btn-ghost normal-case text-xl">
           DIE UNAP
         </NavLink>
       </div>
       <div className="navbar-end">
         <ul className="menu md:menu-horizontal px-1 hidden">
           <li>
-            <NavLink to="/landing" className={""}>
+            <NavLink to="/" className={""}>
               Inicio
             </NavLink>
           </li>
@@ -69,7 +69,7 @@ export default function ClientNavbar() {
             </NavLink>
           </li>
         </ul>
-        {auth && <NavLink to="/">Panel</NavLink>}
+        {auth && <NavLink to="/admin">Panel</NavLink>}
         {auth && <LogoutMenu />}
       </div>
     </div>

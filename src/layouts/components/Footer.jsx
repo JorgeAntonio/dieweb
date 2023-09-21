@@ -1,5 +1,3 @@
-import SocialMediaLink from "../../components/client/SocialMediaLink";
-
 const Footer = () => {
   return (
     <footer className="bg-neutral text-neutral-content">
@@ -8,7 +6,26 @@ const Footer = () => {
           <span className="footer-title text-3xl">DIE UNAP</span>
           <div className="h-full">
             <p>Innova ahora</p>
-            <SocialMediaLink />
+            <div className="flex justify-start items-center gap-4 py-8 ">
+              <button className="btn btn-info btn-sm">
+                <img
+                  src="https://api.iconify.design/akar-icons:twitter-fill.svg"
+                  alt="twitter"
+                />
+              </button>
+              <button className="btn btn-info btn-sm">
+                <img
+                  src="https://api.iconify.design/akar-icons:facebook-fill.svg"
+                  alt="facebook"
+                />
+              </button>
+              <button className="btn btn-info btn-sm">
+                <img
+                  src="https://api.iconify.design/akar-icons:instagram-fill.svg"
+                  alt="instagram"
+                />
+              </button>
+            </div>
           </div>
         </div>
         <div className="mb-6 md:mb-0 w-[200px]"></div>

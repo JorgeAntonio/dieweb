@@ -42,7 +42,7 @@ export default function HeroNavbar() {
           </ul>
         </div>
         <NavLink
-          to={"/landing"}
+          to={"/"}
           className="btn btn-ghost normal-case text-xl text-white"
         >
           DIE UNAP
@@ -51,7 +51,7 @@ export default function HeroNavbar() {
       <div className="navbar-end">
         <ul className="menu md:menu-horizontal px-1 hidden">
           <li>
-            <NavLink to="/landing" className={"text-base-100 hover:text-white"}>
+            <NavLink to="/" className={"text-base-100 hover:text-white"}>
               Inicio
             </NavLink>
           </li>
