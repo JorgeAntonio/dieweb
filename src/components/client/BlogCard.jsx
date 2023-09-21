@@ -6,17 +6,19 @@ export const BlogCard = ({ id, image, title, content, date }) => {
 
   return (
     <div className="card-compact rounded-xl bg-base-100">
-      <figure>
-        <img
-          src={image}
-          className="w-full h-[220px] object-cover rounded-xl"
-          alt="post image"
-        />
-      </figure>
-      <div className="flex flex-col gap-6 md:gap-2 py-4">
-        <Link to={blogUrl} className="text-xl font-bold">
+      <Link to={blogUrl} className="hover:underline">
+        <figure>
+          <img
+            src={image}
+            className="w-full h-[220px] object-cover rounded-xl"
+            alt="post image"
+          />
+        </figure>
+        <div className="flex flex-col gap-6 md:gap-2 py-4">
           <h1 className="text-xl font-medium h-16 md:h-20">{title}</h1>
-        </Link>
+        </div>
+      </Link>
+      <div className="flex flex-col gap-6 md:gap-2 py-4">
         <div className="h-20">
           {content}
           <Link to={blogUrl} className="btn btn-xs">

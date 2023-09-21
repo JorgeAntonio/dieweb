@@ -3,7 +3,7 @@ import { LogoutMenu } from "../../components/auth/LogoutMenu";
 import { useAuth } from "../../context/AuthProvider";
 
 export default function Navbar() {
-  const { auth, signOut } = useAuth();
+  const { auth } = useAuth();
 
   return (
     <div className="navbar bg-transparent">
@@ -43,22 +43,6 @@ export default function Navbar() {
             </li>
             <li>
               <NavLink to={"landing"}>Landing</NavLink>
-            </li>
-            <li>
-              <NavLink to={"/landing"} className="btn btn-primary btn-sm">
-                Landing
-              </NavLink>
-            </li>
-            <li>
-              {auth && (
-                <NavLink
-                  to="/landing"
-                  onClick={signOut}
-                  className={"btn btn-error btn-sm"}
-                >
-                  Cerrar sesión
-                </NavLink>
-              )}
             </li>
           </ul>
         </div>
