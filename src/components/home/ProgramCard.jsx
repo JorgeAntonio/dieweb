@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 export const ProgramCard = ({ title, content, image }) => {
   return (
     <>
-      <div className="border overflow-hidden shadow-md">
+      <div className="border overflow-hidden">
         <figure>
           <img
             src={image || "https://picsum.photos/id/1005/400/250"}

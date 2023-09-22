@@ -2,7 +2,7 @@ import { ImageSection } from "../ImageSection";
 
 export default function ProblemSection() {
   return (
-    <div className="py-16">
+    <div className="py-4 md:py-16">
       <ImageSection
         isLeft={true}
         image={

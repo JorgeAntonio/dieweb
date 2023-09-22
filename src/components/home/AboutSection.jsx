@@ -20,7 +20,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <div className="py-16">
+    <div className="py-4 md:py-16">
       <h1 className="md:hidden text-3xl font-medium text-center uppercase pb-8">
         DIE UNAP
       </h1>
