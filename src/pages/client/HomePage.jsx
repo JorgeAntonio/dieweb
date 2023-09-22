@@ -1,8 +1,5 @@
-import BannerSection from "../../components/BannerSection";
-import MainSection from "../../components/MainSection";
 import AboutSection from "../../components/home/AboutSection";
 import Hero from "../../components/home/HeroSection";
-import MisionSection from "../../components/home/MisionSection";
 import ProblemSection from "../../components/home/ProblemSection";
 import ServicesSection from "../../components/home/ServicesSection";
 // import SidebarSection from "../../components/home/SidebarSection";
@@ -11,18 +8,10 @@ const HomePage = () => {
   return (
     <div>
       <Hero />
-      <BannerSection>
-        <ProblemSection />
-      </BannerSection>
-      <MainSection>
-        <ServicesSection />
-      </MainSection>
-      <MainSection>
-        <AboutSection />
-      </MainSection>
-      <MainSection>
-        <MisionSection />
-      </MainSection>
+      <ProblemSection />
+      <ServicesSection />
+      <AboutSection />
+
       {/* <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">

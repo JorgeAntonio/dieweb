@@ -13,7 +13,7 @@ export const BannerSection = ({ children }) => {
 };
 
 BannerSection.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: PropTypes.node,
 };
 
 export default BannerSection;

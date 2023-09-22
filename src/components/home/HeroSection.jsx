@@ -12,16 +12,13 @@ const Hero = () => {
       }}
     >
       <div className="text-start p-4 md:p-8 bg-gradient-to-t from-slate-400 via-transparent to-transparent">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
           ¡Impulsa tu éxito con nosotros!
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl mb-8">
           Descubre oportunidades ilimitadas para tu negocio.
         </p>
-        <Link
-          to="/accion" // Reemplaza con la URL de tu llamada a la acción
-          className="btn btn-primary btn-lg w-full sm:w-auto"
-        >
+        <Link to="/accion" className="btn btn-primary btn-lg w-full sm:w-auto">
           Inscribete
         </Link>
       </div>
