@@ -14,7 +14,7 @@ export const BlogHeader = () => {
           </div>
           <img
             src="https://img.freepik.com/free-photo/male-graphic-designer-giving-high-five-his-coworker_1170-1093.jpg?w=1060&t=st=1695102091~exp=1695102691~hmac=9ac473ee477ef391cee492ef8bc6617eda711c73d5b0f1b88c587e140708aa58"
-            className="hidden sm:block md:h-80 object-cover rounded-xl"
+            className="hidden sm:block md:h-80 object-cover"
             alt="portada blog"
           />
         </div>

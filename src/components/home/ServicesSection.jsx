@@ -1,43 +1,44 @@
+import { ProgramCard } from "./ProgramCard";
+
 const ServicesSection = () => {
   return (
-    <div className="bg-base-300 text-balance">
-      <h1 className="text-4xl font-sans text-center mb-4">
-        Nuestros Servicios
-      </h1>
+    <section className="bg-white py-4 md:py-16 px-4 md:px-8">
+      <div className="container mx-auto">
+        <h1 className="text-3xl font-semibold mb-8 text-center uppercase">
+          Programas y Recursos
+        </h1>
 
-      <div className="text-gray-800 text-lg mb-4">
-        <h2 className="text-2xl font-semibold mb-2">Programas de Ayuda</h2>
-        <p>
-          Ofrecemos programas diseñados para guiar a emprendedores en cada paso
-          del camino. Desde la concepción de la idea hasta la implementación y
-          el crecimiento del negocio, estamos aquí para apoyarte.
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <ProgramCard
+            title={"Descubre nuestra guía empresarial"}
+            content={
+              "En nuestro viaje emprendedor, ofrecemos programas diseñados para acompañarte en cada paso. Desde la concepción de tu idea hasta la ejecución y el crecimiento de tu negocio, estamos aquí para proporcionarte un apoyo constante y efectivo."
+            }
+            image={
+              "https://scontent.fiqt3-1.fna.fbcdn.net/v/t39.30808-6/334979594_179116981531091_6826592852775266770_n.jpg?stp=cp6_dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=813123&_nc_eui2=AeGTdd1WKsVyFm1JXvzJf4rVHlD4pZtZWAIeUPilm1lYAixDLxIdREwjxS6va4HYxcvseJ_kqSdxHbo2sWMZ59hy&_nc_ohc=lxB-6UnjDrQAX-OaWOO&_nc_zt=23&_nc_ht=scontent.fiqt3-1.fna&oh=00_AfBXUQK2tWfPy41Oh8zQuxC7KGZ0LogRIJJcnNMkQfXVYA&oe=651102AC"
+            }
+          />
+          <ProgramCard
+            title={"Mentoría personalizada de profesionales experimentados"}
+            content={
+              "Nuestros mentores y expertos altamente experimentados están preparados para proporcionarte orientación personalizada. Te ayudarán a superar desafíos, tomar decisiones fundamentadas y avanzar con confianza en tu trayectoria hacia el éxito empresarial."
+            }
+            image={
+              "https://scontent.fiqt3-1.fna.fbcdn.net/v/t39.30808-6/347658221_266249869113028_4469603379540778343_n.jpg?stp=cp6_dst-jpg&_nc_cat=102&ccb=1-7&_nc_sid=813123&_nc_eui2=AeHkNcVYgnEgZP7VjUKbIixUgg_M7u3hBDOCD8zu7eEEM0GNVQvAzoEkNXbYmpZZL4XcrcHGIw2CHLRG49orqQA2&_nc_ohc=xL8NSyr8m1wAX8JUqBs&_nc_zt=23&_nc_ht=scontent.fiqt3-1.fna&oh=00_AfBQIWC5-g85HxHIUBlmG9HZz2C-L__9LFRynGjo5h_K7g&oe=65112766"
+            }
+          />
+          <ProgramCard
+            title={"Explora nuestra gama de servicios clave"}
+            content={
+              "Te ofrecemos una amplia variedad de servicios esenciales, que incluyen capacitación especializada, acceso a recursos de financiamiento y espacios de trabajo colaborativos. Estos recursos están meticulosamente diseñados para proporcionarte las herramientas necesarias que te permitan superar los obstáculos iniciales en el mundo del emprendimiento."
+            }
+            image={
+              "https://scontent.fiqt3-1.fna.fbcdn.net/v/t39.30808-6/330353991_604312327965218_5113270765573853013_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=813123&_nc_eui2=AeGLP1225k6bbKeBDln8zbgpI0SfiVq0vZcjRJ-JWrS9l8q0xfKVEDCKzDJtu7vkvqhrTBJ1H5GKSXzl2qnvN7_L&_nc_ohc=UMMqJ4g7nWkAX_gXoDY&_nc_zt=23&_nc_ht=scontent.fiqt3-1.fna&oh=00_AfCSyxfetLkITWcENAsW220IElHyFSJyj-PMoa_IuXZWPw&oe=65127778"
+            }
+          />
+        </div>
       </div>
-
-      <div className="text-gray-800 text-lg mb-4">
-        <h2 className="text-2xl font-semibold mb-2">Mentoría Especializada</h2>
-        <p>
-          Nuestros mentores y expertos experimentados están listos para
-          proporcionarte orientación personalizada. Te ayudarán a superar
-          desafíos, tomar decisiones informadas y avanzar en tu camino hacia el
-          éxito empresarial.
-        </p>
-      </div>
-
-      <div className="text-gray-800 text-lg">
-        <h2 className="text-2xl font-semibold mb-2">Servicios Clave</h2>
-        <p>
-          Además, ofrecemos una variedad de servicios clave, que incluyen
-          capacitación especializada, acceso a recursos de financiamiento y
-          espacios de trabajo colaborativos. Estos recursos están diseñados para
-          brindarte las herramientas necesarias para superar los obstáculos
-          iniciales en el mundo del emprendimiento.
-        </p>
-      </div>
-      <div className="pt-8">
-        <button className="btn btn-primary">UNETE A NOSOTROS AHORA</button>
-      </div>
-    </div>
+    </section>
   );
 };
 

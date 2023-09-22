@@ -10,7 +10,7 @@ export const BlogCard = ({ id, image, title, content, date }) => {
         <figure>
           <img
             src={image}
-            className="w-full h-[220px] object-cover rounded-xl"
+            className="w-full h-[220px] object-cover"
             alt="post image"
           />
         </figure>
