@@ -33,7 +33,7 @@ export default function ClientNavbar() {
               <NavLink to="/">Inicio</NavLink>
             </li>
             <li>
-              <NavLink to={"/servicios"}>Servicios</NavLink>
+              <NavLink to={"/servicios"}>Programas</NavLink>
             </li>
             <li>
               <NavLink to="/publicaciones">Blog</NavLink>
@@ -60,7 +60,7 @@ export default function ClientNavbar() {
           </li>
           <li>
             <NavLink to={"/servicios"} className={""}>
-              Servicios
+              Programas
             </NavLink>
           </li>
           <li>

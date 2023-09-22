@@ -1,73 +1,95 @@
-import { useNavigate } from "react-router-dom";
-import ServicesCard from "../../components/Services/ServicesCard";
-// import ClientNavbar from "../../layouts/components/ClientNavbar";
+import Hero from "../../components/home/HeroSection";
 
 const ServiciosPage = () => {
-  const navigate = useNavigate();
-
-  const handleNavigate = () => {
-    navigate("/solicitar1");
-  };
-
   return (
     <>
-      {/* <ClientNavbar /> */}
-      <div className="px-4 md:px-8 py-16">
-        <h1 className="text-2xl md:text-3xl font-bold text-start md:text-start mb-8">
-          Estructura de servicios
-        </h1>
+      <Hero />
+      <section
+        className="flex flex-col justify-center items-start w-full"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80")',
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+        }}
+      >
+        <article className="max-w-2xl text-base-200 px-4 md:pl-8 md:pr-0">
+          <h1 className="text-3xl font-medium text-center md:text-start mb-8 uppercase">
+            Pre Incubación
+          </h1>
+          <p className="text-sm md:text-base lg:text-xl">
+            La pre-incubación es la etapa inicial del proceso de incubación. En
+            esta etapa, se busca validar la idea de negocio y el modelo de
+            negocio. Los emprendedores reciben asesoramiento y recursos para
+            desarrollar un prototipo y validar su idea de negocio.
+          </p>
+          <p className="text-sm md:text-base lg:text-xl">
+            Los emprendedores que deseen solicitar los servicios de la
+            incubadora en esta etapa deben tener una idea de negocio y completar
+            el formulario de solicitud de pre-incubación.
+          </p>
+        </article>
+      </section>
 
-        <div className="flex flex-col gap-16">
-          <ServicesCard
-            title="1. Pre-incubación"
-            requirement="Tener una idea de negocio."
-            details="Validación de la idea de negocio: En esta etapa, se busca validar la idea de negocio y el modelo de negocio. Los emprendedores reciben asesoramiento y recursos para desarrollar un prototipo y validar su idea de negocio."
-            last="3 meses"
-            handleNavigate={() => {
-              handleNavigate();
-            }}
-            image={
-              "https://img.freepik.com/free-photo/young-pretty-tailors-happily-looking-camera-drawing-sketches-new-clothes-together-cozy-sewing-workshop_574295-3698.jpg?w=1060&t=st=1695097126~exp=1695097726~hmac=a0df97d6d5a706d440dbf81aecf2f55b0d56263fdfb32748f5323e14abfc09e3"
-            }
-            isleftImage={true}
-          />
+      <section
+        className="flex flex-col justify-center items-center w-full"
+        style={{
+          backgroundImage:
+            'url("https://images.unsplash.com/photo-1568658176307-bfbd2873abda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")',
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+        }}
+      >
+        <article className="max-w-2xl text-base-200">
+          <h1 className="text-3xl font-medium text-center md:text-start mb-8 uppercase">
+            Incubación
+          </h1>
+          <p className="text-sm md:text-base lg:text-xl">
+            La incubación es la etapa de desarrollo y crecimiento del proyecto.
+            Los emprendedores reciben asesoramiento más profundo y recursos
+            adicionales, como espacio de trabajo, acceso a financiamiento y
+            conexiones con mentores e inversores.
+          </p>
+          <p className="text-sm md:text-base lg:text-xl">
+            Los emprendedores que deseen solicitar los servicios de la
+            incubadora en esta etapa deben haber realizado el periodo de
+            pre-incubación en esta incubadora o en otra incubadora.
+          </p>
+        </article>
+      </section>
 
-          <ServicesCard
-            title={"2. Incubación"}
-            requirement={
-              "Haber realizado el periodo de pre-incubación en esta incubadora o en otra incubadora."
-            }
-            details={
-              "Desarrollo Empresarial: Durante la incubación, se enfoca en el desarrollo y crecimiento del proyecto. Los emprendedores reciben asesoramiento más profundo y recursos adicionales, como espacio de trabajo, acceso a financiamiento y conexiones con mentores e inversores."
-            }
-            last={"5 meses"}
-            handleNavigate={() => {
-              navigate("/solicitar2");
-            }}
-            image={
-              "https://img.freepik.com/free-photo/young-professional-carpenter-holding-wood-material-looking-tablet-carpentry-workshop_342744-843.jpg?w=1060&t=st=1695097193~exp=1695097793~hmac=3e359e0570f1bd102f82b8938bc42ecf1f2f7446cb15ce3e5b294f6e9b8e445d"
-            }
-          />
-
-          <ServicesCard
-            title={"3. Post-incubación"}
-            requirement={
-              "Haber realizado el periodo de incubación en esta incubadora o en otra incubadora."
-            }
-            details={
-              "Independencia y Crecimiento: En esta etapa, las startups incubadas se gradúan de la incubadora y funcionan de manera más independiente. Se espera que continúen creciendo, expandiéndose y consolidándose en el mercado."
-            }
-            last={"2 meses"}
-            handleNavigate={() => {
-              navigate("/solicitar3");
-            }}
-            image={
-              "https://img.freepik.com/free-photo/asia-female-ceramist-with-apron-hand-confident-chest-her-workshop-clay-sculpture-studio-with-positive-smiling-warm-welcome-ready-start-new-factory-ceramic-workshop-with-new-collection-work_609648-2716.jpg?w=1060&t=st=1695096773~exp=1695097373~hmac=d309e34189d4df6f5a0dda3e31223528ec6c2daa06734c6cefaf8442c93c73ce"
-            }
-            isleftImage={true}
-          />
-        </div>
-      </div>
+      <section
+        className="flex flex-col justify-center items-end w-full"
+        style={{
+          backgroundImage:
+            'url("https://plus.unsplash.com/premium_photo-1661771773771-a093c948ba92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")',
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          height: "100vh",
+        }}
+      >
+        <article className="max-w-2xl text-base-200 px-4 md:pl-0 md:pr-8">
+          <h1 className="text-3xl font-medium text-center md:text-start mb-8 uppercase">
+            Post Incubación
+          </h1>
+          <p className="text-sm md:text-base lg:text-xl">
+            La post-incubación es la etapa de independencia y crecimiento de la
+            startup. En esta etapa, las startups incubadas se gradúan de la
+            incubadora y funcionan de manera más independiente. Se espera que
+            continúen creciendo, expandiéndose y consolidándose en el mercado.
+          </p>
+          <p className="text-sm md:text-base lg:text-xl">
+            Los emprendedores que deseen solicitar los servicios de la
+            incubadora en esta etapa deben haber realizado el periodo de
+            incubación en esta incubadora o en otra incubadora.
+          </p>
+        </article>
+      </section>
     </>
   );
 };

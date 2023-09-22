@@ -1,5 +1,5 @@
+import ServicesHeaderSection from "../../components/Services/HeaderSection";
 import AboutSection from "../../components/home/AboutSection";
-import Hero from "../../components/home/HeroSection";
 import ProblemSection from "../../components/home/ProblemSection";
 import ServicesSection from "../../components/home/ServicesSection";
 // import SidebarSection from "../../components/home/SidebarSection";
@@ -7,7 +7,9 @@ import ServicesSection from "../../components/home/ServicesSection";
 const HomePage = () => {
   return (
     <div>
-      <Hero />
+      <ServicesHeaderSection />
+      <br />
+      <br />
       <ProblemSection />
       <ServicesSection />
       <AboutSection />

@@ -4,14 +4,14 @@ import background from "../../assets/images/hero.webp";
 const Hero = () => {
   return (
     <div
-      className="bg-gradient-to-b from-gray-800 via-gray-700 to-gray-600 text-white h-screen flex flex-col justify-end"
+      className="text-white h-screen flex flex-col justify-center"
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="text-start p-4 md:p-8 bg-gradient-to-t from-slate-400 via-transparent to-transparent">
+      <div className="text-start p-4 md:p-8">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
           ¡Impulsa tu éxito con nosotros!
         </h1>
