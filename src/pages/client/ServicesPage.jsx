@@ -1,9 +1,9 @@
-import ServicesHeaderSection from "../../components/Services/HeaderSection";
+import Hero from "../../components/home/HeroSection";
 
 const ServiciosPage = () => {
   return (
     <>
-      <ServicesHeaderSection />
+      <Hero />
       <section
         className="flex flex-col justify-center items-start w-full"
         style={{

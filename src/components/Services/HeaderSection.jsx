@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const ServicesHeaderSection = () => {
   return (
     <>
@@ -14,10 +16,10 @@ export const ServicesHeaderSection = () => {
       >
         <div className="col-span-2 max-w-4xl">
           <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-center md:text-start my-6">
-            Nuestros Programas de Incubación:
+            Programas de Incubación:
             <br /> Desde la Idea hasta el Éxito Empresarial
           </h1>
-          <p className="text-sm md:text-base lg:text-xl">
+          <p className="text-sm md:text-base lg:text-xl pb-8">
             La incubadora de negocios de la Universidad Nacional de la Amazonia
             Peruana ofrece servicios de pre-incubación, incubación y
             post-incubación a emprendedores que deseen desarrollar sus ideas de
@@ -27,6 +29,12 @@ export const ServicesHeaderSection = () => {
             incubadora en cualquiera de las tres etapas, dependiendo de su nivel
             de desarrollo.
           </p>
+          <Link
+            to="/accion"
+            className="btn btn-primary btn-lg w-full sm:w-auto"
+          >
+            Inscribete
+          </Link>
         </div>
       </div>
     </>
