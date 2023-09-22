@@ -10,7 +10,7 @@ export const ImageSection = ({ children, isLeft, image }) => {
           </div>
           <div className="md:h-full md:flex md:flex-col">
             <img
-              src={image}
+              src={image || "https://picsum.photos/500/500"}
               className="md:h-full lg:h-[600px] object-cover"
               alt="Imagen de la incubadora"
             />

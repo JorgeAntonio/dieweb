@@ -11,7 +11,7 @@ const Hero = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="text-start p-4 md:p-8 bg-gradient-to-t from-slate-400 via-transparent to-transparent">
+      <div className="text-start p-4 md:px-8 bg-gradient-to-t from-slate-400 via-transparent to-transparent py-16">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-4">
           ¡Impulsa tu éxito con nosotros!
         </h1>
