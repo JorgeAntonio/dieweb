@@ -4,11 +4,11 @@ export const ImageSection = ({ children, isLeft, image }) => {
   return (
     <>
       {isLeft ? (
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="flex flex-col justify-center items-start p-4 md:p-8 gap-2 md:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 h-screen">
+          <div className="col-span-2 flex flex-col justify-center items-start p-4 md:p-8 gap-2 md:gap-4 max-w-3xl">
             {children}
           </div>
-          <div className="h-[300px] md:h-full md:flex md:flex-col">
+          <div className="flex flex-col justify-center">
             <img
               src={image || "https://picsum.photos/500/500"}
               className="w-full h-[300px] md:h-full lg:h-[600px] object-cover"
@@ -17,15 +17,15 @@ export const ImageSection = ({ children, isLeft, image }) => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="md:h-full md:flex md:flex-col">
+        <div className="grid grid-cols-1 md:grid-cols-3 h-screen">
+          <div className="flex flex-col justify-center">
             <img
               src={image}
-              className="md:h-full lg:h-[600px] object-cover"
+              className="md:h-full lg:h-[600px] w-full object-cover"
               alt="Imagen de la incubadora"
             />
           </div>
-          <div className="flex flex-col justify-center items-start p-4 md:p-8 gap-2 md:gap-4">
+          <div className="flex flex-col justify-center items-end p-4 md:p-8 gap-2 md:gap-4 col-span-2 max-w-3xl">
             {children}
           </div>
         </div>

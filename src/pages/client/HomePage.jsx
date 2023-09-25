@@ -1,31 +1,18 @@
-import ServicesHeaderSection from "../../components/Services/HeaderSection";
+import MainHero from "../../components/Services/HeaderSection";
 import AboutSection from "../../components/home/AboutSection";
-import ProblemSection from "../../components/home/ProblemSection";
+import BlogSection from "../../components/home/BlogSection";
+import ContactSection from "../../components/home/ContactSection";
 import ServicesSection from "../../components/home/ServicesSection";
-// import SidebarSection from "../../components/home/SidebarSection";
 
 const HomePage = () => {
   return (
-    <div>
-      <ServicesHeaderSection />
-      <br />
-      <br />
-      <ProblemSection />
-      <ServicesSection />
+    <>
+      <MainHero />
       <AboutSection />
-
-      {/* <div className="drawer lg:drawer-open">
-        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
-          <div className="drawer-side">
-            <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-            <ul className="md:menu p-4 w-80 min-h-full bg-base-200 text-base-content hidden">
-              <SidebarSection />
-            </ul>
-          </div>
-        </div>
-      </div> */}
-    </div>
+      <ServicesSection />
+      <BlogSection />
+      <ContactSection />
+    </>
   );
 };
 

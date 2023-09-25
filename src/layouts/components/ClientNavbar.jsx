@@ -39,6 +39,9 @@ export default function ClientNavbar() {
               <NavLink to="/publicaciones">Blog</NavLink>
             </li>
             <li>
+                <NavLink to="/nosotros">Nosotros</NavLink>
+            </li>
+            <li>
               {auth && (
                 <NavLink to="/" className={"btn btn-primary btn-sm"}>
                   Panel
@@ -67,6 +70,9 @@ export default function ClientNavbar() {
             <NavLink to="/publicaciones" className={""}>
               Blog
             </NavLink>
+          </li>
+          <li>
+            <NavLink to="/nosotros">Nosotros</NavLink>
           </li>
         </ul>
         {auth && <NavLink to="/admin">Panel</NavLink>}

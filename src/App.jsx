@@ -16,6 +16,7 @@ import AdminPage from "./pages/admin/AdminPage";
 import BlogPage from "./pages/admin/BlogPage";
 import EntrepreneurPage from "./pages/admin/EntrepreneurPage";
 import EventPage from "./pages/admin/EventPage";
+import { AboutPage } from "./pages/client/AboutPage.jsx";
 import BlogDetailPage from "./pages/client/BlogDetailPage";
 import ClientBlogPage from "./pages/client/ClientBlogPage";
 import HomePage from "./pages/client/HomePage";
@@ -29,8 +30,16 @@ import ErrorPage from "./pages/error/ErrorPage";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<ClientLayout />}>
-      <Route index element={<HomePage />} />
+      <Route
+        index
+        element={
+          <PostProvider>
+            <HomePage />
+          </PostProvider>
+        }
+      />
       <Route path="servicios" element={<ServiciosPage />} />
+      <Route path={"nosotros"} element={<AboutPage />} />
       <Route path="publicaciones">
         <Route
           index

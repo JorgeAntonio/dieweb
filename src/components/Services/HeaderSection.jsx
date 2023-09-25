@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
+import background from "../../assets/images/background.webp";
 
-export const ServicesHeaderSection = () => {
+export const MainHero = () => {
   return (
     <>
       <div
-        className="grid grid-cols-1 md:grid-cols-3 justify-center items-center px-4 md:pl-8 md:pr-0 pt-16 h-screen text-base-200 "
+        className="grid grid-cols-1 md:grid-cols-3 justify-center items-center px-4 md:pl-8 md:pr-0 pt-16 h-screen text-white"
         style={{
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1534297635766-a262cdcb8ee4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")',
+          backgroundImage: `url(${background})`,
           backgroundPosition: "center",
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
@@ -15,11 +15,11 @@ export const ServicesHeaderSection = () => {
         }}
       >
         <div className="col-span-2 max-w-4xl">
-          <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold text-center md:text-start my-6">
+          <h1 className="text-5xl lg:text-6xl font-bold text-start my-6">
             Programas de Incubación:
             <br /> Desde la Idea hasta el Éxito Empresarial
           </h1>
-          <p className="text-sm md:text-base lg:text-xl pb-8">
+          <p className="text-sm md:text-base lg:text-xl mb-8">
             La incubadora de negocios de la Universidad Nacional de la Amazonia
             Peruana ofrece servicios de pre-incubación, incubación y
             post-incubación a emprendedores que deseen desarrollar sus ideas de
@@ -41,4 +41,4 @@ export const ServicesHeaderSection = () => {
   );
 };
 
-export default ServicesHeaderSection;
+export default MainHero;
