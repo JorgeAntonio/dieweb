@@ -2,9 +2,9 @@ import { ProgramCard } from "./ProgramCard";
 
 const ServicesSection = () => {
   return (
-    <section className="bg-white py-4 md:py-16 px-4 md:px-8 h-screen">
+    <section className="py-4 md:py-16 px-4 md:px-8 h-full">
       <div className="container mx-auto">
-        <h1 className="text-3xl font-semibold mb-16 text-center uppercase">
+        <h1 className="text-3xl font-semibold my-16 text-center uppercase">
           Recursos
         </h1>
 

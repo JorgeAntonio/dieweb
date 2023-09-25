@@ -15,7 +15,7 @@ export const MainHero = () => {
         }}
       >
         <div className="col-span-2 max-w-4xl">
-          <h1 className="text-5xl lg:text-6xl font-bold text-start my-6">
+          <h1 className="text-4xl lg:text-6xl font-bold text-start my-6">
             Programas de Incubación:
             <br /> Desde la Idea hasta el Éxito Empresarial
           </h1>

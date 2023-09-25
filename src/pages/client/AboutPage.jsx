@@ -8,6 +8,7 @@ export const AboutPage = () => {
     <div>
       <AboutSection />
       <ServicesSection />
+
       <ProblemSection />
       <ContactSection />
     </div>

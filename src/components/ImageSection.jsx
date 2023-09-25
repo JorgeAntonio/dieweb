@@ -4,8 +4,8 @@ export const ImageSection = ({ children, isLeft, image }) => {
   return (
     <>
       {isLeft ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 h-screen">
-          <div className="col-span-2 flex flex-col justify-center items-start p-4 md:p-8 gap-2 md:gap-4 max-w-3xl">
+        <div className="grid grid-cols-1 md:grid-cols-2 h-full md:h-screen">
+          <div className="flex flex-col justify-center items-start p-4 md:p-8 gap-2 md:gap-4 max-w-3xl">
             {children}
           </div>
           <div className="flex flex-col justify-center">
@@ -17,7 +17,7 @@ export const ImageSection = ({ children, isLeft, image }) => {
           </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 h-screen">
+        <div className="grid grid-cols-1 md:grid-cols-2 h-screen">
           <div className="flex flex-col justify-center">
             <img
               src={image}
@@ -25,7 +25,7 @@ export const ImageSection = ({ children, isLeft, image }) => {
               alt="Imagen de la incubadora"
             />
           </div>
-          <div className="flex flex-col justify-center items-end p-4 md:p-8 gap-2 md:gap-4 col-span-2 max-w-3xl">
+          <div className="flex flex-col justify-center items-end p-4 md:p-8 gap-2 md:gap-4 max-w-3xl">
             {children}
           </div>
         </div>
