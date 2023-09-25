@@ -25,7 +25,7 @@ export const ImageSection = ({ children, isLeft, image }) => {
               alt="Imagen de la incubadora"
             />
           </div>
-          <div className="flex flex-col justify-center items-end p-4 md:p-8 gap-2 md:gap-4 max-w-3xl">
+          <div className="flex flex-col justify-center items-start p-4 md:p-8 gap-2 md:gap-4 max-w-3xl">
             {children}
           </div>
         </div>
